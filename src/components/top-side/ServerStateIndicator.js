@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircle } from '@fortawesome/free-solid-svg-icons';
-import { updateServerState } from '../../reducers/serverConnectReducer';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircle } from "@fortawesome/free-solid-svg-icons";
+import { updateServerState } from "../../reducers/serverConnectReducer";
 
 const ServerStatusIndicator = () => {
   const isConnected = useSelector((state) => state.connected.isConnected);
@@ -13,23 +13,23 @@ const ServerStatusIndicator = () => {
       try {
         // console.log("서버 상태 확인 시도");
         // 서버에 핑 보내기
-        const response = await fetch('http://localhost:10100/ping');
+        const response = await fetch("http://165.246.21.213:10100/ping");
 
         // response.status === true : 웹, 모델 살아있음
         // response.status === false : 웹은 살고, 모델 죽음
         // 에러 404 : 웹 서버도 죽음.
-        console.log('현재 상태', response.status);
+        console.log("현재 상태", response.status);
 
         if (response.status) {
           // 서버로부터 응답이 오면 server state를 full-connected로 변경
-          dispatch(updateServerState('full-connected'));
+          dispatch(updateServerState("full-connected"));
         } else {
           // 서버로부터 응답이 오지 않으면 server state를 half-connected로 변경
-          dispatch(updateServerState('half-connected'));
+          dispatch(updateServerState("half-connected"));
         }
       } catch (error) {
         // 에러가 발생하면 server state를 disconneted로 변경
-        dispatch(updateServerState('disconnected'));
+        dispatch(updateServerState("disconnected"));
       }
     };
 
@@ -46,7 +46,7 @@ const ServerStatusIndicator = () => {
   return (
     <div className="flex ml-auto items-center space-x-4 drop-shadow-lg">
       <div className="inline bg-white rounded-lg p-2">
-        {isConnected === 'full-connected' && (
+        {isConnected === "full-connected" && (
           <>
             <div className="group relative inline-flex items-center overflow-hidden">
               <FontAwesomeIcon
@@ -60,7 +60,7 @@ const ServerStatusIndicator = () => {
           </>
         )}
 
-        {isConnected === 'half-connected' && (
+        {isConnected === "half-connected" && (
           <>
             <div className="group relative inline-flex items-center overflow-hidden">
               <FontAwesomeIcon
@@ -74,10 +74,10 @@ const ServerStatusIndicator = () => {
           </>
         )}
 
-        {isConnected === 'disconnected' && (
+        {isConnected === "disconnected" && (
           <>
             <div className="group relative inline-flex items-center overflow-hidden">
-              <FontAwesomeIcon icon={faCircle} className="text-red-600 ml-1" />{' '}
+              <FontAwesomeIcon icon={faCircle} className="text-red-600 ml-1" />{" "}
               <span className="transition-all duration-500 group-hover:max-w-xs max-w-0 overflow-hidden whitespace-nowrap ml-1 text-red-600 font-bold">
                 SERVER DEAD
               </span>

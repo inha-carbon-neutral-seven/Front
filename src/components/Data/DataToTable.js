@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { ExampleData } from './Chart/ChartExample';
-import { DataGrid } from '@mui/x-data-grid';
+import * as React from "react";
+import { ExampleData } from "./Chart/ChartExample";
+import { DataGrid } from "@mui/x-data-grid";
 
 function DataToTable({ jsonData }) {
   // Make sure jsonData is not undefined or null
@@ -11,7 +11,7 @@ function DataToTable({ jsonData }) {
   // Create columns from jsonData keys
   const columns = Object.keys(jsonData[0]).map((key) => ({
     field: key,
-    headerName: key.replace('_', ' '),
+    headerName: key.replace("_", " "),
     width: 150,
   }));
 
@@ -22,7 +22,7 @@ function DataToTable({ jsonData }) {
   }));
 
   return (
-    <div className="flex-grow flex flex-col bg-white dark:bg-gray-800 w-full h-full drop-shadow-lg overflow-auto max-h-[90vh] ounded-[12px]">
+    <div className="flex-grow flex flex-col bg-white dark:bg-gray-800 w-full h-full drop-shadow-lg overflow-auto max-h-[90vh] rounded-[12px]">
       <div className="mb-12 overflow-y-auto">
         <div className="absolute top-0 transform">
           <DataGrid
