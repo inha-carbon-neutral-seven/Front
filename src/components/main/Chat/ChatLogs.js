@@ -4,8 +4,8 @@ import TypingAnimation from "./TypingAnimation";
 // 채팅 log 컴포넌트
 function ChatLogs() {
   // 이 컴포넌트에서 사용할 상태변수들
-  const loading = useSelector((state) => state.chatScreen.loading);
-  const chatlog = useSelector((state) => state.chatScreen.chatlog);
+  const loading = useSelector((state) => state.chatVar.loading);
+  const chatlog = useSelector((state) => state.chatVar.chatlog);
 
   return (
     /* 채팅 메시지 출력 */

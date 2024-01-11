@@ -1,18 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect } from "react";
-import Loader from "./Loader";
 import ChatLogs from "./ChatLogs";
-import UserInput from "./Input/UserInput";
-import { addToChatLog } from "../../reducers/chatScreenReducers";
+import UserInput from "../Input/UserInput";
+import { addToChatLog } from "../../../reducers/chatReducers";
 import beaver from "../../image/logo.jpg";
 
-function ChatScreen({ fileData, onFileChange }) {
+function ChatScreen() {
   // App의 상태변수
   const currentState = useSelector((state) => state.appState.currentState);
 
   // 이 컴포넌트에서 사용할 상태변수들
-  const sentMessage = useSelector((state) => state.chatScreen.sentMessage);
-  const aiAnswer = useSelector((state) => state.chatScreen.aiAnswer);
+  const sentMessage = useSelector((state) => state.chatVar.sentMessage);
+  const aiAnswer = useSelector((state) => state.chatVar.aiAnswer);
 
   // dispatch func
   const dispatch = useDispatch();
@@ -48,7 +47,7 @@ function ChatScreen({ fileData, onFileChange }) {
         <ChatLogs />
 
         {/* 사용자 메시지 input */}
-        <UserInput fileData={fileData} onFileChange={onFileChange} />
+        <UserInput />
       </div>
     </div>
   );

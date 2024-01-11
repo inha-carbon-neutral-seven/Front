@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAppState } from "../../../reducers/appStateReducer";
-import { addAnalyzedFileData } from "../../../reducers/chatScreenReducers";
+import { addAnalyzedFileData } from "../../../reducers/dataReducers";
 import { Checkicon } from "../../../icons";
+
 // 파일 업로드 후(아직 서버로 전송은 안한 상황), 사용자지정 이름 input 입력받기
 // 이름을 입력 받은 후, server로 전송한다.
 function FileUploadToServer() {
@@ -10,7 +11,7 @@ function FileUploadToServer() {
   const currentState = useSelector((state) => state.appState.currentState);
 
   // 이 컴포넌트에서 사용할 상태변수들
-  const selectedFile = useSelector((state) => state.chatScreen.selectedFile);
+  const selectedFile = useSelector((state) => state.dataVar.fileData);
 
   // 파일 정보
   const [dataInfo, setDataInfo] = useState("");

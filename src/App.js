@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from "react";
 import csvtojson from "csvtojson";
 import Sidebar from "./components/left-side/Sidebar";
-import ChatScreen from "./components/main/ChatScreen";
+import ChatScreen from "./components/main/Chat/ChatScreen";
 import Header from "./components/top-side/Header";
 import DashScreen from "./components/Data/DashScreen";
 import DataToTable from "./components/Data/DataToTable";
 import { Bellicon, Exclamicon } from "./icons";
-import Loader from "./components/main/Loader";
-import { useSelector } from "react-redux";
+import Loader from "./components/main/Chat/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { setJsonData } from "./reducers/dataReducers";
 
 function App() {
+  const dispatch = useDispatch();
+
   const [showComponent, setShowComponent] = useState(0);
-  const [fileData, setFileData] = useState(null);
-  const [jsonData, setJsonData] = useState([]);
   const [error, setError] = useState("");
   const [sidebarWidth, setSidebarWidth] = useState(300);
   const [showAlert, setShowAlert] = useState(false);
+
+  const fileData = useSelector((state) => state.dataVar.fileData);
   const currentState = useSelector((state) => state.appState.currentState);
 
   // csv파일이 업데이트되면 csv를 json으로 변환하는 useEffect
@@ -27,6 +30,7 @@ function App() {
 
     const reader = new FileReader();
 
+    // 파일을 읽는데 성공하면 csv를 json으로 변환한다.
     reader.onload = async (e) => {
       console.log("FileReader onload triggered");
       const csvText = e.target.result;
@@ -34,7 +38,7 @@ function App() {
       try {
         const jsonArray = await csvtojson().fromString(csvText);
         console.log("CSV to JSON conversion successful:", jsonArray);
-        setJsonData(jsonArray);
+        dispatch(setJsonData(jsonArray));
       } catch (error) {
         console.error("Error converting CSV to JSON", error);
         setError("Error converting CSV to JSON");
@@ -71,16 +75,12 @@ function App() {
     >
       <div className="right-0">
         {currentState === "analyzed error" ? <Exclamicon /> : <Bellicon />}
-        <Loader currentState={currentState} />
+        <Loader />
       </div>
     </div>
   );
 
-  const handleFileChange = (file) => {
-    console.log("File selected:", file); // Log the selected file
-    setFileData(file);
-  };
-
+  // 페이지 이동 함수
   const handlePage = (p) => {
     setShowComponent(p);
   };
@@ -92,20 +92,14 @@ function App() {
 
       <div className="flex flex-grow mt-20 mb-2 pt-1 pb-1 w-4/5 place-self-center">
         <div className="fixed-left h-full">
-          <Sidebar
-            page={showComponent}
-            jsonData={jsonData}
-            setSidebarWidth={setSidebarWidth}
-          />
+          <Sidebar page={showComponent} setSidebarWidth={setSidebarWidth} />
         </div>
 
         <div className="flex-grow" style={{ maxWidth: "100%" }}>
           <div className="w-full h-full pl-0 space y-2 rounded-[12px]">
-            {showComponent === 0 && (
-              <ChatScreen fileData={fileData} onFileChange={handleFileChange} />
-            )}
-            {showComponent === 1 && <DashScreen jsonData={jsonData} />}
-            {showComponent === 2 && <DataToTable jsonData={jsonData} />}
+            {showComponent === 0 && <ChatScreen />}
+            {showComponent === 1 && <DashScreen />}
+            {showComponent === 2 && <DataToTable />}
           </div>
         </div>
       </div>

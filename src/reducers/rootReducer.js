@@ -1,11 +1,13 @@
 import { combineReducers } from "redux";
 import appStateReducer from "./appStateReducer";
-import chatScreenReducer from "./chatScreenReducers";
 import serverConnectReducer from "./serverConnectReducer";
+import dataReducer from "./dataReducers";
+import chatReducer from "./chatReducers";
 
 const rootReducer = combineReducers({
   appState: appStateReducer,
-  chatScreen: chatScreenReducer,
+  chatVar: chatReducer,
+  dataVar: dataReducer,
   connected: serverConnectReducer,
 });
 

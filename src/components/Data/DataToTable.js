@@ -1,8 +1,11 @@
 import * as React from "react";
-import { ExampleData } from "./Chart/ChartExample";
 import { DataGrid } from "@mui/x-data-grid";
+import { useSelector } from "react-redux";
 
-function DataToTable({ jsonData }) {
+function DataToTable() {
+  // 이 컴포넌트에서 사용할 data 변수.
+  const jsonData = useSelector((state) => state.dataVar.jsonData);
+
   // Make sure jsonData is not undefined or null
   if (!jsonData || jsonData.length === 0) {
     return <div>No data available</div>;

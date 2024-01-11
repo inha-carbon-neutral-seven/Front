@@ -9,19 +9,19 @@ import {
   setLoading,
   setMessage,
   setSentMessage,
-} from "../../../reducers/chatScreenReducers";
+} from "../../../reducers/chatReducers";
 
 // 사용자 메시지 input 컴포넌트
 // 파일 input(FileInputButton.js), 메시지 input, 전송 버튼을 포함한다.
 // 전송 버튼은 메시지 input만 전송한다.
-function UserInput({ fileData, onFileChange }) {
+function UserInput() {
   // App의 상태변수
   const currentState = useSelector((state) => state.appState.currentState);
   const isConnected = useSelector((state) => state.connected.isConnected);
 
   // 이 컴포넌트에서 사용할 상태변수들
-  const loading = useSelector((state) => state.chatScreen.loading);
-  const message = useSelector((state) => state.chatScreen.message);
+  const loading = useSelector((state) => state.chatVar.loading);
+  const message = useSelector((state) => state.chatVar.message);
   const [isButtonActive, setIsButtonActive] = useState(false);
 
   // dispatch
@@ -72,7 +72,7 @@ function UserInput({ fileData, onFileChange }) {
   return (
     <div className="border-t border-gray-200 pt-2 w-full absolute bottom-2 left-0">
       <div className="flex items-center space-x-2 px-4">
-        <FileInput onFileChange={onFileChange} />
+        <FileInput />
         <form
           className="flex flex-grow"
           onSubmit={messageHandler}
