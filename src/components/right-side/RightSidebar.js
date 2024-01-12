@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
-import PrintFileCards from "./PrintFileCards";
 import DataSelect from "../Data/DataSelect";
 import FileUploadToServer from "../main/Input/FileUploadToServer";
+import PrintFileCards from "../left-side/PrintFileCards";
+import DashScreen from "../Data/DashScreen";
 
-function Sidebar({ page, setSidebarWidth }) {
+function RightSidebar({ page, setSidebarWidth }) {
   // 연결 상태 변수
   const isConnected = useSelector((state) => state.connected.isConnected);
 
@@ -42,7 +43,7 @@ function Sidebar({ page, setSidebarWidth }) {
   }, []);
 
   const minWidth = 200; // 최소 너비 설정
-  const maxWidth = 400; // 최대 너비 설정
+  const maxWidth = 1000; // 최대 너비 설정
 
   // 사이드바 드래그 이벤트 핸들러.
   // 사용자가 사이드바의 크기를 조절하기 위해 마우스를 누른 경우를 처리
@@ -51,7 +52,7 @@ function Sidebar({ page, setSidebarWidth }) {
     const startPosition = e.clientX;
 
     const doDrag = (e) => {
-      const delta = startPosition - e.clientX;
+      const delta = e.clientX - startPosition;
       const newWidth = Math.min(
         Math.max(startWidth - delta, minWidth),
         maxWidth
@@ -75,26 +76,24 @@ function Sidebar({ page, setSidebarWidth }) {
   };
 
   return (
-    <div className="flex h-full mr-3">
+    <div className="flex h-full">
+      <div
+        className="cursor-col-resize"
+        style={{ width: "10px", cursor: "col-resize" }}
+        onMouseDown={handleMouseDown}
+      ></div>
       {isVisible && (
         <aside
           className="max-w-64 max-h-[90vh] p-1 backdrop-blur-xl bg-white/80 space-y-2 flex-shrink-0 drop-shadow-lg rounded-[12px] overflow-hidden"
           style={{ width: `${width}px` }}
         >
-          <div className="px-1 overflow-y-auto max-h-[90vh]">
+          <div className="px-1 max-h-[90vh] overflow-auto">
             {isConnected && <FileUploadToServer />}
-            {page === 0 && <PrintFileCards />}
-            {page === 1 && <DataSelect />}
-            {page === 2 && <DataSelect />}
+            <DashScreen />
           </div>
         </aside>
       )}
-      {/* <div
-        className="cursor-col-resize"
-        style={{ width: "10px", cursor: "col-resize" }}
-        onMouseDown={handleMouseDown}
-      ></div> */}
     </div>
   );
 }
-export default Sidebar;
+export default RightSidebar;

@@ -1,11 +1,19 @@
 // 파일 리듀서
 
 // actionType 정의
+const SET_SHOWFILECARDS = "SET_SHOWFILECARDS";
 const SET_FILEDATA = "SET_FILEDATA";
 const SET_JSONDATA = "SET_JSONDATA";
 const ADD_ANALYZED_FILE_DATA = "ADD_ANALYZED_FILE_DATA";
 
 // action creator 정의
+export function setShowFileCards(showFileCards) {
+  return {
+    type: SET_SHOWFILECARDS,
+    payload: showFileCards,
+  };
+}
+
 export function setFileData(fileData) {
   return {
     type: SET_FILEDATA,
@@ -29,6 +37,7 @@ export function addAnalyzedFileData(analyzedFileData) {
 
 // 초기 state 정의
 const initialState = {
+  showFileCards: false, // FileInputButton.js 에서 사용
   fileData: null,
   jsonData: [],
   analyzedFileDataList: [],
@@ -37,6 +46,11 @@ const initialState = {
 // reducer
 function dataReducer(state = initialState, action) {
   switch (action.type) {
+    case SET_SHOWFILECARDS:
+      return {
+        ...state,
+        showFileCards: action.payload,
+      };
     case SET_FILEDATA:
       return {
         ...state,

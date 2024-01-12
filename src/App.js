@@ -9,6 +9,7 @@ import { Bellicon, Exclamicon } from "./icons";
 import Loader from "./components/main/Chat/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { setJsonData } from "./reducers/dataReducers";
+import RightSidebar from "./components/right-side/RightSidebar";
 
 function App() {
   const dispatch = useDispatch();
@@ -89,10 +90,10 @@ function App() {
       <Header param={handlePage} />
       {showAlert && <Alert />}
 
-      <div className="flex flex-grow mt-20 mb-2 pt-1 pb-1 w-4/5 place-self-center">
-        <div className="fixed-left h-full">
+      <div className="flex flex-grow mt-20 mb-2 pt-1 pb-1 w-4/5 place-self-center overflow-y-auto">
+        {/* <div className="fixed-left h-full">
           <Sidebar page={showComponent} setSidebarWidth={setSidebarWidth} />
-        </div>
+        </div> */}
 
         <div className="flex-grow" style={{ maxWidth: "100%" }}>
           <div className="w-full h-full pl-0 space-y-2 rounded-[12px]">
@@ -100,6 +101,13 @@ function App() {
             {showComponent === 1 && <DashScreen />}
             {showComponent === 2 && <DataToTable />}
           </div>
+        </div>
+
+        <div className="fixed-left h-full">
+          <RightSidebar
+            page={showComponent}
+            setSidebarWidth={setSidebarWidth}
+          />
         </div>
       </div>
     </div>

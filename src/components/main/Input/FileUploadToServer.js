@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAppState } from "../../../reducers/appStateReducer";
-import { addAnalyzedFileData } from "../../../reducers/dataReducers";
+import {
+  addAnalyzedFileData,
+  setShowFileCards,
+} from "../../../reducers/dataReducers";
 import { Checkicon } from "../../../icons";
 
 // 파일 업로드 후(아직 서버로 전송은 안한 상황), 사용자지정 이름 input 입력받기
@@ -55,6 +58,9 @@ function FileUploadToServer() {
             analyzedFileData_type: selectedFile.type, // 타입 유형 : text/plain, text/csv , ...
             userCustomName: finalDataInfo, // 사용자가 지정한 데이터 이름도 같이 저장한다.
           };
+
+          // 파일 업로드 후, 업로드된 파일들 보여주는 버튼의 visibility 상태 변수
+          dispatch(setShowFileCards(true));
 
           // 분석 데이터를 리스트에 저장한다.
           dispatch(addAnalyzedFileData(newAnalyzedFileData));

@@ -11,6 +11,7 @@ import {
   faExclamation,
   faChevronLeft,
   faXmark,
+  faFile,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faPaperPlane, faBell } from "@fortawesome/free-regular-svg-icons";
@@ -21,7 +22,7 @@ export function Expandicon() {
 }
 
 export function Downloadicon() {
-  return <FontAwesomeIcon icon={faDownload} size="base" />;
+  return <FontAwesomeIcon icon={faDownload} size="1x" />;
 }
 
 export function Nexticon() {
@@ -88,4 +89,8 @@ export function Lefticon() {
 
 export function Closeicon() {
   return <FontAwesomeIcon icon={faXmark} size="xl" />;
+}
+
+export function Fileicon() {
+  return <FontAwesomeIcon icon={faFile} size="xl" />;
 }
