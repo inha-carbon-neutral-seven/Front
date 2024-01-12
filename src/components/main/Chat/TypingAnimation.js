@@ -18,7 +18,7 @@ const components = {
 
 function TypingAnimation({ text }) {
   const [visibleText, setVisibleText] = useState("");
-  const typingDelay = 20; // 타이핑 딜레이 시간(ms)
+  const typingDelay = 10; // 타이핑 딜레이 시간(ms)
 
   useEffect(() => {
     // text에 <<SYS>>, <</SYS>> input이 있으면 제거하고 white space를 trim 함

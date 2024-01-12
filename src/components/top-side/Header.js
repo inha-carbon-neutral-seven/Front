@@ -1,7 +1,6 @@
-import ServerStatusIndicator from './ServerStateIndicator';
-import Button from '@mui/material/Button';
-import beaver from '../../image/logo.jpg';
-import Loader from '../main/Loader';
+import ServerStatusIndicator from "./ServerStateIndicator";
+import Button from "@mui/material/Button";
+import beaver from "../../image/logo.jpg";
 
 function Header({ param }) {
   const handleButtonClick = (p) => {
@@ -9,16 +8,23 @@ function Header({ param }) {
   };
   const buttonSx = {
     m: 1,
-    color: 'white',
-    borderColor: '#ffffff00',
-    boxShadow: '2',
-    ':hover': {
-      borderColor: '#a39e9e26',
-      color: 'white',
-      bgcolor: '#a39e9e26',
+    color: "white",
+    borderColor: "#ffffff00",
+    boxShadow: "2",
+    ":hover": {
+      borderColor: "#a39e9e26",
+      color: "white",
+      bgcolor: "#a39e9e26",
     },
-    fontFamily: 'sans-serif',
+    ":disabled": {
+      borderColor: "gray",
+      bgcolor: "gray",
+      boxShadow: "none",
+    },
+
+    fontFamily: "sans-serif",
   };
+
   return (
     <div className="z-50 h-16 bg-gradient-to-r from-beaver-2 to-beaver-1 flex justify-between items-center px-4 w-4/5 fixed rounded-[12px] drop-shadow-lg place-self-center mt-3">
       <div className="flex items-center space-x-4">
@@ -40,6 +46,7 @@ function Header({ param }) {
         </Button>
 
         <Button
+          //disabled={true}
           sx={buttonSx}
           variant="outlined"
           onClick={() => handleButtonClick(1)}

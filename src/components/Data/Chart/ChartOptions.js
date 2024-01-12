@@ -1,3 +1,6 @@
+// 차트 유형에 대한 구성 옵션
+
+// 일반적인 차트 옵션
 export function commonOptions(titleText) {
   return {
     responsive: true,
@@ -6,7 +9,7 @@ export function commonOptions(titleText) {
     },
     plugins: {
       legend: {
-        position: 'top',
+        position: "top",
         labels: {
           font: {
             size: 12,
@@ -18,11 +21,11 @@ export function commonOptions(titleText) {
         text: titleText,
         font: {
           size: 18,
-          weight: 'bold',
+          weight: "bold",
         },
       },
       autocolors: {
-        mode: 'label',
+        mode: "label",
       },
       colors: {
         enabled: true,
@@ -36,6 +39,8 @@ export function commonOptions(titleText) {
     },
   };
 }
+
+// 막대그래프 옵션
 export function BarChartOptions(titleText, xColumn, yColumn) {
   const options = commonOptions(titleText);
   options.scales = {
@@ -57,9 +62,10 @@ export function BarChartOptions(titleText, xColumn, yColumn) {
   return options;
 }
 
+// 수평 막대그래프 옵션
 export function HorizontalBarChartOptions(titleText, xColumn, yColumn) {
   const options = commonOptions(titleText);
-  options.indexAxis = 'y';
+  options.indexAxis = "y";
   options.scales = {
     x: {
       display: true,
@@ -79,6 +85,7 @@ export function HorizontalBarChartOptions(titleText, xColumn, yColumn) {
   return options;
 }
 
+// 누적 막대그래프 옵션
 export function StackedBarChartOptions(titleText, xColumn, yColumn) {
   const options = commonOptions(titleText);
   options.scales = {
@@ -102,6 +109,7 @@ export function StackedBarChartOptions(titleText, xColumn, yColumn) {
   return options;
 }
 
+// 수직 막대그래프 옵션
 export function VerticalBarChartOptions(titleText, xColumn, yColumn) {
   const options = commonOptions(titleText);
   options.scales = {
@@ -122,6 +130,8 @@ export function VerticalBarChartOptions(titleText, xColumn, yColumn) {
   };
   return options;
 }
+
+// 복합 막대그래프 옵션
 export function ComboBarChartOptions(titleText, xColumn, yColumn) {
   const options = commonOptions(titleText);
   options.scales = {
@@ -142,6 +152,8 @@ export function ComboBarChartOptions(titleText, xColumn, yColumn) {
   };
   return options;
 }
+
+// 라인 차트 옵션
 export function LineChartOptions(titleText, xColumn, yColumn) {
   const options = commonOptions(titleText);
   options.scales = {
@@ -170,6 +182,8 @@ export function LineChartOptions(titleText, xColumn, yColumn) {
   };
   return options;
 }
+
+// 다축 라인 차트 옵션
 export function MultiAxisLineChartOptions(titleText, xColumn, yColumn) {
   const options = commonOptions(titleText);
   options.scales = {
@@ -190,6 +204,8 @@ export function MultiAxisLineChartOptions(titleText, xColumn, yColumn) {
   };
   return options;
 }
+
+// 포인트 스타일 라인 차트 옵션
 export function PointStyleLineChartOptions(titleText, xColumn, yColumn) {
   const options = commonOptions(titleText);
   options.scales = {
@@ -210,6 +226,8 @@ export function PointStyleLineChartOptions(titleText, xColumn, yColumn) {
   };
   return options;
 }
+
+// 누적 라인 차트 옵션
 export function StackedBarLineChartOptions(titleText, xColumn, yColumn) {
   const options = commonOptions(titleText);
   options.scales = {
@@ -231,9 +249,10 @@ export function StackedBarLineChartOptions(titleText, xColumn, yColumn) {
   return options;
 }
 
+// 도넛 차트 옵션
 export function DoughnutChartOptions(titleText, xColumn, yColumn) {
   const options = commonOptions(titleText);
-  options.cutout = '50%';
+  options.cutout = "50%";
   options.scales = {
     x: {
       display: true,
@@ -250,10 +269,11 @@ export function DoughnutChartOptions(titleText, xColumn, yColumn) {
       },
     },
   };
-  options.plugins.legend.position = 'right';
+  options.plugins.legend.position = "right";
   return options;
 }
 
+// 파이 차트 (원그래프) 옵션
 export function PieChartOptions(titleText, xColumn) {
   const options = commonOptions(titleText);
   options.scales = {
@@ -265,9 +285,11 @@ export function PieChartOptions(titleText, xColumn) {
       },
     },
   };
-  options.plugins.legend.position = 'right';
+  options.plugins.legend.position = "right";
   return options;
 }
+
+// 극좌표 차트 옵션
 export function PolarAreaChartOptions(titleText, xColumn, yColumn) {
   const options = commonOptions(titleText);
   options.scales = {
@@ -286,9 +308,11 @@ export function PolarAreaChartOptions(titleText, xColumn, yColumn) {
       },
     },
   };
-  options.plugins.legend.position = 'right';
+  options.plugins.legend.position = "right";
   return options;
 }
+
+// 중심 정렬된 극좌표 차트 옵션
 export function PolarAreaCenteredChartOptions(titleText, xColumn, yColumn) {
   const options = commonOptions(titleText);
   options.scales = {
@@ -307,10 +331,11 @@ export function PolarAreaCenteredChartOptions(titleText, xColumn, yColumn) {
       },
     },
   };
-  options.plugins.legend.position = 'right';
+  options.plugins.legend.position = "right";
   return options;
 }
 
+// 산점도 차트 옵션
 export function ScatterChartOptions(titleText, xColumn, yColumn) {
   const options = commonOptions(titleText);
   options.scales = {
