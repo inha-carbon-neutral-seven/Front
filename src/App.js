@@ -55,8 +55,7 @@ function App() {
       setShowAlert(true);
     }
 
-    // analyzed 상태일 때 1초 후 알림창을 닫음
-    // ToDo : 현재 analyzed error 상태로 상태변화하는 경우가 없음. 만약 필요하면 dispatch로 상태변화 필요
+    // analyzed or analyzed error 상태일 때 1초 후 알림창을 숨김
     if (currentState === "analyzed" || currentState === "analyzed error") {
       const timer = setTimeout(() => {
         setShowAlert(false);
@@ -96,7 +95,7 @@ function App() {
         </div>
 
         <div className="flex-grow" style={{ maxWidth: "100%" }}>
-          <div className="w-full h-full pl-0 space y-2 rounded-[12px]">
+          <div className="w-full h-full pl-0 space-y-2 rounded-[12px]">
             {showComponent === 0 && <ChatScreen />}
             {showComponent === 1 && <DashScreen />}
             {showComponent === 2 && <DataToTable />}

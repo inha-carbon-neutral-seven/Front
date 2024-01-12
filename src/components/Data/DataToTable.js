@@ -25,7 +25,7 @@ function DataToTable() {
   }));
 
   return (
-    <div className="flex-grow flex flex-col bg-white dark:bg-gray-800 w-full h-full drop-shadow-lg overflow-auto max-h-[90vh] rounded-[12px]">
+    <div className="flex-grow flex flex-col bg-white w-full h-full drop-shadow-lg overflow-auto max-h-[90vh] rounded-[12px]">
       <div className="mb-12 overflow-y-auto">
         <div className="absolute top-0 transform">
           <DataGrid

@@ -37,7 +37,7 @@ function PrintFileCards({ processAll = true }) {
       {dataListToProcess.map((analyzedFileData, index) => (
         <div
           key={index}
-          className={`max-w-full p-3 border border-gray-200 rounded-lg shadow cursor-pointer mb-3 dark:bg-gray-800 dark:border-gray-700 ${
+          className={`max-w-full p-3 border border-gray-200 rounded-lg shadow cursor-pointer mb-3 ${
             clickedIndex === index ? "bg-blue-500 text-white" : "bg-white"
           } break-words flex flex-col `}
           onClick={() => handleCardClick(index)}
@@ -48,6 +48,7 @@ function PrintFileCards({ processAll = true }) {
           </div>
           <p>파일명: {analyzedFileData?.analyzedFileData_name}</p>
           <p>파일크기: {`${analyzedFileData?.analyzedFileData_size}byte`}</p>
+          <p>파일 타입: {analyzedFileData?.analyzedFileData_type}</p>
           <p>사용자 지정 데이터 이름 : {analyzedFileData?.userCustomName}</p>
         </div>
       ))}

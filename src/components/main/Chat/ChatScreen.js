@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import ChatLogs from "./ChatLogs";
 import UserInput from "../Input/UserInput";
 import { addToChatLog } from "../../../reducers/chatReducers";
-import beaver from "../../image/logo.jpg";
+import beaver from "../../../image/logo.jpg";
 
 function ChatScreen() {
   // App의 상태변수
@@ -31,21 +31,24 @@ function ChatScreen() {
   }, [aiAnswer]);
 
   return (
-    <div className="flex-grow flex flex-col bg-white dark:bg-gray-800 w-full h-full drop-shadow-lg overflow-auto max-h-[90vh] rounded-[12px]">
-      <div className="mb-12 overflow-y-auto">
+    // overflow-auto
+    <div className="flex-grow flex flex-col bg-white w-full h-full drop-shadow-lg max-h-[90vh] rounded-[12px] overflow-hidden">
+      <div className="overflow-y-auto mb-14">
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          {currentState === "init" && (
-            <div className="text-center">
-              <img src={beaver} className="h-40 w-40 rounded-full mx-auto" />
-              <div className="text-center font-bold text-2xl">
-                How can I help you?
+          {
+            // 초기 대기화면
+            currentState === "init" && (
+              <div className="text-center">
+                <img src={beaver} className="h-40 w-40 rounded-full mx-auto" />
+                <div className="text-center font-bold text-2xl">
+                  How can I help you?
+                </div>
               </div>
-            </div>
-          )}
+            )
+          }
         </div>
         {/* 채팅 메시지 출력 */}
         <ChatLogs />
-
         {/* 사용자 메시지 input */}
         <UserInput />
       </div>

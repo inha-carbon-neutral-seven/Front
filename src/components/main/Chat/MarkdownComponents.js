@@ -11,7 +11,7 @@ export const CodeBlock = ({ inline, className, children }) => {
           borderRadius: "5px",
           background: "#333", // 어두운 배경색으로 변경
           color: "#fff", // 글자색을 흰색으로 변경
-          overflowX: "scroll",
+          overflowX: "auto",
         }
       : {
           border: "0.5px solid #ddd",
@@ -19,7 +19,7 @@ export const CodeBlock = ({ inline, className, children }) => {
           borderRadius: "5px",
           background: "#333", // 어두운 배경색으로 변경
           color: "#fff", // 글자색을 흰색으로 변경
-          overflowX: "scroll",
+          overflowX: "auto",
           marginBottom: "-4px",
           display: "inline-block",
         };
@@ -42,6 +42,7 @@ export const TableComponent = ({ children }) => {
   );
 };
 
+// Custom tr 컴포넌트
 export const TableRowComponent = ({ children }) => {
   return React.createElement(
     "tr",
@@ -52,6 +53,7 @@ export const TableRowComponent = ({ children }) => {
   );
 };
 
+// Custom th, td 컴포넌트
 export const TableCellComponent = ({ node, children }) => {
   const { tagName } = node;
 

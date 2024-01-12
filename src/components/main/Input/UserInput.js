@@ -70,7 +70,7 @@ function UserInput() {
   };
 
   return (
-    <div className="border-t border-gray-200 pt-2 w-full absolute bottom-2 left-0">
+    <div className="bg-white border-t border-gray-200 pt-2 w-full absolute bottom-2 left-0">
       <div className="flex items-center space-x-2 px-4">
         <FileInput />
         <form
@@ -79,7 +79,7 @@ function UserInput() {
           disabled={loading}
         >
           <input
-            className="flex-grow rounded-lg w-full px-3 py-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+            className="flex-grow rounded-lg w-full px-3 py-2 border border-gray-300"
             placeholder="Type your message"
             type="text"
             value={message}

@@ -78,10 +78,10 @@ function Sidebar({ page, setSidebarWidth }) {
     <div className="flex h-full">
       {isVisible && (
         <aside
-          className="max-w-64 max-h-[90vh] p-1 backdrop-blur-xl bg-white/80 space-y-2 flex-shrink-0 drop-shadow-lg rounded-[12px]"
+          className="max-w-64 max-h-[90vh] p-1 backdrop-blur-xl bg-white/80 space-y-2 flex-shrink-0 drop-shadow-lg rounded-[12px] overflow-hidden"
           style={{ width: `${width}px` }}
         >
-          <div>
+          <div className="px-1 overflow-y-auto max-h-[90vh]">
             {isConnected && <FileUploadToServer />}
             {page === 0 && <PrintFileCards />}
             {page === 1 && <DataSelect />}

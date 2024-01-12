@@ -52,6 +52,7 @@ function FileUploadToServer() {
           const newAnalyzedFileData = {
             analyzedFileData_name: selectedFile.name,
             analyzedFileData_size: selectedFile.size, // Size in bytes
+            analyzedFileData_type: selectedFile.type, // 타입 유형 : text/plain, text/csv , ...
             userCustomName: finalDataInfo, // 사용자가 지정한 데이터 이름도 같이 저장한다.
           };
 
@@ -70,9 +71,10 @@ function FileUploadToServer() {
   /* 파일 업로드 후(아직 서버로 전송은 안한 상황), 사용자지정 이름 input 입력받기*/
   /* 이후에 파일과 사용자 지정 이름을 같이 서버로 보낸다 */
   return currentState === "file_uploading" ? (
-    <div className="max-w-sm p-6 border border-gray-200 rounded-lg shadow cursor-pointer mb-3 dark:bg-gray-800 dark:border-gray-700 ">
+    <div className="max-w-sm p-6 border border-gray-200 rounded-lg shadow cursor-pointer mb-3">
       <p>파일명: {selectedFile.name}</p>
       <p>파일크기: {`${selectedFile.size}byte`}</p>
+      <p>파일타입: {selectedFile.type}</p>
       <p>무슨 데이터인가요?</p>
       <form
         onSubmit={(e) => {
@@ -82,7 +84,7 @@ function FileUploadToServer() {
         }}
       >
         <input
-          className="border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+          className="border border-gray-300"
           type="text"
           onChange={(e) => setDataInfo(e.target.value)}
         ></input>

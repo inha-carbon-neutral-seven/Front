@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { ResizableBox } from 'react-resizable';
-import 'react-resizable/css/styles.css';
+import React, { useState, useEffect } from "react";
+import { ResizableBox } from "react-resizable";
+import "react-resizable/css/styles.css";
 
 const ChartWrapperBox = ({ children, ...props }) => {
   const aspectRatio = 450 / 300; // initial width / height
   const [dimensions, setDimensions] = useState({ width: 450, height: 300 });
 
+  // 크기 조절 이벤트 핸들러
   const handleResize = (event, { size }) => {
     const newHeight = size.width / aspectRatio;
     setDimensions({ width: size.width, height: newHeight });
@@ -18,8 +19,8 @@ const ChartWrapperBox = ({ children, ...props }) => {
       minConstraints={[400, 200]}
       maxConstraints={[800, 600]}
       onResize={handleResize}
-      resizeHandles={['se']}
-      className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 flex flex-col m-2"
+      resizeHandles={["se"]}
+      className="bg-white rounded-lg shadow-lg p-4 flex flex-col m-2"
     >
       {children}
     </ResizableBox>
