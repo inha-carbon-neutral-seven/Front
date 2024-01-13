@@ -10,6 +10,7 @@ const SET_AIANSWER = 'SET_AIANSWER';
 const ADD_TO_CHATLOG = 'ADD_TO_CHATLOG';
 const CLEAR_SENT_MESSAGE = 'CLEAR_SENT_MESSAGE';
 const CLEAR_AI_ANSWER = 'CLEAR_AI_ANSWER';
+const MARK_MESSAGES_OLD = 'MARK_MESSAGES_OLD';
 
 // action creator 정의
 export function setLoading(loading) {
@@ -40,10 +41,10 @@ export function setAIAnswer(aiAnswer) {
   };
 }
 
-export function addToChatLog(user, message) {
+export function addToChatLog(user, message, isNew = true) {
   return {
     type: ADD_TO_CHATLOG,
-    payload: { user, message },
+    payload: { user, message, isNew },
   };
 }
 export function clearSentMessage() {
@@ -53,6 +54,10 @@ export function clearSentMessage() {
 export function clearAIAnswer() {
   return { type: CLEAR_AI_ANSWER };
 }
+export function markMessagesOld() {
+  return { type: MARK_MESSAGES_OLD };
+}
+
 // 초기 state 정의
 const initialState = {
   loading: false,
@@ -88,7 +93,14 @@ function chatReducer(state = initialState, action) {
     case ADD_TO_CHATLOG:
       return {
         ...state,
-        chatlog: [...state.chatlog, { user: action.payload.user, message: action.payload.message }],
+        chatlog: [
+          ...state.chatlog,
+          {
+            user: action.payload.user,
+            message: action.payload.message,
+            isNew: action.payload.isNew,
+          },
+        ],
       };
     case CLEAR_SENT_MESSAGE:
       return {
@@ -100,7 +112,11 @@ function chatReducer(state = initialState, action) {
         ...state,
         aiAnswer: '',
       };
-
+    case MARK_MESSAGES_OLD:
+      return {
+        ...state,
+        chatlog: state.chatlog.map((message) => ({ ...message, isNew: false })),
+      };
     default:
       return state;
   }

@@ -4,7 +4,7 @@ import ChatLogs from './ChatLogs';
 import UserInput from '../Input/UserInput';
 import { addToChatLog } from '../../../reducers/chatReducers';
 import beaver from '../../../image/logo.jpg';
-import { clearSentMessage, clearAIAnswer } from '../../../reducers/chatReducers';
+import { clearSentMessage, clearAIAnswer, markMessagesOld } from '../../../reducers/chatReducers';
 
 function ChatScreen() {
   // App의 상태변수
@@ -16,6 +16,14 @@ function ChatScreen() {
 
   // dispatch func
   const dispatch = useDispatch();
+  const chatlog = useSelector((state) => state.chatVar.chatlog);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(markMessagesOld());
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [chatlog, dispatch]);
 
   // 사용자 메시지를 chatlog에 추가
   useEffect(() => {
