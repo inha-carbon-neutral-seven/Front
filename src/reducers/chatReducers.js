@@ -3,11 +3,13 @@
 // 다른데서 사용할수도 있고
 
 // actionType 정의
-const SET_LOADING = "SET_LOADING";
-const SET_MESSAGE = "SET_MESSAGE";
-const SET_SENT_MESSAGE = "SET_SENT_MESSAGE";
-const SET_AIANSWER = "SET_AIANSWER";
-const ADD_TO_CHATLOG = "ADD_TO_CHATLOG";
+const SET_LOADING = 'SET_LOADING';
+const SET_MESSAGE = 'SET_MESSAGE';
+const SET_SENT_MESSAGE = 'SET_SENT_MESSAGE';
+const SET_AIANSWER = 'SET_AIANSWER';
+const ADD_TO_CHATLOG = 'ADD_TO_CHATLOG';
+const CLEAR_SENT_MESSAGE = 'CLEAR_SENT_MESSAGE';
+const CLEAR_AI_ANSWER = 'CLEAR_AI_ANSWER';
 
 // action creator 정의
 export function setLoading(loading) {
@@ -44,13 +46,19 @@ export function addToChatLog(user, message) {
     payload: { user, message },
   };
 }
+export function clearSentMessage() {
+  return { type: CLEAR_SENT_MESSAGE };
+}
 
+export function clearAIAnswer() {
+  return { type: CLEAR_AI_ANSWER };
+}
 // 초기 state 정의
 const initialState = {
   loading: false,
-  message: "",
-  sentMessage: "",
-  aiAnswer: "",
+  message: '',
+  sentMessage: '',
+  aiAnswer: '',
   chatlog: [],
 };
 
@@ -80,11 +88,19 @@ function chatReducer(state = initialState, action) {
     case ADD_TO_CHATLOG:
       return {
         ...state,
-        chatlog: [
-          ...state.chatlog,
-          { user: action.payload.user, message: action.payload.message },
-        ],
+        chatlog: [...state.chatlog, { user: action.payload.user, message: action.payload.message }],
       };
+    case CLEAR_SENT_MESSAGE:
+      return {
+        ...state,
+        sentMessage: '',
+      };
+    case CLEAR_AI_ANSWER:
+      return {
+        ...state,
+        aiAnswer: '',
+      };
+
     default:
       return state;
   }

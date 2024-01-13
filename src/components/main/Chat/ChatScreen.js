@@ -1,9 +1,10 @@
-import { useSelector, useDispatch } from "react-redux";
-import React, { useEffect } from "react";
-import ChatLogs from "./ChatLogs";
-import UserInput from "../Input/UserInput";
-import { addToChatLog } from "../../../reducers/chatReducers";
-import beaver from "../../../image/logo.jpg";
+import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import ChatLogs from './ChatLogs';
+import UserInput from '../Input/UserInput';
+import { addToChatLog } from '../../../reducers/chatReducers';
+import beaver from '../../../image/logo.jpg';
+import { clearSentMessage, clearAIAnswer } from '../../../reducers/chatReducers';
 
 function ChatScreen() {
   // App의 상태변수
@@ -19,16 +20,18 @@ function ChatScreen() {
   // 사용자 메시지를 chatlog에 추가
   useEffect(() => {
     if (sentMessage) {
-      dispatch(addToChatLog("user", sentMessage));
+      dispatch(addToChatLog('user', sentMessage));
+      dispatch(clearSentMessage());
     }
-  }, [sentMessage]);
+  }, [sentMessage, dispatch]);
 
   // ai 메시지를 chatlog에 추가
   useEffect(() => {
     if (aiAnswer) {
-      dispatch(addToChatLog("ai", aiAnswer));
+      dispatch(addToChatLog('ai', aiAnswer));
+      dispatch(clearAIAnswer());
     }
-  }, [aiAnswer]);
+  }, [aiAnswer, dispatch]);
 
   return (
     // overflow-auto
@@ -37,12 +40,10 @@ function ChatScreen() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           {
             // 초기 대기화면
-            currentState === "init" && (
+            currentState === 'init' && (
               <div className="text-center">
                 <img src={beaver} className="h-40 w-40 rounded-full mx-auto" />
-                <div className="text-center font-bold text-2xl">
-                  How can I help you?
-                </div>
+                <div className="text-center font-bold text-2xl">How can I help you?</div>
               </div>
             )
           }
