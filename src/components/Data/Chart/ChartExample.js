@@ -803,45 +803,69 @@ export const ExampleData = [
 ];
 const chartSeries = [
   {
-    type: "bar",
+    type: "line",
     option: {
       title: "Sample Data1",
       column1: "Sale (Dollars)",
       column2: "Date",
     },
   },
-  {
-    type: "line",
-    option: {
-      title: "Sample Data2",
-      column1: "Sale (Dollars)",
-      column2: "Category Name",
-    },
-  },
-  {
-    type: "pie",
-    option: {
-      title: "Sample Data3",
-      column1: "Sale (Dollars)",
-      column2: "Category Name",
-    },
-  },
-  {
-    type: "bar",
-    option: {
-      title: "Sample Data4",
-      column1: "Sale (Dollars)",
-      column2: "Category Name",
-    },
-  },
-  {
-    type: "bar",
-    option: {
-      title: "Sample Data5",
-      column1: "Sale (Dollars)",
-      column2: "Category Name",
-    },
-  },
+  // {
+  //   type: "area",
+  //   option: {
+  //     title: "Sample Data2",
+  //     column1: "Sale (Dollars)",
+  //     column2: "Category Name",
+  //   },
+  // },
+  // {
+  //   type: "bar",
+  //   option: {
+  //     title: "Sample Data3",
+  //     column1: "Sale (Dollars)",
+  //     column2: "Category Name",
+  //   },
+  // },
+  // {
+  //   type: "boxplot",
+  //   option: {
+  //     title: "Sample Data4",
+  //     column1: "Sale (Dollars)",
+  //     column2: "Category Name",
+  //   },
+  // },
+  // {
+  //   type: "heatmap",
+  //   option: {
+  //     title: "Sample Data5",
+  //     column1: "Sale (Dollars)",
+  //     column2: "Category Name",
+  //   },
+  // },
+  // {
+  //   type: "treemap",
+  //   option: {
+  //     title: "Sample Data5",
+  //     column1: "Sale (Dollars)",
+  //     column2: "Category Name",
+  //   },
+  // },
+  // {
+  //   type: "radar",
+  //   option: {
+  //     title: "Sample Data5",
+  //     column1: "Sale (Dollars)",
+  //     column2: "Category Name",
+  //   },
+  // },
+  // {
+  //   type: "radialBar",
+  //   option: {
+  //     title: "Sample Data5",
+  //     column1: "Sale (Dollars)",
+  //     column2: "Category Name",
+  //   },
+  // },
 ];
 function ChartExample() {
   return (
