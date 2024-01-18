@@ -1,359 +1,257 @@
-// 차트 유형에 대한 구성 옵션
-
-// 일반적인 차트 옵션
-export function commonOptions(titleText) {
-  return {
-    responsive: true,
-    layout: {
-      padding: 20,
+const commonOptions = {
+  chart: {
+    toolbar: {
+      show: true,
+      tools: {
+        download: true,
+        selection: true,
+        zoom: true,
+        zoomin: true,
+        zoomout: true,
+        pan: true,
+        reset: true,
+      },
     },
-    plugins: {
-      legend: {
-        position: "top",
-        labels: {
-          font: {
-            size: 12,
-          },
-        },
-      },
-      title: {
-        display: true,
-        text: titleText,
-        font: {
-          size: 18,
-          weight: "bold",
-        },
-      },
-      autocolors: {
-        mode: "label",
-      },
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  stroke: {
+    curve: "smooth",
+  },
+  xaxis: {
+    type: "category",
+  },
+  yaxis: {
+    title: {
+      text: "Values",
+    },
+  },
+  tooltip: {
+    enabled: true,
+  },
+};
+export const ChartOptions = {};
+
+// Assuming commonOptions is defined as shown in previous examples
+
+ChartOptions.lineChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to line charts
+  chart: {
+    ...commonOptions.chart,
+    type: "line",
+  },
+  stroke: {
+    curve: "smooth",
+    width: 2,
+  },
+  markers: {
+    size: 4,
+  },
+};
+
+ChartOptions.areaChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to area charts
+  chart: {
+    ...commonOptions.chart,
+    type: "area",
+  },
+  stroke: {
+    curve: "smooth",
+  },
+  fill: {
+    type: "gradient",
+    gradient: {
+      shadeIntensity: 1,
+      opacityFrom: 0.3,
+      opacityTo: 0.7,
+    },
+  },
+};
+
+ChartOptions.columnChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to column charts
+  chart: {
+    ...commonOptions.chart,
+    type: "bar",
+  },
+  plotOptions: {
+    bar: {
+      horizontal: false,
+      columnWidth: "55%",
+    },
+  },
+};
+
+ChartOptions.boxPlotChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to box plot charts
+  chart: {
+    ...commonOptions.chart,
+    type: "boxPlot",
+  },
+  plotOptions: {
+    boxPlot: {
       colors: {
-        enabled: true,
+        upper: "#5C4742",
+        lower: "#A5978B",
       },
-      zoom: {
-        limits: {
-          y: { min: 0, max: 100 },
-          y2: { min: -5, max: 5 },
+    },
+  },
+};
+
+ChartOptions.rangeBarChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to range bar charts
+  plotOptions: {
+    bar: {
+      horizontal: true,
+      distributed: true,
+      rangeBarGroupRows: true,
+    },
+  },
+  xaxis: {
+    type: "datetime", // Assuming x-axis represents dates
+  },
+};
+
+ChartOptions.rangeAreaChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to range area charts
+  stroke: {
+    curve: "smooth",
+  },
+  fill: {
+    type: "gradient",
+    gradient: {
+      shadeIntensity: 1,
+      opacityFrom: 0.7,
+      opacityTo: 0.9,
+      stops: [0, 100],
+    },
+  },
+};
+
+ChartOptions.heatmapChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to heatmap charts
+  chart: {
+    type: "heatmap",
+  },
+  dataLabels: {
+    enabled: true,
+  },
+  plotOptions: {
+    heatmap: {
+      radius: 0,
+      enableShades: true,
+    },
+  },
+};
+
+ChartOptions.treemapChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to treemap charts
+  chart: {
+    type: "treemap",
+  },
+  plotOptions: {
+    treemap: {
+      distributed: true,
+      enableShades: true,
+    },
+  },
+};
+
+ChartOptions.radarChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to radar charts
+  chart: {
+    ...commonOptions.chart,
+    type: "radar",
+  },
+  markers: {
+    size: 4,
+    colors: ["#fff"],
+    strokeColor: "#FF4560",
+    strokeWidth: 2,
+  },
+  plotOptions: {
+    radar: {
+      polygons: {
+        strokeColor: "#e9e9e9",
+        fill: {
+          colors: ["#f8f8f8", "#fff"],
         },
       },
     },
-  };
-}
+  },
+};
 
-// 막대그래프 옵션
-export function BarChartOptions(titleText, xColumn, yColumn) {
-  const options = commonOptions(titleText);
-  options.scales = {
-    x: {
-      display: true,
-      title: {
-        display: true,
-        text: xColumn,
+ChartOptions.radialBarChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to radial bar charts
+  chart: {
+    ...commonOptions.chart,
+    type: "radialBar",
+  },
+  plotOptions: {
+    radialBar: {
+      startAngle: -135,
+      endAngle: 225,
+      hollow: {
+        margin: 0,
+        size: "70%",
+        background: "#fff",
+        image: undefined,
+        imageOffsetX: 0,
+        imageOffsetY: 0,
+        position: "front",
+      },
+      track: {
+        background: "#fff",
+        strokeWidth: "67%",
+        margin: 0, // margin is in pixels
       },
     },
-    y: {
-      display: true,
-      title: {
-        display: true,
-        text: yColumn,
-      },
-    },
-  };
-  return options;
-}
+  },
+};
 
-// 수평 막대그래프 옵션
-export function HorizontalBarChartOptions(titleText, xColumn, yColumn) {
-  const options = commonOptions(titleText);
-  options.indexAxis = "y";
-  options.scales = {
-    x: {
-      display: true,
-      title: {
-        display: true,
-        text: xColumn,
-      },
+ChartOptions.barChartOptions = {
+  ...commonOptions,
+  chart: {
+    ...commonOptions.chart,
+    type: "bar",
+  },
+  plotOptions: {
+    bar: {
+      horizontal: false,
     },
-    y: {
-      display: true,
-      title: {
-        display: true,
-        text: yColumn,
-      },
-    },
-  };
-  return options;
-}
+  },
+};
 
-// 누적 막대그래프 옵션
-export function StackedBarChartOptions(titleText, xColumn, yColumn) {
-  const options = commonOptions(titleText);
-  options.scales = {
-    x: {
-      display: true,
-      stacked: true,
-      title: {
-        display: true,
-        text: xColumn,
+ChartOptions.pieChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to pie charts
+  chart: {
+    ...commonOptions.chart,
+    type: "pie",
+  },
+  labels: [], // Add labels if required
+  responsive: [
+    {
+      breakpoint: 480,
+      options: {
+        chart: {
+          width: 200,
+        },
+        legend: {
+          position: "bottom",
+        },
       },
     },
-    y: {
-      display: true,
-      stacked: true,
-      title: {
-        display: true,
-        text: yColumn,
-      },
-    },
-  };
-  return options;
-}
-
-// 수직 막대그래프 옵션
-export function VerticalBarChartOptions(titleText, xColumn, yColumn) {
-  const options = commonOptions(titleText);
-  options.scales = {
-    x: {
-      display: true,
-      title: {
-        display: true,
-        text: xColumn,
-      },
-    },
-    y: {
-      display: true,
-      title: {
-        display: true,
-        text: yColumn,
-      },
-    },
-  };
-  return options;
-}
-
-// 복합 막대그래프 옵션
-export function ComboBarChartOptions(titleText, xColumn, yColumn) {
-  const options = commonOptions(titleText);
-  options.scales = {
-    x: {
-      display: true,
-      title: {
-        display: true,
-        text: xColumn,
-      },
-    },
-    y: {
-      display: true,
-      title: {
-        display: true,
-        text: yColumn,
-      },
-    },
-  };
-  return options;
-}
-
-// 라인 차트 옵션
-export function LineChartOptions(titleText, xColumn, yColumn) {
-  const options = commonOptions(titleText);
-  options.scales = {
-    x: {
-      display: true,
-      title: {
-        display: true,
-        text: xColumn,
-      },
-    },
-    y: {
-      display: true,
-      title: {
-        display: true,
-        text: yColumn,
-      },
-    },
-  };
-  options.elements = {
-    line: {
-      tension: 0.4, // Smoothening line
-    },
-    point: {
-      radius: 5, // Point size
-    },
-  };
-  return options;
-}
-
-// 다축 라인 차트 옵션
-export function MultiAxisLineChartOptions(titleText, xColumn, yColumn) {
-  const options = commonOptions(titleText);
-  options.scales = {
-    x: {
-      display: true,
-      title: {
-        display: true,
-        text: xColumn,
-      },
-    },
-    y: {
-      display: true,
-      title: {
-        display: true,
-        text: yColumn,
-      },
-    },
-  };
-  return options;
-}
-
-// 포인트 스타일 라인 차트 옵션
-export function PointStyleLineChartOptions(titleText, xColumn, yColumn) {
-  const options = commonOptions(titleText);
-  options.scales = {
-    x: {
-      display: true,
-      title: {
-        display: true,
-        text: xColumn,
-      },
-    },
-    y: {
-      display: true,
-      title: {
-        display: true,
-        text: yColumn,
-      },
-    },
-  };
-  return options;
-}
-
-// 누적 라인 차트 옵션
-export function StackedBarLineChartOptions(titleText, xColumn, yColumn) {
-  const options = commonOptions(titleText);
-  options.scales = {
-    x: {
-      display: true,
-      title: {
-        display: true,
-        text: xColumn,
-      },
-    },
-    y: {
-      display: true,
-      title: {
-        display: true,
-        text: yColumn,
-      },
-    },
-  };
-  return options;
-}
-
-// 도넛 차트 옵션
-export function DoughnutChartOptions(titleText, xColumn, yColumn) {
-  const options = commonOptions(titleText);
-  options.cutout = "50%";
-  options.scales = {
-    x: {
-      display: true,
-      title: {
-        display: true,
-        text: xColumn,
-      },
-    },
-    y: {
-      display: true,
-      title: {
-        display: true,
-        text: yColumn,
-      },
-    },
-  };
-  options.plugins.legend.position = "right";
-  return options;
-}
-
-// 파이 차트 (원그래프) 옵션
-export function PieChartOptions(titleText, xColumn) {
-  const options = commonOptions(titleText);
-  options.scales = {
-    x: {
-      display: true,
-      title: {
-        display: true,
-        text: xColumn,
-      },
-    },
-  };
-  options.plugins.legend.position = "right";
-  return options;
-}
-
-// 극좌표 차트 옵션
-export function PolarAreaChartOptions(titleText, xColumn, yColumn) {
-  const options = commonOptions(titleText);
-  options.scales = {
-    x: {
-      display: true,
-      title: {
-        display: true,
-        text: xColumn,
-      },
-    },
-    y: {
-      display: true,
-      title: {
-        display: true,
-        text: yColumn,
-      },
-    },
-  };
-  options.plugins.legend.position = "right";
-  return options;
-}
-
-// 중심 정렬된 극좌표 차트 옵션
-export function PolarAreaCenteredChartOptions(titleText, xColumn, yColumn) {
-  const options = commonOptions(titleText);
-  options.scales = {
-    x: {
-      display: true,
-      title: {
-        display: true,
-        text: xColumn,
-      },
-    },
-    y: {
-      display: true,
-      title: {
-        display: true,
-        text: yColumn,
-      },
-    },
-  };
-  options.plugins.legend.position = "right";
-  return options;
-}
-
-// 산점도 차트 옵션
-export function ScatterChartOptions(titleText, xColumn, yColumn) {
-  const options = commonOptions(titleText);
-  options.scales = {
-    x: {
-      display: true,
-      title: {
-        display: true,
-        text: xColumn,
-      },
-    },
-    y: {
-      display: true,
-      title: {
-        display: true,
-        text: yColumn,
-      },
-    },
-  };
-
-  return options;
-}
+  ],
+};
