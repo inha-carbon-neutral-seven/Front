@@ -47,10 +47,11 @@ function FileInput() {
       setShowAlert(true);
     }
 
-    // analyzed or analyzed error 상태일 때 1초 후 알림창을 숨김
+    // analyzed or analyzed error 상태일 때 3초 후 알림창을 숨김
     if (currentState === "analyzed" || currentState === "analyzed error") {
       const timer = setTimeout(() => {
         setShowAlert(false);
+        dispatch(updateAppState("message_waiting"));
       }, 3000);
 
       return () => clearTimeout(timer);
