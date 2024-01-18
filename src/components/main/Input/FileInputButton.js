@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFileData } from "../../../reducers/dataReducers";
 import { updateAppState } from "../../../reducers/appStateReducer";
 import PrintFileCards from "../../left-side/PrintFileCards";
-import { Bellicon, Closeicon, Exclamicon, Fileicon } from "../../../icons";
+import { Bellicon, Exclamicon, Fileicon, Minimizeicon } from "../../../icons";
 import FileUploadToServer from "./FileUploadToServer";
 import Loader from "../Chat/Loader";
 
@@ -51,7 +51,7 @@ function FileInput() {
     if (currentState === "analyzed" || currentState === "analyzed error") {
       const timer = setTimeout(() => {
         setShowAlert(false);
-      }, 1000);
+      }, 3000);
 
       return () => clearTimeout(timer);
     }
@@ -112,7 +112,7 @@ function FileInput() {
           onClick={() => setIsPrintFileCards(false)}
           className="cursor-pointer text-gray-500 hover:text-gray-700"
         >
-          <Closeicon />
+          <Minimizeicon />
         </span>
         <PrintFileCards />
       </div>

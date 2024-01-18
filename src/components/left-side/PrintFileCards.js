@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Download from "../Utility/Download";
 import { Closeicon } from "../../icons";
 
-function PrintFileCards({ processAll = true }) {
+function PrintFileCards({ processAll = false }) {
   // 이 컴포넌트에서 사용할 data 변수
   const analyzedFileDataList = useSelector(
     (state) => state.dataVar.analyzedFileDataList
@@ -41,7 +41,7 @@ function PrintFileCards({ processAll = true }) {
       {dataListToProcess.map((analyzedFileData, index) => (
         <div
           key={index}
-          className={`max-w-full p-3 border border-gray-200 rounded-lg shadow cursor-pointer mb-3 ${
+          className={`max-w-full p-3 border border-gray-200 rounded-lg shadow cursor-pointer ${
             clickedIndex === index ? "bg-blue-500 text-white" : "bg-white"
           } break-words flex flex-col `}
           onClick={() => handleCardClick(index)}
