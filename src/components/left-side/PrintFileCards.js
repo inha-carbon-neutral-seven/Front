@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Download from '../Utility/Download';
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Download from "../Utility/Download";
 
-function PrintFileCards({ processAll = true }) {
+function PrintFileCards({ processAll = false }) {
   // 이 컴포넌트에서 사용할 data 변수
   const analyzedFileDataList = useSelector((state) => state.dataVar.analyzedFileDataList);
 
@@ -21,9 +21,13 @@ function PrintFileCards({ processAll = true }) {
   const handleDelete = (event, index) => {
     event.stopPropagation();
     const updatedList = analyzedFileDataList.filter((_, i) => i !== index);
-    dispatch({ type: 'UPDATE_ANALYZED_FILE_DATA_LIST', payload: updatedList });
+    dispatch({ type: "UPDATE_ANALYZED_FILE_DATA_LIST", payload: updatedList });
   };
-
+  const formatBytes = (bytes = 0) => {
+    let i;
+    for (i = 0; bytes >= 1024; i++) bytes /= 1024;
+    return `${bytes.toFixed(1)}${["B", "KB", "MB", "GB"][i]}`;
+  };
   // 모든 데이터를 처리할지, 마지막 데이터만 처리할지 결정
   const dataListToProcess = processAll ? analyzedFileDataList : [analyzedFileDataList[analyzedFileDataList.length - 1]];
 
@@ -32,8 +36,8 @@ function PrintFileCards({ processAll = true }) {
       {dataListToProcess.map((analyzedFileData, index) => (
         <div
           key={index}
-          className={`max-w-full p-3 border border-gray-200 rounded-lg shadow cursor-pointer mb-3 ${
-            clickedIndex === index ? 'bg-blue-500 text-white' : 'bg-white'
+          className={`max-w-full p-3 border border-gray-200 rounded-lg shadow cursor-pointer ${
+            clickedIndex === index ? "bg-blue-500 text-white" : "bg-white"
           } break-words flex flex-col `}
           onClick={() => handleCardClick(index)}
         >
@@ -41,8 +45,8 @@ function PrintFileCards({ processAll = true }) {
             <Download />
           </div>
           <p>파일명: {analyzedFileData?.analyzedFileData_name}</p>
-          <p>파일크기: {`${analyzedFileData?.analyzedFileData_size}byte`}</p>
-          <p>파일 타입: {analyzedFileData?.analyzedFileData_type}</p>
+          <p>파일크기: {formatBytes(analyzedFileData?.analyzedFileData_size)}</p>
+          <p>파일타입: {analyzedFileData?.analyzedFileData_type}</p>
           <p>사용자 지정 데이터 이름 : {analyzedFileData?.userCustomName}</p>
         </div>
       ))}

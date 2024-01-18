@@ -1,19 +1,26 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFileData } from "../../../reducers/dataReducers";
 import { updateAppState } from "../../../reducers/appStateReducer";
 import PrintFileCards from "../../left-side/PrintFileCards";
-import { Closeicon, Fileicon } from "../../../icons";
-import { Transition } from "@headlessui/react";
+import { Bellicon, Exclamicon, Fileicon, Minimizeicon } from "../../../icons";
+import FileUploadToServer from "./FileUploadToServer";
+import Loader from "../Chat/Loader";
 
 // file upload 버튼 컴포넌트 return.
 // 파일 업로드 버튼 클릭 시, file input 창을 띄운다.
 function FileInput() {
   const fileInput = useRef(null);
 
+  // 연결 상태변수
+  const isConnected = useSelector((state) => state.connected.isConnected);
+  // App의 상태변수
+  const currentState = useSelector((state) => state.appState.currentState);
+
   // 이 컴포넌트에서 사용할 상태변수들.
   const showFileCards = useSelector((state) => state.dataVar.showFileCards); // 파일 업로드 후, 업로드된 파일들 보여주는 버튼의 visibility 상태 변수
   const [isPrintFileCards, setIsPrintFileCards] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   // dispatch func
   const dispatch = useDispatch();
@@ -33,8 +40,41 @@ function FileInput() {
     }
   };
 
+  // appState의 변화에 따라 알림을 처리하는 useEffect
+  useEffect(() => {
+    // response_waiting, analyzing, analyzed 상태일 때 알림창을 띄움
+    if (["response_waiting", "analyzing", "analyzed"].includes(currentState)) {
+      setShowAlert(true);
+    }
+
+    // analyzed or analyzed error 상태일 때 1초 후 알림창을 숨김
+    if (currentState === "analyzed" || currentState === "analyzed error") {
+      const timer = setTimeout(() => {
+        setShowAlert(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [currentState]);
+
+  // 알림창 컴포넌트
+  const Alert = () => (
+    <div
+      className={`absolute bottom-14 text-blue-100 bg-blue-800 shadow-xl p-4 rounded-lg z-50 w-52 ${
+        showAlert ? "opacity-100" : "opacity-0 hidden"
+      }`}
+    >
+      <div className="right-0">
+        {currentState === "analyzed error" ? <Exclamicon /> : <Bellicon />}
+        <Loader />
+      </div>
+    </div>
+  );
+
   return (
     <div className="relative">
+      {showAlert && <Alert />}
+
       <input
         type="file"
         onChange={handleFileChange}
@@ -53,7 +93,7 @@ function FileInput() {
         className={
           showFileCards
             ? `absolute bottom-14 right-5 w-10 h-10 shadow-md bg-blue-500 hover:bg-blue-700 text-white hover:text-gray-200 rounded-full transform transition-transform ease-in-out duration-300 ${
-                isPrintFileCards ? "hidden" : ""
+                isPrintFileCards ? "scale-0 opacity-0" : "scale-100"
               }`
             : "hidden"
         }
@@ -63,25 +103,24 @@ function FileInput() {
       </button>
 
       {/* 업로드한 파일들 보여주는 컴포넌트 */}
-      <Transition
-        show={isPrintFileCards}
-        enter="transition-transform transform ease-in-out duration-300"
-        enterFrom="opacity-0 scale-0"
-        enterTo="opacity-100 scale-100"
-        leave="transition-transform transform ease-in-out duration-300"
-        leaveFrom="opacity-100 scale-100"
-        leaveTo="opacity-0 scale-0"
+      <div
+        className={`absolute bottom-14 bg-blue-200 p-2 border rounded shadow w-[300px] transition-transform transform ease-in-out duration-300 opacity-100 origin-[15%_90%] ${
+          isPrintFileCards ? "scale-100" : "scale-0 opacity-0"
+        }`}
       >
-        <div className="absolute bottom-14 bg-blue-200 p-2 border rounded shadow w-[300px]">
-          <span
-            onClick={() => setIsPrintFileCards(false)}
-            className="cursor-pointer text-gray-500 hover:text-gray-700"
-          >
-            <Closeicon />
-          </span>
-          <PrintFileCards />
-        </div>
-      </Transition>
+        <span
+          onClick={() => setIsPrintFileCards(false)}
+          className="cursor-pointer text-gray-500 hover:text-gray-700"
+        >
+          <Minimizeicon />
+        </span>
+        <PrintFileCards />
+      </div>
+
+      {/* 파일 업로드 버튼 클릭 시, 파일 업로드 컴포넌트 */}
+      <div className="absolute bottom-14 bg-white rounded w-[300px]">
+        {isConnected && <FileUploadToServer />}
+      </div>
     </div>
   );
 }

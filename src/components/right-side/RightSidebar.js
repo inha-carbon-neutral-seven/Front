@@ -1,14 +1,8 @@
-import { useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
-import DataSelect from "../Data/DataSelect";
-import FileUploadToServer from "../main/Input/FileUploadToServer";
 import PrintFileCards from "../left-side/PrintFileCards";
 import DashScreen from "../Data/DashScreen";
 
 function RightSidebar({ page, setSidebarWidth }) {
-  // 연결 상태 변수
-  const isConnected = useSelector((state) => state.connected.isConnected);
-
   // 이 컴포넌트에서 사용할 상태변수들.
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [width, setWidth] = useState(300);
@@ -88,7 +82,7 @@ function RightSidebar({ page, setSidebarWidth }) {
           style={{ width: `${width}px` }}
         >
           <div className="px-1 max-h-[90vh] overflow-auto">
-            {isConnected && <FileUploadToServer />}
+            {/* {isConnected && <FileUploadToServer />} */}
             <DashScreen />
           </div>
         </aside>

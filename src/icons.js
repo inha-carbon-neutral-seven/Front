@@ -12,6 +12,7 @@ import {
   faChevronLeft,
   faXmark,
   faFile,
+  faSquareMinus,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faPaperPlane, faBell } from "@fortawesome/free-regular-svg-icons";
@@ -93,4 +94,8 @@ export function Closeicon() {
 
 export function Fileicon() {
   return <FontAwesomeIcon icon={faFile} size="xl" />;
+}
+
+export function Minimizeicon() {
+  return <FontAwesomeIcon icon={faSquareMinus} size="xl" />;
 }

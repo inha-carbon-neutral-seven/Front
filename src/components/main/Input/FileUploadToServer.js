@@ -73,13 +73,18 @@ function FileUploadToServer() {
       console.error("파일 업로드 오류:", error);
     }
   };
+  const formatBytes = (bytes = 0) => {
+    let i;
+    for (i = 0; bytes >= 1024; i++) bytes /= 1024;
+    return `${bytes.toFixed(1)}${["B", "KB", "MB", "GB"][i]}`;
+  };
 
   /* 파일 업로드 후(아직 서버로 전송은 안한 상황), 사용자지정 이름 input 입력받기*/
   /* 이후에 파일과 사용자 지정 이름을 같이 서버로 보낸다 */
   return currentState === "file_uploading" ? (
-    <div className="max-w-sm p-6 border border-gray-200 rounded-lg shadow cursor-pointer mb-3">
+    <div className="max-w-sm p-6 border border-gray-200 rounded-lg shadow ">
       <p>파일명: {selectedFile.name}</p>
-      <p>파일크기: {`${selectedFile.size}byte`}</p>
+      <p>파일크기: {formatBytes(selectedFile.size)}</p>
       <p>파일타입: {selectedFile.type}</p>
       <p>무슨 데이터인가요?</p>
       <form
