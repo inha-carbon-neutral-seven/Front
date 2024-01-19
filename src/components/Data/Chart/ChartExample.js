@@ -1,4 +1,5 @@
 import { ChartComponent } from "./ChartComponent";
+import { defaultOptions } from "./ChartOptions";
 export const ExampleData = [
   {
     "Invoice/Item Number": "S04958800091",

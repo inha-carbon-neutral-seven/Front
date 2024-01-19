@@ -1,334 +1,7 @@
-import { data } from "@tensorflow/tfjs";
-
-const AnnotationLabel = (text) => {
-  return {
-    borderColor: "#c2c2c2",
-    borderWidth: 1,
-    borderRadius: 2,
-    text: text,
-    textAnchor: "middle",
-    position: "top",
-    orientation: "vertical",
-    offsetX: 0,
-    offsetY: 0,
-    mouseEnter: undefined,
-    mouseLeave: undefined,
-    click: undefined,
-    style: {
-      background: "#fff",
-      color: "#777",
-      fontSize: "12px",
-      fontWeight: 400,
-      fontFamily: undefined,
-      cssClass: "apexcharts-xaxis-annotation-label",
-    },
-  };
-};
-
-const YAxisAnnotations = {
-  id: "yaxis-1",
-  y: 0,
-  y2: null,
-  strokeDashArray: 1,
-  borderColor: "#c2c2c2",
-  fillColor: "#c2c2c2",
-  opacity: 0.3,
-  offsetX: 0,
-  offsetY: -3,
-  width: "100%",
-  yAxisIndex: 0,
-  label: AnnotationLabel("Y Axis Annotation"),
-};
-const XAxisAnnotations = {
-  x: 0,
-  x2: null,
-  strokeDashArray: 1,
-  borderColor: "#c2c2c2",
-  fillColor: "#c2c2c2",
-  opacity: 0.3,
-  offsetX: 0,
-  offsetY: 0,
-  label: AnnotationLabel("X Axis Annotation"),
-};
-
-const PointAnnotations = {
-  x: 0,
-  y: null,
-  yAxisIndex: 0,
-  seriesIndex: 0,
-  mouseEnter: undefined,
-  mouseLeave: undefined,
-  click: undefined,
-  marker: {
-    size: 0,
-    fillColor: "#fff",
-    strokeColor: "#333",
-    strokeWidth: 3,
-    shape: "circle",
-    radius: 2,
-    OffsetX: 0,
-    OffsetY: 0,
-    cssClass: "",
-  },
-  label: AnnotationLabel("Point Annotation"),
-  image: {
-    path: undefined,
-    width: 20,
-    height: 20,
-    offsetX: 0,
-    offsetY: 0,
-  },
-};
-
-const TextAnnotations = {
-  x: 0,
-  y: 0,
-  text: "",
-  textAnchor: "start",
-  foreColor: undefined,
-  fontSize: "13px",
-  fontFamily: undefined,
-  fontWeight: 400,
-  appendTo: ".apexcharts-annotations",
-  backgroundColor: "transparent",
-  borderColor: "#c2c2c2",
-  borderRadius: 0,
-  borderWidth: 0,
-  paddingLeft: 4,
-  paddingRight: 4,
-  paddingTop: 2,
-  paddingBottom: 2,
-};
-const ImageAnnotations = {
-  path: "",
-  x: 0,
-  y: 0,
-  width: 20,
-  height: 20,
-  appendTo: ".apexcharts-annotations",
-};
-
-const ApexDropShadow = {
-  enabled: false,
-  top: 1,
-  left: 1,
-  blur: 1,
-  color: "#000",
-  opacity: 0.45,
-};
-
-const DataLabels = {
-  enabled: true,
-  enabledOnSeries: undefined,
-  formatter: function (val, opts) {
-    return val;
-  },
-  textAnchor: "middle",
-  distributed: false,
-  offsetX: 0,
-  offsetY: 0,
-  style: {
-    fontSize: "14px",
-    fontFamily: "Helvetica, Arial, sans-serif",
-    fontWeight: "bold",
-    colors: undefined,
-  },
-  background: {
-    enabled: true,
-    foreColor: "#fff",
-    padding: 4,
-    borderRadius: 2,
-    borderWidth: 1,
-    borderColor: "#fff",
-    opacity: 0.9,
-    dropShadow: [ApexDropShadow],
-  },
-  dropShadow: {
-    enabled: false,
-    top: 1,
-    left: 1,
-    blur: 1,
-    color: "#000",
-    opacity: 0.45,
-  },
-};
-const Fill = {
-  colors: undefined,
-  opacity: 0.9,
-  type: "solid",
-  gradient: {
-    shade: "dark",
-    type: "horizontal",
-    shadeIntensity: 0.5,
-    gradientToColors: undefined,
-    inverseColors: true,
-    opacityFrom: 1,
-    opacityTo: 1,
-    stops: [0, 50, 100],
-    colorStops: [],
-  },
-  image: {
-    src: [],
-    width: undefined,
-    height: undefined,
-  },
-  pattern: {
-    style: "verticalLines",
-    width: 6,
-    height: 6,
-    strokeWidth: 2,
-  },
-};
-const ForecastDataPoints = {
-  count: 0,
-  fillOpacity: 0.5,
-  strokeWidth: undefined,
-  dashArray: 4,
-};
-const Grid = {
-  show: true,
-  borderColor: "#90A4AE",
-  strokeDashArray: 0,
-  position: "back",
-  xaxis: {
-    lines: {
-      show: false,
-    },
-  },
-  yaxis: {
-    lines: {
-      show: false,
-    },
-  },
-  row: {
-    colors: undefined,
-    opacity: 0.5,
-  },
-  column: {
-    colors: undefined,
-    opacity: 0.5,
-  },
-  padding: {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-  },
-};
-const generateChart = (width, height, type) => {
-  return {
-    animations: {
-      enabled: true,
-      easing: "easeinout",
-      speed: 800,
-      animateGradually: {
-        enabled: true,
-        delay: 150,
-      },
-      dynamicAnimation: {
-        enabled: true,
-        speed: 350,
-      },
-    },
-    background: "#fff",
-    brush: {
-      enabled: false,
-      target: undefined,
-      autoScaleYaxis: false,
-    },
-    defaultLocale: "en",
-    dropShadow: {
-      enabled: false,
-      enabledOnSeries: undefined,
-      top: 0,
-      left: 0,
-      blur: 3,
-      color: "#000",
-      opacity: 0.35,
-    },
-    fontFamily: "Helvetica, Arial, sans-serif",
-    foreColor: "#373d3f",
-    group: undefined,
-    events: {
-      animationEnd: undefined,
-      beforeMount: undefined,
-      mounted: undefined,
-      updated: undefined,
-      mouseMove: undefined,
-      mouseLeave: undefined,
-      click: undefined,
-      legendClick: undefined,
-      markerClick: undefined,
-      xAxisLabelClick: undefined,
-      selection: undefined,
-      dataPointSelection: undefined,
-      dataPointMouseEnter: undefined,
-      dataPointMouseLeave: undefined,
-      beforeZoom: undefined,
-      beforeResetZoom: undefined,
-      zoomed: undefined,
-      scrolled: undefined,
-      scrolled: undefined,
-    },
-    height: "auto",
-    id: undefined,
-    defaultLocale: "en",
-    locales: [
-      {
-        name: "en",
-        options: {
-          months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-          shortMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-          days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          shortDays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-          toolbar: {
-            download: "Download SVG",
-            selection: "Selection",
-            selectionZoom: "Selection Zoom",
-            zoomIn: "Zoom In",
-            zoomOut: "Zoom Out",
-            pan: "Panning",
-            reset: "Reset Zoom",
-          },
-        },
-      },
-    ],
-    offsetX: 0,
-    offsetY: 0,
-    parentHeightOffset: 15,
-    redrawOnParentResize: true,
-    redrawOnWindowResize: true,
-    selection: {
-      enabled: true,
-      type: "x",
-      fill: {
-        color: "#24292e",
-        opacity: 0.1,
-      },
-      stroke: {
-        width: 1,
-        dashArray: 3,
-        color: "#24292e",
-        opacity: 0.4,
-      },
-      xaxis: {
-        min: undefined,
-        max: undefined,
-      },
-      yaxis: {
-        min: undefined,
-        max: undefined,
-      },
-      sparkline: {
-        enabled: false,
-      },
-      stacked: false,
-      stackType: "normal",
-    },
+const commonOptions = {
+  chart: {
     toolbar: {
       show: true,
-      offsetX: 0,
-      offsetY: 0,
       tools: {
         download: true,
         selection: true,
@@ -336,463 +9,249 @@ const generateChart = (width, height, type) => {
         zoomin: true,
         zoomout: true,
         pan: true,
-        reset: true | '<img src="/static/icons/reset.png" width="20">',
-        customIcons: [],
-      },
-      export: {
-        csv: {
-          filename: undefined,
-          columnDelimiter: ",",
-          headerCategory: "category",
-          headerValue: "value",
-          dateFormatter(timestamp) {
-            return new Date(timestamp).toDateString();
-          },
-        },
-        svg: {
-          filename: undefined,
-        },
-        png: {
-          filename: undefined,
-        },
-      },
-      autoSelected: "zoom",
-      type: "bar",
-      width: "100%",
-      zoom: {
-        enabled: true,
-        type: "x",
-        autoScaleYaxis: false,
-        zoomedArea: {
-          fill: {
-            color: "#90CAF9",
-            opacity: 0.4,
-          },
-          stroke: {
-            color: "#0D47A1",
-            opacity: 0.4,
-            width: 1,
-          },
-        },
+        reset: true,
       },
     },
-  };
-};
-
-const defaultOptions = {
-  annotations: {
-    yaxis: [YAxisAnnotations],
-    xaxis: [XAxisAnnotations],
-    points: [PointAnnotations],
-    texts: [TextAnnotations],
-    images: [ImageAnnotations],
   },
-  chart: generateChart("100%", "auto", "bar"),
-  colors: ["#2E93fA", "#66DA26", "#546E7A", "#E91E63", "#FF9800"],
-
-  dataLabels: [DataLabels],
-  fill: [Fill],
-  forecastDataPoints: [ForecastDataPoints],
-  grid: [Grid],
-  labels: ["Apples", "Oranges", "Berries", "Grapes"],
-  legend: {
-    show: true,
-    showForSingleSeries: false,
-    showForNullSeries: true,
-    showForZeroSeries: true,
-    position: "bottom",
-    horizontalAlign: "center",
-    floating: false,
-    fontSize: "14px",
-    fontFamily: "Helvetica, Arial",
-    fontWeight: 400,
-    formatter: undefined,
-    inverseOrder: false,
-    width: undefined,
-    height: undefined,
-    tooltipHoverFormatter: undefined,
-    customLegendItems: [],
-    offsetX: 0,
-    offsetY: 0,
-    labels: {
-      colors: undefined,
-      useSeriesColors: false,
-    },
-    markers: {
-      width: 12,
-      height: 12,
-      strokeWidth: 0,
-      strokeColor: "#fff",
-      fillColors: undefined,
-      radius: 12,
-      customHTML: undefined,
-      onClick: undefined,
-      offsetX: 0,
-      offsetY: 0,
-    },
-    itemMargin: {
-      horizontal: 5,
-      vertical: 0,
-    },
-    onItemClick: {
-      toggleDataSeries: true,
-    },
-    onItemHover: {
-      highlightDataSeries: true,
-    },
-  },
-  markers: {
-    size: 0,
-    colors: undefined,
-    strokeColors: "#fff",
-    strokeWidth: 2,
-    strokeOpacity: 0.9,
-    strokeDashArray: 0,
-    fillOpacity: 1,
-    discrete: [],
-    shape: "circle",
-    radius: 2,
-    offsetX: 0,
-    offsetY: 0,
-    onClick: undefined,
-    onDblClick: undefined,
-    showNullDataPoints: true,
-    hover: {
-      size: undefined,
-      sizeOffset: 3,
-    },
-  },
-  noData: {
-    text: undefined,
-    align: "center",
-    verticalAlign: "middle",
-    offsetX: 0,
-    offsetY: 0,
-    style: {
-      color: undefined,
-      fontSize: "14px",
-      fontFamily: undefined,
-    },
-  },
-  responsive: [
-    {
-      // breakpoint: undefined,
-      // options: {},
-    },
-  ],
-  series: [
-    {
-      name: "Series 1",
-      data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10],
-    },
-  ],
-  states: {
-    // normal: {
-    //   filter: {
-    //     type: "none",
-    //     value: 0,
-    //   },
-    // },
-    // hover: {
-    //   filter: {
-    //     type: "lighten",
-    //     value: 0.15,
-    //   },
-    // },
-    // active: {
-    //   allowMultipleDataPointsSelection: false,
-    //   filter: {
-    //     type: "darken",
-    //     value: 0.35,
-    //   },
-    // },
+  dataLabels: {
+    enabled: false,
   },
   stroke: {
-    // show: true,
-    // curve: "smooth",
-    // lineCap: "butt",
-    // colors: undefined,
-    // width: 2,
-    // dashArray: 0,
-  },
-  subtitle: {
-    // text: undefined,
-    // align: "left",
-    // margin: 10,
-    // offsetX: 0,
-    // offsetY: 0,
-    // floating: false,
-    // style: {
-    //   fontSize: "12px",
-    //   fontWeight: "normal",
-    //   fontFamily: undefined,
-    //   color: "#9699a2",
-    // },
-  },
-  theme: {
-    // mode: "light",
-    // palette: "palette1",
-    // monochrome: {
-    //   enabled: false,
-    //   color: "#255aee",
-    //   shadeTo: "light",
-    //   shadeIntensity: 0.65,
-    // },
-  },
-  legend: {
-    show: true,
-    position: "top",
-  },
-  title: {
-    // text: undefined,
-    // align: "left",
-    // margin: 10,
-    // offsetX: 0,
-    // offsetY: 0,
-    // floating: false,
-    // style: {
-    //   fontSize: "14px",
-    //   fontWeight: "bold",
-    //   fontFamily: undefined,
-    //   color: "#263238",
-    // },
-  },
-  tooltip: {
-    // enabled: true,
-    // enabledOnSeries: undefined,
-    // shared: true,
-    // followCursor: false,
-    // intersect: false,
-    // inverseOrder: false,
-    // custom: undefined,
-    // fillSeriesColor: false,
-    // theme: false,
-    // style: {
-    //   fontSize: "12px",
-    //   fontFamily: undefined,
-    // },
-    // onDatasetHover: {
-    //   highlightDataSeries: false,
-    // },
-    // x: {
-    //   show: true,
-    //   format: "dd MMM",
-    //   formatter: undefined,
-    // },
-    // y: {
-    //   formatter: undefined,
-    //   title: {
-    //     formatter: (seriesName) => seriesName,
-    //   },
-    // },
-    // z: {
-    //   formatter: undefined,
-    //   title: "Size: ",
-    // },
-    // marker: {
-    //   show: true,
-    // },
-    // items: {
-    //   display: flex,
-    // },
-    // fixed: {
-    //   enabled: false,
-    //   position: "topRight",
-    //   offsetX: 0,
-    //   offsetY: 0,
-    // },
+    curve: "smooth",
   },
   xaxis: {
-    // type: "category",
-    // categories: [],
-    // tickAmount: undefined,
-    // tickPlacement: "between",
-    // min: undefined,
-    // max: undefined,
-    // range: undefined,
-    // floating: false,
-    // decimalsInFloat: undefined,
-    // overwriteCategories: undefined,
-    // position: "bottom",
-    // labels: {
-    //   show: true,
-    //   rotate: -45,
-    //   rotateAlways: false,
-    //   hideOverlappingLabels: true,
-    //   showDuplicates: false,
-    //   trim: false,
-    //   minHeight: undefined,
-    //   maxHeight: 120,
-    //   style: {
-    //     colors: [],
-    //     fontSize: "12px",
-    //     fontFamily: "Helvetica, Arial, sans-serif",
-    //     fontWeight: 400,
-    //     cssClass: "apexcharts-xaxis-label",
-    //   },
-    //   offsetX: 0,
-    //   offsetY: 0,
-    //   format: undefined,
-    //   formatter: undefined,
-    //   datetimeUTC: true,
-    //   datetimeFormatter: {
-    //     year: "yyyy",
-    //     month: "MMM 'yy",
-    //     day: "dd MMM",
-    //     hour: "HH:mm",
-    //   },
-    // },
-    // group: {
-    //   groups: [],
-    //   style: {
-    //     colors: [],
-    //     fontSize: "12px",
-    //     fontWeight: 400,
-    //     fontFamily: undefined,
-    //     cssClass: "",
-    //   },
-    // },
-    // axisBorder: {
-    //   show: true,
-    //   color: "#78909C",
-    //   height: 1,
-    //   width: "100%",
-    //   offsetX: 0,
-    //   offsetY: 0,
-    // },
-    // axisTicks: {
-    //   show: true,
-    //   borderType: "solid",
-    //   color: "#78909C",
-    //   height: 6,
-    //   offsetX: 0,
-    //   offsetY: 0,
-    // },
-    // title: {
-    //   text: undefined,
-    //   offsetX: 0,
-    //   offsetY: 0,
-    //   style: {
-    //     color: undefined,
-    //     fontSize: "12px",
-    //     fontFamily: "Helvetica, Arial, sans-serif",
-    //     fontWeight: 600,
-    //     cssClass: "apexcharts-xaxis-title",
-    //   },
-    // },
-    // crosshairs: {
-    //   show: true,
-    //   width: 1,
-    //   position: "back",
-    //   opacity: 0.9,
-    //   stroke: {
-    //     color: "#b6b6b6",
-    //     width: 0,
-    //     dashArray: 0,
-    //   },
-    //   fill: {
-    //     type: "solid",
-    //     color: "#B1B9C4",
-    //     gradient: {
-    //       colorFrom: "#D8E3F0",
-    //       colorTo: "#BED1E6",
-    //       stops: [0, 100],
-    //       opacityFrom: 0.4,
-    //       opacityTo: 0.5,
-    //     },
-    //   },
-    //   dropShadow: {
-    //     enabled: false,
-    //     top: 0,
-    //     left: 0,
-    //     blur: 1,
-    //     opacity: 0.4,
-    //   },
-    // },
-    // tooltip: {
-    //   enabled: true,
-    //   formatter: undefined,
-    //   offsetY: 0,
-    //   style: {
-    //     fontSize: 0,
-    //     fontFamily: 0,
-    //   },
-    // },
+    type: "category",
   },
   yaxis: {
-    // show: true,
-    // showAlways: true,
-    // showForNullSeries: true,
-    // seriesName: undefined,
-    // opposite: false,
-    // reversed: false,
-    // logarithmic: false,
-    // logBase: 10,
-    // tickAmount: 6,
-    // min: 6,
-    // max: 6,
-    // forceNiceScale: false,
-    // floating: false,
-    // decimalsInFloat: undefined,
-    // labels: {
-    //   show: true,
-    //   align: "right",
-    //   minWidth: 0,
-    //   maxWidth: 160,
-    //   style: {
-    //     colors: [],
-    //     fontSize: "12px",
-    //     fontFamily: "Helvetica, Arial, sans-serif",
-    //     fontWeight: 400,
-    //     cssClass: "apexcharts-yaxis-label",
-    //   },
-    //   offsetX: 0,
-    //   offsetY: 0,
-    //   rotate: 0,
-    //   formatter: (value) => {
-    //     return value;
-    //   },
-    // },
-    // axisBorder: {
-    //   show: true,
-    //   color: "#78909C",
-    //   offsetX: 0,
-    //   offsetY: 0,
-    // },
-    // axisTicks: {
-    //   show: true,
-    //   borderType: "solid",
-    //   color: "#78909C",
-    //   width: 6,
-    //   offsetX: 0,
-    //   offsetY: 0,
-    // },
-    // title: {
-    //   text: undefined,
-    //   rotate: -90,
-    //   offsetX: 0,
-    //   offsetY: 0,
-    //   style: {
-    //     color: undefined,
-    //     fontSize: "12px",
-    //     fontFamily: "Helvetica, Arial, sans-serif",
-    //     fontWeight: 600,
-    //     cssClass: "apexcharts-yaxis-title",
-    //   },
-    // },
-    // crosshairs: {
-    //   show: true,
-    //   position: "back",
-    //   stroke: {
-    //     color: "#b6b6b6",
-    //     width: 1,
-    //     dashArray: 0,
-    //   },
-    // },
-    // tooltip: {
-    //   enabled: true,
-    //   offsetX: 0,
-    // },
+    title: {
+      text: "Values",
+    },
+  },
+  tooltip: {
+    enabled: true,
   },
 };
 export const ChartOptions = {};
+
+// Assuming commonOptions is defined as shown in previous examples
+
+ChartOptions.lineChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to line charts
+  chart: {
+    ...commonOptions.chart,
+    type: "line",
+  },
+  stroke: {
+    curve: "smooth",
+    width: 2,
+  },
+  markers: {
+    size: 4,
+  },
+};
+
+ChartOptions.areaChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to area charts
+  chart: {
+    ...commonOptions.chart,
+    type: "area",
+  },
+  stroke: {
+    curve: "smooth",
+  },
+  fill: {
+    type: "gradient",
+    gradient: {
+      shadeIntensity: 1,
+      opacityFrom: 0.3,
+      opacityTo: 0.7,
+    },
+  },
+};
+
+ChartOptions.columnChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to column charts
+  chart: {
+    ...commonOptions.chart,
+    type: "bar",
+  },
+  plotOptions: {
+    bar: {
+      horizontal: false,
+      columnWidth: "55%",
+    },
+  },
+};
+
+ChartOptions.boxPlotChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to box plot charts
+  chart: {
+    ...commonOptions.chart,
+    type: "boxPlot",
+  },
+  plotOptions: {
+    boxPlot: {
+      colors: {
+        upper: "#5C4742",
+        lower: "#A5978B",
+      },
+    },
+  },
+};
+
+ChartOptions.rangeBarChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to range bar charts
+  plotOptions: {
+    bar: {
+      horizontal: true,
+      distributed: true,
+      rangeBarGroupRows: true,
+    },
+  },
+  xaxis: {
+    type: "datetime", // Assuming x-axis represents dates
+  },
+};
+
+ChartOptions.rangeAreaChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to range area charts
+  stroke: {
+    curve: "smooth",
+  },
+  fill: {
+    type: "gradient",
+    gradient: {
+      shadeIntensity: 1,
+      opacityFrom: 0.7,
+      opacityTo: 0.9,
+      stops: [0, 100],
+    },
+  },
+};
+
+ChartOptions.heatmapChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to heatmap charts
+  chart: {
+    type: "heatmap",
+  },
+  dataLabels: {
+    enabled: true,
+  },
+  plotOptions: {
+    heatmap: {
+      radius: 0,
+      enableShades: true,
+    },
+  },
+};
+
+ChartOptions.treemapChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to treemap charts
+  chart: {
+    type: "treemap",
+  },
+  plotOptions: {
+    treemap: {
+      distributed: true,
+      enableShades: true,
+    },
+  },
+};
+
+ChartOptions.radarChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to radar charts
+  chart: {
+    ...commonOptions.chart,
+    type: "radar",
+  },
+  markers: {
+    size: 4,
+    colors: ["#fff"],
+    strokeColor: "#FF4560",
+    strokeWidth: 2,
+  },
+  plotOptions: {
+    radar: {
+      polygons: {
+        strokeColor: "#e9e9e9",
+        fill: {
+          colors: ["#f8f8f8", "#fff"],
+        },
+      },
+    },
+  },
+};
+
+ChartOptions.radialBarChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to radial bar charts
+  chart: {
+    ...commonOptions.chart,
+    type: "radialBar",
+  },
+  plotOptions: {
+    radialBar: {
+      startAngle: -135,
+      endAngle: 225,
+      hollow: {
+        margin: 0,
+        size: "70%",
+        background: "#fff",
+        image: undefined,
+        imageOffsetX: 0,
+        imageOffsetY: 0,
+        position: "front",
+      },
+      track: {
+        background: "#fff",
+        strokeWidth: "67%",
+        margin: 0, // margin is in pixels
+      },
+    },
+  },
+};
+
+ChartOptions.barChartOptions = {
+  ...commonOptions,
+  chart: {
+    ...commonOptions.chart,
+    type: "bar",
+  },
+  plotOptions: {
+    bar: {
+      horizontal: false,
+    },
+  },
+};
+
+ChartOptions.pieChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to pie charts
+  chart: {
+    ...commonOptions.chart,
+    type: "pie",
+  },
+  labels: [], // Add labels if required
+  responsive: [
+    {
+      breakpoint: 480,
+      options: {
+        chart: {
+          width: 200,
+        },
+        legend: {
+          position: "bottom",
+        },
+      },
+    },
+  ],
+};
