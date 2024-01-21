@@ -1,4 +1,4 @@
-export function plotOptions(chartType) {
+export function generateplotOptions(chartType) {
   switch (chartType) {
     case "area":
       return {
@@ -12,50 +12,50 @@ export function plotOptions(chartType) {
       return {
         plotOptions: {
           bar: {
-            // horizontal: false,
-            // borderRadius: 0,
-            // borderRadiusApplication: "around",
-            // borderRadiusWhenStacked: "last",
-            // columnWidth: "70%",
-            // barHeight: "70%",
-            // distributed: false,
-            // rangeBarOverlap: true,
-            // rangeBarGroupRows: false,
-            // hideZeroBarsWhenGrouped: false,
-            // isDumbbell: false,
-            // dumbbellColors: undefined,
-            // isFunnel: false,
-            // isFunnel3d: true,
-            // colors: {
-            //   ranges: [
-            //     {
-            //       from: 0,
-            //       to: 0,
-            //       color: undefined,
-            //     },
-            //   ],
-            //   backgroundBarColors: [],
-            //   backgroundBarOpacity: 1,
-            //   backgroundBarRadius: 0,
-            // },
-            // dataLabels: {
-            //   position: "top",
-            //   maxItems: 100,
-            //   hideOverflowingLabels: true,
-            //   orientation: horizontal,
-            //   total: {
-            //     enabled: false,
-            //     formatter: undefined,
-            //     offsetX: 0,
-            //     offsetY: 0,
-            //     style: {
-            //       color: "#373d3f",
-            //       fontSize: "12px",
-            //       fontFamily: undefined,
-            //       fontWeight: 600,
-            //     },
-            //   },
-            // },
+            horizontal: false,
+            borderRadius: 0,
+            borderRadiusApplication: "around",
+            borderRadiusWhenStacked: "last",
+            columnWidth: "70%",
+            barHeight: "70%",
+            distributed: false,
+            rangeBarOverlap: true,
+            rangeBarGroupRows: false,
+            hideZeroBarsWhenGrouped: false,
+            isDumbbell: false,
+            dumbbellColors: undefined,
+            isFunnel: false,
+            isFunnel3d: true,
+            colors: {
+              ranges: [
+                {
+                  from: 0,
+                  to: 0,
+                  color: undefined,
+                },
+              ],
+              backgroundBarColors: [],
+              backgroundBarOpacity: 1,
+              backgroundBarRadius: 0,
+            },
+            dataLabels: {
+              position: "top",
+              maxItems: 100,
+              hideOverflowingLabels: true,
+              orientation: "horizontal",
+              total: {
+                enabled: false,
+                formatter: undefined,
+                offsetX: 0,
+                offsetY: 0,
+                style: {
+                  color: "#373d3f",
+                  fontSize: "12px",
+                  fontFamily: undefined,
+                  fontWeight: 600,
+                },
+              },
+            },
           },
         },
       };

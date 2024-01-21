@@ -12,6 +12,7 @@ export const ExampleData = [
     xaxis: {
       categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"],
     },
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"],
     title: "Product Trends by Month",
   },
   {
@@ -25,19 +26,16 @@ export const ExampleData = [
     xaxis: {
       categories: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
     },
+    labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
     title: "Monthly Product Sales Across All Years",
   },
   {
-    type: "line",
-    series: [
-      {
-        name: "Yearly Sales",
-        data: [35107, 42876, 41030, 45862, 41442, 4108],
-      },
-    ],
+    type: "pie",
+    series: [35107, 42876, 41030, 45862, 41442, 4108],
     xaxis: {
-      categories: [2012, 2013, 2014, 2015, 2016, 2017],
+      categories: ["2012", "2013", "2014", "2015", "2016", "2017"],
     },
+    labels: ["2012", "2013", "2014", "2015", "2016", "2017"],
     title: "Sales Trends Over Time",
   },
 ];

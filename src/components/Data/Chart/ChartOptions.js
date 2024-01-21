@@ -1,33 +1,4 @@
-export const generateOptions = (type, seriesConfig, xaxisConfig) => {
-  return {
-    series: seriesConfig,
-    chart: {
-      width: "100%",
-      type: type,
-      zoom: {
-        enabled: false,
-      },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    stroke: {
-      curve: "straight",
-    },
-    title: {
-      text: "Product Trends by Month",
-      align: "left",
-    },
-    grid: {
-      row: {
-        colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-        opacity: 0.5,
-      },
-    },
-    xaxis: xaxisConfig,
-  };
-};
-
+import { generateplotOptions } from "./plotOptions";
 const commonOptions = {
   chart: {
     toolbar: {
@@ -61,11 +32,8 @@ const commonOptions = {
     enabled: true,
   },
 };
-export const ChartOptions = {};
 
-// Assuming commonOptions is defined as shown in previous examples
-
-ChartOptions.lineChartOptions = {
+const lineChartOptions = {
   ...commonOptions,
   // Add or override options specific to line charts
   chart: {
@@ -79,9 +47,10 @@ ChartOptions.lineChartOptions = {
   markers: {
     size: 4,
   },
+  plotOptions: generateplotOptions("line"),
 };
 
-ChartOptions.areaChartOptions = {
+const areaChartOptions = {
   ...commonOptions,
   // Add or override options specific to area charts
   chart: {
@@ -99,9 +68,10 @@ ChartOptions.areaChartOptions = {
       opacityTo: 0.7,
     },
   },
+  plotOptions: generateplotOptions("area"),
 };
 
-ChartOptions.columnChartOptions = {
+const columnChartOptions = {
   ...commonOptions,
   // Add or override options specific to column charts
   chart: {
@@ -114,9 +84,10 @@ ChartOptions.columnChartOptions = {
       columnWidth: "55%",
     },
   },
+  plotOptions: generateplotOptions("bar"),
 };
 
-ChartOptions.boxPlotChartOptions = {
+const boxPlotChartOptions = {
   ...commonOptions,
   // Add or override options specific to box plot charts
   chart: {
@@ -131,9 +102,10 @@ ChartOptions.boxPlotChartOptions = {
       },
     },
   },
+  plotOptions: generateplotOptions("boxPlot"),
 };
 
-ChartOptions.rangeBarChartOptions = {
+const rangeBarChartOptions = {
   ...commonOptions,
   // Add or override options specific to range bar charts
   plotOptions: {
@@ -146,9 +118,10 @@ ChartOptions.rangeBarChartOptions = {
   xaxis: {
     type: "datetime", // Assuming x-axis represents dates
   },
+  plotOptions: generateplotOptions("bar"),
 };
 
-ChartOptions.rangeAreaChartOptions = {
+const rangeAreaChartOptions = {
   ...commonOptions,
   // Add or override options specific to range area charts
   stroke: {
@@ -163,9 +136,10 @@ ChartOptions.rangeAreaChartOptions = {
       stops: [0, 100],
     },
   },
+  plotOptions: generateplotOptions("area"),
 };
 
-ChartOptions.heatmapChartOptions = {
+const heatmapChartOptions = {
   ...commonOptions,
   // Add or override options specific to heatmap charts
   chart: {
@@ -180,9 +154,10 @@ ChartOptions.heatmapChartOptions = {
       enableShades: true,
     },
   },
+  plotOptions: generateplotOptions("heatmap"),
 };
 
-ChartOptions.treemapChartOptions = {
+const treemapChartOptions = {
   ...commonOptions,
   // Add or override options specific to treemap charts
   chart: {
@@ -194,34 +169,20 @@ ChartOptions.treemapChartOptions = {
       enableShades: true,
     },
   },
+  plotOptions: generateplotOptions("treemap"),
 };
 
-ChartOptions.radarChartOptions = {
+const radarChartOptions = {
   ...commonOptions,
   // Add or override options specific to radar charts
   chart: {
     ...commonOptions.chart,
     type: "radar",
   },
-  markers: {
-    size: 4,
-    colors: ["#fff"],
-    strokeColor: "#FF4560",
-    strokeWidth: 2,
-  },
-  plotOptions: {
-    radar: {
-      polygons: {
-        strokeColor: "#e9e9e9",
-        fill: {
-          colors: ["#f8f8f8", "#fff"],
-        },
-      },
-    },
-  },
+  plotOptions: generateplotOptions("radar"),
 };
 
-ChartOptions.radialBarChartOptions = {
+const radialBarChartOptions = {
   ...commonOptions,
   // Add or override options specific to radial bar charts
   chart: {
@@ -250,7 +211,7 @@ ChartOptions.radialBarChartOptions = {
   },
 };
 
-ChartOptions.barChartOptions = {
+const barChartOptions = {
   ...commonOptions,
   chart: {
     ...commonOptions.chart,
@@ -263,7 +224,7 @@ ChartOptions.barChartOptions = {
   },
 };
 
-ChartOptions.pieChartOptions = {
+const pieChartOptions = {
   ...commonOptions,
   // Add or override options specific to pie charts
   chart: {
@@ -284,4 +245,123 @@ ChartOptions.pieChartOptions = {
       },
     },
   ],
+};
+const donutChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to pie charts
+  chart: {
+    ...commonOptions.chart,
+    type: "donut",
+  },
+  labels: [], // Add labels if required
+  responsive: [
+    {
+      breakpoint: 480,
+      options: {
+        chart: {
+          width: 200,
+        },
+        legend: {
+          position: "bottom",
+        },
+      },
+    },
+  ],
+};
+export const generateOptions = (type, title, seriesConfig, xaxisConfig) => {
+  let options = {
+    series: seriesConfig,
+    chart: {
+      width: "100%",
+      type: type,
+      zoom: {
+        enabled: false,
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      curve: "straight",
+    },
+    title: {
+      text: title,
+      align: "center",
+    },
+    grid: {
+      row: {
+        colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+        opacity: 0.5,
+      },
+    },
+
+    xaxis: xaxisConfig,
+  };
+  switch (type) {
+    case "line":
+      options = { ...options, ...lineChartOptions };
+      break;
+    case "area":
+      options = { ...options, ...areaChartOptions };
+      break;
+    case "bar":
+      options = { ...options, ...barChartOptions };
+      break;
+    case "column":
+      options = { ...options, ...columnChartOptions };
+      break;
+    case "boxPlot":
+      options = { ...options, ...boxPlotChartOptions };
+      break;
+    case "rangeBar":
+      options = { ...options, ...rangeBarChartOptions };
+      break;
+    case "rangeArea":
+      options = { ...options, ...rangeAreaChartOptions };
+      break;
+    case "heatmap":
+      options = { ...options, ...heatmapChartOptions };
+      break;
+    case "treemap":
+      options = { ...options, ...treemapChartOptions };
+      break;
+    case "radar":
+      options = { ...options, ...radarChartOptions };
+      break;
+    case "radialBar":
+      options = { ...options, ...radialBarChartOptions };
+      break;
+
+    default:
+      break;
+  }
+  return options;
+};
+export const generatePieOptions = (type, title, seriesConfig, labelsConfig) => {
+  let options = {
+    series: seriesConfig,
+    chart: {
+      width: "100%",
+      type: type,
+    },
+    dataLabels: {
+      enabled: false,
+    },
+
+    title: {
+      text: title,
+      align: "center",
+    },
+
+    labels: labelsConfig,
+  };
+  switch (type) {
+    case "pie":
+      options = { ...options, ...pieChartOptions };
+      break;
+    case "donut":
+      options = { ...options, ...donutChartOptions };
+      break;
+  }
+  return options;
 };
