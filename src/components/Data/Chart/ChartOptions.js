@@ -1,3 +1,33 @@
+export const generateOptions = (type, seriesConfig, xaxisConfig) => {
+  return {
+    series: seriesConfig,
+    chart: {
+      width: "100%",
+      type: type,
+      zoom: {
+        enabled: false,
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      curve: "straight",
+    },
+    title: {
+      text: "Product Trends by Month",
+      align: "left",
+    },
+    grid: {
+      row: {
+        colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+        opacity: 0.5,
+      },
+    },
+    xaxis: xaxisConfig,
+  };
+};
+
 const commonOptions = {
   chart: {
     toolbar: {
