@@ -13,6 +13,8 @@ import {
   faXmark,
   faFile,
   faSquareMinus,
+  faChartLine,
+  faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faPaperPlane, faBell } from "@fortawesome/free-regular-svg-icons";
@@ -66,14 +68,7 @@ export function Checkicon() {
 }
 
 export function Bellicon() {
-  return (
-    <FontAwesomeIcon
-      icon={faBell}
-      size="lg"
-      style={{ color: "#ffffff" }}
-      shake
-    />
-  );
+  return <FontAwesomeIcon icon={faBell} size="lg" style={{ color: "#ffffff" }} shake />;
 }
 
 export function Spinnericon() {
@@ -98,4 +93,21 @@ export function Fileicon() {
 
 export function Minimizeicon() {
   return <FontAwesomeIcon icon={faSquareMinus} size="xl" />;
+}
+export function ChartAnalysis() {
+  return <FontAwesomeIcon icon={faChartLine} size="xl" />;
+}
+export function CaretDown() {
+  const [rotation, setRotation] = useState(90);
+  const [isClockwise, setIsClockwise] = useState(false);
+
+  const handleClick = () => {
+    setRotation((prevRotation) => {
+      const newRotation = isClockwise ? prevRotation + 180 : prevRotation - 180;
+      return (newRotation + 360) % 360;
+    });
+    setIsClockwise(!isClockwise); // Toggle the direction
+  };
+
+  return <FontAwesomeIcon icon={faCaretDown} size="2xl" rotation={rotation} style={{ transition: "transform 0.5s" }} onClick={handleClick} />;
 }

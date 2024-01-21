@@ -54,10 +54,6 @@ function App() {
       <Header param={handlePage} />
 
       <div className="flex flex-grow mt-20 mb-2 pt-1 pb-1 w-4/5 place-self-center overflow-y-auto">
-        {/* <div className="fixed-left h-full">
-          <Sidebar page={showComponent} setSidebarWidth={setSidebarWidth} />
-        </div> */}
-
         <div className="flex-grow" style={{ maxWidth: "100%" }}>
           <div className="w-full h-full pl-0 space-y-2 rounded-[12px]">
             {showComponent === 0 && <ChatScreen />}
@@ -67,10 +63,7 @@ function App() {
         </div>
 
         <div className="fixed-left h-full">
-          <RightSidebar
-            page={showComponent}
-            setSidebarWidth={setSidebarWidth}
-          />
+          <RightSidebar page={showComponent} setSidebarWidth={setSidebarWidth} />
         </div>
       </div>
     </div>

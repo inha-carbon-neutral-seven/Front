@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import PrintFileCards from "../left-side/PrintFileCards";
 import DashScreen from "../Data/DashScreen";
+import { ChartAnalysis, CaretDown } from "../../icons";
 
 function RightSidebar({ page, setSidebarWidth }) {
   // 이 컴포넌트에서 사용할 상태변수들.
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [width, setWidth] = useState(300);
   const [isVisible, setIsVisible] = useState(true);
+  const [isMinimized, setIsMinimized] = useState(true);
 
   // 사이드바 너비 조절.
   useEffect(() => {
@@ -36,7 +38,7 @@ function RightSidebar({ page, setSidebarWidth }) {
     return () => window.removeEventListener("resize", debouncedHandleResize);
   }, []);
 
-  const minWidth = 200; // 최소 너비 설정
+  const minWidth = 0; // 최소 너비 설정
   const maxWidth = 1000; // 최대 너비 설정
 
   // 사이드바 드래그 이벤트 핸들러.
@@ -47,10 +49,7 @@ function RightSidebar({ page, setSidebarWidth }) {
 
     const doDrag = (e) => {
       const delta = e.clientX - startPosition;
-      const newWidth = Math.min(
-        Math.max(startWidth - delta, minWidth),
-        maxWidth
-      );
+      const newWidth = Math.min(Math.max(startWidth - delta, minWidth), maxWidth);
       setWidth(newWidth);
       setSidebarWidth(newWidth);
 
@@ -68,25 +67,31 @@ function RightSidebar({ page, setSidebarWidth }) {
     document.addEventListener("mousemove", doDrag);
     document.addEventListener("mouseup", stopDrag, { once: true });
   };
-
+  const toggleSidebar = () => {
+    setIsMinimized(!isMinimized);
+    setWidth(isMinimized ? 500 : 50);
+  };
   return (
     <div className="flex h-full">
-      <div
-        className="cursor-col-resize"
-        style={{ width: "10px", cursor: "col-resize" }}
-        onMouseDown={handleMouseDown}
-      ></div>
-      {isVisible && (
+      <div className="cursor-col-resize" style={{ width: "10px", cursor: "col-resize" }} onMouseDown={handleMouseDown}></div>
+      {!isMinimized && (
         <aside
-          className="max-w-64 max-h-[90vh] p-1 backdrop-blur-xl bg-white/80 space-y-2 flex-shrink-0 drop-shadow-lg rounded-[12px] overflow-hidden"
+          className="max-w-64 max-h-[90vh] p-1 mr-1 backdrop-blur-xl bg-white/80 space-y-2 flex-shrink-0 drop-shadow-lg rounded-tl-[12px] rounded-[12px] overflow-hidden"
           style={{ width: `${width}px` }}
         >
           <div className="px-1 max-h-[90vh] overflow-auto">
-            {/* {isConnected && <FileUploadToServer />} */}
             <DashScreen />
           </div>
         </aside>
       )}
+      <aside className="max-h-[90vh] p-2 backdrop-blur-xl bg-white/80 space-y-2 flex-shrink-0 drop-shadow-lg rounded-[12px] overflow-hidden flex flex-col items-center">
+        <button onClick={toggleSidebar} className="toggle-sidebar-btn">
+          <CaretDown />
+        </button>
+        <button onClick={toggleSidebar} className="toggle-sidebar-btn">
+          <ChartAnalysis />
+        </button>
+      </aside>
     </div>
   );
 }
