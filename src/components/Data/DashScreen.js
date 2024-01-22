@@ -9,7 +9,9 @@ function DashScreen() {
   const jsonDataFromStore = useSelector((state) => state.dataVar.jsonData);
 
   const jsonData = jsonDataFromStore && jsonDataFromStore.length > 0 ? jsonDataFromStore : ChartExample;
-
+  if (!jsonData || !jsonData[0].title || !jsonData[0].series || !jsonData[0].xaxis || !jsonData[0].labels) {
+    return <p>Invalid chart data</p>;
+  }
   return (
     <div className="container mx-auto mt-5 flex flex-wrap gap-6 max-w-full max-h-[85vh]">
       {jsonData.map((chartConfig, index) => (
