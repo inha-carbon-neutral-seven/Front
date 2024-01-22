@@ -34,22 +34,32 @@ function FileUploadToServer() {
       dispatch(updateAppState("response_waiting"));
 
       // 서버로 FormData 전송, 응답 요청
-      const response = await fetch("http://165.246.21.213:10100/upload", {
+      let response = await fetch("http://165.246.21.213:10100/upload", {
         method: "POST",
         body: formData,
       })
         .then((res) => {
-          console.log(res.body);
+          if (!res.ok) throw new Error("서버 응답 오류");
+          console.log("파일 업로드 성공", res.body);
+
           // 응답을 받으면, 분석 요청
           dispatch(updateAppState("analyzing"));
-          return fetch("http://165.246.21.213:10100/embed");
+        })
+        .catch((error) => {
+          console.error("파일 업로드 오류:", error);
+        });
+
+      response = await fetch("http://165.246.21.213:10100/embed")
+        .then((res) => {
+          return res.json();
         })
         .then((res) => {
           // 분석이 끝났다는 요청을 받는다.
           dispatch(updateAppState("analyzed"));
 
-          // 분석된 데이터를 받는다.
-          // 여기서 뭔가 한다.
+          // 추천 문구를 받는다.
+          let mydata = res;
+          console.log(mydata.recommendations);
 
           // 분석 데이터 정보를 저장한다. (지금은 임시로 이름이나 크기같은 분석안해도 알수 있는거만 저장함.)
           const newAnalyzedFileData = {
@@ -67,12 +77,14 @@ function FileUploadToServer() {
         });
 
       // 서버 응답 처리
-      console.log("파일 업로드 성공:", response);
+      console.log("파일 임베딩 성공:", response);
     } catch (error) {
       dispatch(updateAppState("analyzed error"));
       console.error("파일 업로드 오류:", error);
     }
   };
+
+  // 파일 크기를 B, KB, MB, GB 단위로 변환
   const formatBytes = (bytes = 0) => {
     let i;
     for (i = 0; bytes >= 1024; i++) bytes /= 1024;
