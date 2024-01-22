@@ -3,6 +3,7 @@ import csvtojson from "csvtojson";
 import ChatScreen from "./components/main/Chat/ChatScreen";
 import Header from "./components/top-side/Header";
 import DashScreen from "./components/Data/DashScreen";
+import DashBoard from "./components/Data/DashBoard";
 import DataToTable from "./components/Data/DataToTable";
 import { useDispatch, useSelector } from "react-redux";
 import { setJsonData } from "./reducers/dataReducers";
@@ -57,8 +58,7 @@ function App() {
         <div className="flex-grow" style={{ maxWidth: "100%" }}>
           <div className="w-full h-full pl-0 space-y-2 rounded-[12px]">
             {showComponent === 0 && <ChatScreen />}
-            {showComponent === 1 && <DashScreen />}
-            {showComponent === 2 && <DataToTable />}
+            {showComponent === 1 && <DashBoard />}
           </div>
         </div>
 

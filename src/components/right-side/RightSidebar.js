@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PrintFileCards from "../left-side/PrintFileCards";
 import DashScreen from "../Data/DashScreen";
-import { ChartAnalysis, CaretDown } from "../../icons";
+import { ChartAnalysis, CaretDown, Fileicon } from "../../icons";
 
 function RightSidebar({ page, setSidebarWidth }) {
   // 이 컴포넌트에서 사용할 상태변수들.
@@ -90,6 +90,9 @@ function RightSidebar({ page, setSidebarWidth }) {
         </button>
         <button onClick={toggleSidebar} className="toggle-sidebar-btn">
           <ChartAnalysis />
+        </button>
+        <button onClick={toggleSidebar} className="toggle-sidebar-btn">
+          <Fileicon />
         </button>
       </aside>
     </div>

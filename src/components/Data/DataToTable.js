@@ -1,42 +1,40 @@
 import * as React from "react";
-import { DataGrid } from "@mui/x-data-grid";
 import { useSelector } from "react-redux";
+import { DataGrid } from "@mui/x-data-grid";
 
-function DataToTable() {
-  // 이 컴포넌트에서 사용할 data 변수.
+function DataToTable({ selectedColumns, handleColumnChange }) {
   const jsonData = useSelector((state) => state.dataVar.jsonData);
-
-  // Make sure jsonData is not undefined or null
   if (!jsonData || jsonData.length === 0) {
     return <div>No data available</div>;
   }
 
-  // Create columns from jsonData keys
-  const columns = Object.keys(jsonData[0]).map((key) => ({
-    field: key,
-    headerName: key.replace("_", " "),
-    width: 150,
-  }));
+  const columnKeys = Object.keys(jsonData[0]);
 
-  // Use jsonData as rows
+  const columns = columnKeys
+    .filter((key) => selectedColumns.includes(key) || selectedColumns.length === 0)
+    .map((key) => ({
+      field: key,
+      headerName: key.replace("_", " "),
+      width: 250,
+    }));
+
   const rows = jsonData.map((item, index) => ({
     id: index,
     ...item,
   }));
 
   return (
-    <div className="flex-grow flex flex-col bg-white w-full h-full drop-shadow-lg overflow-auto max-h-[90vh] rounded-[12px]">
+    <div className="flex-grow flex flex-col bg-white drop-shadow-lg overflow-hidden rounded-[12px] max-h-[60vh]">
       <div className="mb-12 overflow-y-auto">
-        <div className="absolute top-0 transform">
+        <div className="absolute top-0 p-4 transform">
           <DataGrid
             rows={rows}
             columns={columns}
             pageSize={10}
             rowsPerPageOptions={[5, 10]}
-            checkboxSelection
             initialState={{
               pagination: {
-                paginationModel: { page: 0, pageSize: 5 },
+                paginationModel: { page: 0, pageSize: 10 },
               },
             }}
           />
