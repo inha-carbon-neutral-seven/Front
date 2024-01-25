@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateAppState } from "../../../reducers/appStateReducer";
 import {
   addAnalyzedFileData,
+  addRecommendations,
   setShowFileCards,
 } from "../../../reducers/dataReducers";
 import { Checkicon } from "../../../icons";
@@ -60,6 +61,10 @@ function FileUploadToServer() {
           // 추천 문구를 받는다.
           let mydata = res;
           console.log(mydata.recommendations);
+
+          mydata.recommendations.forEach((recommendation) => {
+            dispatch(addRecommendations(recommendation));
+          });
 
           // 분석 데이터 정보를 저장한다. (지금은 임시로 이름이나 크기같은 분석안해도 알수 있는거만 저장함.)
           const newAnalyzedFileData = {

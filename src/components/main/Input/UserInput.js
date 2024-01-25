@@ -14,7 +14,7 @@ import {
 // 사용자 메시지 input 컴포넌트
 // 파일 input(FileInputButton.js), 메시지 input, 전송 버튼을 포함한다.
 // 전송 버튼은 메시지 input만 전송한다.
-function UserInput() {
+function UserInput({ submitButtonRef }) {
   // App의 상태변수
   const currentState = useSelector((state) => state.appState.currentState);
   const isConnected = useSelector((state) => state.connected.isConnected);
@@ -27,6 +27,7 @@ function UserInput() {
   // dispatch
   const dispatch = useDispatch();
 
+  // 메시지 input이 비어있는지 확인
   useEffect(() => {
     setIsButtonActive(message.trim().length > 0);
   }, [message]);
@@ -59,8 +60,6 @@ function UserInput() {
             dispatch(updateAppState("message_waiting"));
             return res;
           });
-
-        dispatch(updateAppState("response_wait"));
       } catch (error) {
         console.log("에러 발생", error);
       } finally {
@@ -91,6 +90,7 @@ function UserInput() {
             onChange={(e) => dispatch(setMessage(e.target.value))}
           />
           <Button
+            ref={submitButtonRef}
             type="submit"
             variant="outline"
             className={`ml-2 ${
