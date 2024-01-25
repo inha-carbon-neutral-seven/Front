@@ -15,6 +15,7 @@ import {
   faSquareMinus,
   faChartLine,
   faCaretDown,
+  faArrowDownLong,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faPaperPlane, faBell } from "@fortawesome/free-regular-svg-icons";
@@ -68,7 +69,14 @@ export function Checkicon() {
 }
 
 export function Bellicon() {
-  return <FontAwesomeIcon icon={faBell} size="lg" style={{ color: "#ffffff" }} shake />;
+  return (
+    <FontAwesomeIcon
+      icon={faBell}
+      size="lg"
+      style={{ color: "#ffffff" }}
+      shake
+    />
+  );
 }
 
 export function Spinnericon() {
@@ -91,6 +99,10 @@ export function Fileicon() {
   return <FontAwesomeIcon icon={faFile} size="xl" />;
 }
 
+export function DownArrowicon() {
+  return <FontAwesomeIcon icon={faArrowDownLong} size="xl" beat />;
+}
+
 export function Minimizeicon() {
   return <FontAwesomeIcon icon={faSquareMinus} size="xl" />;
 }
@@ -109,5 +121,13 @@ export function CaretDown() {
     setIsClockwise(!isClockwise); // Toggle the direction
   };
 
-  return <FontAwesomeIcon icon={faCaretDown} size="2xl" rotation={rotation} style={{ transition: "transform 0.5s" }} onClick={handleClick} />;
+  return (
+    <FontAwesomeIcon
+      icon={faCaretDown}
+      size="2xl"
+      rotation={rotation}
+      style={{ transition: "transform 0.5s" }}
+      onClick={handleClick}
+    />
+  );
 }

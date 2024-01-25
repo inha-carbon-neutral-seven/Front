@@ -3,12 +3,14 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'SOGANGUNIVERSITYTTF';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/SOGANGUNIVERSITYTTF.woff2') format('woff2');
+    font-family: 'BMHANNAPro';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
+
+
 body {
-    font-family: 'sans-serif';
+    font-family: sans-serif;
 }

@@ -3,7 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFileData } from "../../../reducers/dataReducers";
 import { updateAppState } from "../../../reducers/appStateReducer";
 import PrintFileCards from "../../left-side/PrintFileCards";
-import { Bellicon, Exclamicon, Fileicon, Minimizeicon } from "../../../icons";
+import {
+  Bellicon,
+  DownArrowicon,
+  Exclamicon,
+  Fileicon,
+  Minimizeicon,
+} from "../../../icons";
 import FileUploadToServer from "./FileUploadToServer";
 import Loader from "../Chat/Loader";
 
@@ -88,6 +94,13 @@ function FileInput() {
       >
         업로드
       </button>
+
+      {currentState === "init" && (
+        <div className="flex flex-col justify-center items-center absolute bottom-14 right-[-8px] select-none">
+          <div className="font-['BMHANNAPro'] w-[98px]">파일 업로드하기</div>
+          <DownArrowicon />
+        </div>
+      )}
 
       {/* 업로드된 파일들 (FileCards) 보기 버튼 */}
       <button

@@ -32,15 +32,8 @@ module.exports = {
       large: "12px",
     },
   },
-  plugins: [
-    function ({ addUtilities }) {
-      const newUtilities = {
-        ".text-stroke-2": {
-          WebkitTextStrokeWidth: "0.4px",
-          WebkitTextStrokeColor: "gray",
-        },
-      };
-      addUtilities(newUtilities, ["responsive", "hover"]);
-    },
-  ],
+  corePlugins: {
+    aspectRatio: false,
+  },
+  plugins: [require("@tailwindcss/aspect-ratio")],
 };
