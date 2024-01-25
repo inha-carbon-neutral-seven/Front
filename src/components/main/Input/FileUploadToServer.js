@@ -4,9 +4,11 @@ import { updateAppState } from "../../../reducers/appStateReducer";
 import {
   addAnalyzedFileData,
   addRecommendations,
+  clearRecommendations,
   setShowFileCards,
 } from "../../../reducers/dataReducers";
 import { Checkicon } from "../../../icons";
+import { clear } from "@testing-library/user-event/dist/clear";
 
 // 파일 업로드 후(아직 서버로 전송은 안한 상황), 사용자지정 이름 input 입력받기
 // 이름을 입력 받은 후, server로 전송한다.
@@ -62,6 +64,10 @@ function FileUploadToServer() {
           let mydata = res;
           console.log(mydata.recommendations);
 
+          // 추천 문구 clear
+          dispatch(clearRecommendations());
+
+          // 추천 문구 add
           mydata.recommendations.forEach((recommendation) => {
             dispatch(addRecommendations(recommendation));
           });

@@ -6,6 +6,7 @@ const SET_FILEDATA = "SET_FILEDATA";
 const SET_JSONDATA = "SET_JSONDATA";
 const ADD_ANALYZED_FILE_DATA = "ADD_ANALYZED_FILE_DATA";
 const ADD_RECOMMENDATIONS = "ADD_RECOMMENDATIONS";
+const CLEAR_RECOMMENDATIONS = "CLEAR_RECOMMENDATIONS";
 
 // action creator 정의
 export function setShowFileCards(showFileCards) {
@@ -41,6 +42,10 @@ export function addRecommendations(recommendation) {
     type: ADD_RECOMMENDATIONS,
     payload: { recommendation },
   };
+}
+
+export function clearRecommendations() {
+  return { type: CLEAR_RECOMMENDATIONS };
 }
 
 // 초기 state 정의
@@ -86,7 +91,11 @@ function dataReducer(state = initialState, action) {
           action.payload.recommendation,
         ],
       };
-
+    case CLEAR_RECOMMENDATIONS:
+      return {
+        ...state,
+        recommendations: [],
+      };
     default:
       return state;
   }
