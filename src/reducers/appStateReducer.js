@@ -9,13 +9,18 @@
 // response_received : 응답 받음
 // anaylizing : 파일 분석 중
 // analyzed : 파일 분석 완료
+// analyzed error : 파일 분석 오류
+
+// show_recommendations : 추천 메시지 보여줌. 그걸 빼면 message_waiting과 같은 역할이다.
+
+// 사용자의 입력을 기다리는 상태 : 초기화면 init, 메시지 전송후 message_waiting, 파일전송후(analyzed->3초후->show_recommendations)
 
 // 시나리오 2. 파일 없이 메시지만 전송
-// init -> (사용자가 바로 메시지를 입력) -> message_sent -> response_waiting -> response_received -> message_waiting -> message_sent ... 반복
+// init -> (사용자가 바로 메시지를 입력) -> message_sent -> response_waiting -> response_received -> message_waiting -> (메시지를 보내면) -> message_sent ... 반복
 
 // 시나리오 3. 파일 업로드 후 메시지 전송
 // init -> (사용자가 파일을 업로드함) -> file_uploading -> file_sent -> response_waiting
-// -> analyzing -> analyzed -> message_waiting -> message_sent ... 반복
+// -> analyzing -> analyzed -> 3초후 show_recommendations(FileInputButton.js의 useEffect에서) -> message_sent ... 반복
 
 // action type
 const UPDATE_APP_STATE = "UPDATE_APP_STATE";

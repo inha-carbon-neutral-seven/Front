@@ -5,6 +5,8 @@ const SET_SHOWFILECARDS = "SET_SHOWFILECARDS";
 const SET_FILEDATA = "SET_FILEDATA";
 const SET_JSONDATA = "SET_JSONDATA";
 const ADD_ANALYZED_FILE_DATA = "ADD_ANALYZED_FILE_DATA";
+const ADD_RECOMMENDATIONS = "ADD_RECOMMENDATIONS";
+const CLEAR_RECOMMENDATIONS = "CLEAR_RECOMMENDATIONS";
 
 // action creator 정의
 export function setShowFileCards(showFileCards) {
@@ -35,12 +37,24 @@ export function addAnalyzedFileData(analyzedFileData) {
   };
 }
 
+export function addRecommendations(recommendation) {
+  return {
+    type: ADD_RECOMMENDATIONS,
+    payload: { recommendation },
+  };
+}
+
+export function clearRecommendations() {
+  return { type: CLEAR_RECOMMENDATIONS };
+}
+
 // 초기 state 정의
 const initialState = {
   showFileCards: false, // FileInputButton.js 에서 사용
   fileData: null,
   jsonData: [],
   analyzedFileDataList: [],
+  recommendations: [],
 };
 
 // reducer
@@ -68,6 +82,19 @@ function dataReducer(state = initialState, action) {
           ...state.analyzedFileDataList,
           action.payload.analyzedFileData,
         ],
+      };
+    case ADD_RECOMMENDATIONS:
+      return {
+        ...state,
+        recommendations: [
+          ...state.recommendations,
+          action.payload.recommendation,
+        ],
+      };
+    case CLEAR_RECOMMENDATIONS:
+      return {
+        ...state,
+        recommendations: [],
       };
     default:
       return state;

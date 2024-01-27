@@ -2,7 +2,7 @@ import beaver from "../../../image/logo.jpg";
 
 function InitialGuide() {
   return (
-    <div className="aspect-x-16 aspect-h-9 mx-10 my-4 px-10 py-4 bg-[#EFEFEE] rounded-[50px] font-['BMHANNAPro'] shadow-[9px_9px_6px_0px_rgba(0,0,0,0.25)]">
+    <div className="aspect-x-16 aspect-h-9 mx-10 my-4 px-10 py-4 bg-[#EFEFEE] rounded-[50px] font-['BMHANNAPro'] shadow-lg">
       <p className="font-bold flex justify-center items-center text-[50px]">
         <img src={beaver} className="h-20 w-20 rounded-full mr-4" />
         비버.ai 사용법

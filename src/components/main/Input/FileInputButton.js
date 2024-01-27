@@ -57,7 +57,7 @@ function FileInput() {
     if (currentState === "analyzed" || currentState === "analyzed error") {
       const timer = setTimeout(() => {
         setShowAlert(false);
-        dispatch(updateAppState("message_waiting"));
+        dispatch(updateAppState("show_recommendations"));
       }, 3000);
 
       return () => clearTimeout(timer);
@@ -95,6 +95,7 @@ function FileInput() {
         업로드
       </button>
 
+      {/* 파일 업로드 안내 문구 */}
       {currentState === "init" && (
         <div className="flex flex-col justify-center items-center absolute bottom-14 right-[-8px] select-none">
           <div className="font-['BMHANNAPro'] w-[98px]">파일 업로드하기</div>

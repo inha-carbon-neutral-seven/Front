@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateAppState } from "../../../reducers/appStateReducer";
 import {
   addAnalyzedFileData,
+  addRecommendations,
+  clearRecommendations,
   setShowFileCards,
 } from "../../../reducers/dataReducers";
 import { Checkicon } from "../../../icons";
+import { clear } from "@testing-library/user-event/dist/clear";
 
 // 파일 업로드 후(아직 서버로 전송은 안한 상황), 사용자지정 이름 input 입력받기
 // 이름을 입력 받은 후, server로 전송한다.
@@ -60,6 +63,14 @@ function FileUploadToServer() {
           // 추천 문구를 받는다.
           let mydata = res;
           console.log(mydata.recommendations);
+
+          // 추천 문구 clear
+          dispatch(clearRecommendations());
+
+          // 추천 문구 add
+          mydata.recommendations.forEach((recommendation) => {
+            dispatch(addRecommendations(recommendation));
+          });
 
           // 분석 데이터 정보를 저장한다. (지금은 임시로 이름이나 크기같은 분석안해도 알수 있는거만 저장함.)
           const newAnalyzedFileData = {
