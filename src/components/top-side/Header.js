@@ -22,7 +22,7 @@ function Header({ param }) {
       boxShadow: "none",
     },
 
-    fontFamily: "sans-serif",
+    fontFamily: "Pretendard-Regular",
   };
 
   return (
@@ -31,11 +31,17 @@ function Header({ param }) {
         <div className="flex items-center">
           <a href="/" className="flex items-center">
             <img src={beaver} className="h-12 mr-3 rounded-full" />
-            <span className="self-center text-xl font-extrabold sm:text-2xl whitespace-nowrap text-white">비버.ai</span>
+            <span className="self-center text-xl font-extrabold sm:text-2xl whitespace-nowrap text-white">
+              비버.ai
+            </span>
           </a>
         </div>
 
-        <Button sx={buttonSx} variant="outlined" onClick={() => handleButtonClick(0)}>
+        <Button
+          sx={buttonSx}
+          variant="outlined"
+          onClick={() => handleButtonClick(0)}
+        >
           대화하기
         </Button>
 

@@ -97,8 +97,8 @@ function FileInput() {
 
       {/* 파일 업로드 안내 문구 */}
       {currentState === "init" && (
-        <div className="flex flex-col justify-center items-center absolute bottom-14 right-[-8px] select-none">
-          <div className="font-['BMHANNAPro'] w-[98px]">파일 업로드하기</div>
+        <div className="flex flex-col justify-center items-center absolute bottom-14 right-[-16px] select-none">
+          <div className="w-[105px] text-black/80">파일 업로드하기</div>
           <DownArrowicon />
         </div>
       )}
