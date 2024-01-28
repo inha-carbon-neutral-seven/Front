@@ -7,6 +7,7 @@ const SET_JSONDATA = "SET_JSONDATA";
 const ADD_ANALYZED_FILE_DATA = "ADD_ANALYZED_FILE_DATA";
 const ADD_RECOMMENDATIONS = "ADD_RECOMMENDATIONS";
 const CLEAR_RECOMMENDATIONS = "CLEAR_RECOMMENDATIONS";
+const SET_CHART_DATA = "SET_CHART_DATA";
 
 // action creator 정의
 export function setShowFileCards(showFileCards) {
@@ -48,6 +49,13 @@ export function clearRecommendations() {
   return { type: CLEAR_RECOMMENDATIONS };
 }
 
+export function setChartdata(charts) {
+  return {
+    type: SET_CHART_DATA,
+    payload: charts,
+  };
+}
+
 // 초기 state 정의
 const initialState = {
   showFileCards: false, // FileInputButton.js 에서 사용
@@ -55,6 +63,7 @@ const initialState = {
   jsonData: [],
   analyzedFileDataList: [],
   recommendations: [],
+  charts: [],
 };
 
 // reducer
@@ -78,23 +87,22 @@ function dataReducer(state = initialState, action) {
     case ADD_ANALYZED_FILE_DATA:
       return {
         ...state,
-        analyzedFileDataList: [
-          ...state.analyzedFileDataList,
-          action.payload.analyzedFileData,
-        ],
+        analyzedFileDataList: [...state.analyzedFileDataList, action.payload.analyzedFileData],
       };
     case ADD_RECOMMENDATIONS:
       return {
         ...state,
-        recommendations: [
-          ...state.recommendations,
-          action.payload.recommendation,
-        ],
+        recommendations: [...state.recommendations, action.payload.recommendation],
       };
     case CLEAR_RECOMMENDATIONS:
       return {
         ...state,
         recommendations: [],
+      };
+    case SET_CHART_DATA:
+      return {
+        ...state,
+        charts: action.payload,
       };
     default:
       return state;

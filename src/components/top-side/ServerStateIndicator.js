@@ -49,10 +49,7 @@ const ServerStatusIndicator = () => {
         {isConnected === "full-connected" && (
           <>
             <div className="group relative inline-flex items-center overflow-hidden">
-              <FontAwesomeIcon
-                icon={faCircle}
-                className="text-green-600 ml-1"
-              />
+              <FontAwesomeIcon icon={faCircle} className="text-green-600 ml-1" />
               <span className="transition-all duration-500 group-hover:max-w-xs max-w-0 overflow-hidden whitespace-nowrap ml-1 text-green-600 font-bold">
                 Beaver is Connected :)
               </span>
@@ -63,10 +60,7 @@ const ServerStatusIndicator = () => {
         {isConnected === "half-connected" && (
           <>
             <div className="group relative inline-flex items-center overflow-hidden">
-              <FontAwesomeIcon
-                icon={faCircle}
-                className="text-orange-600 ml-1"
-              />
+              <FontAwesomeIcon icon={faCircle} className="text-orange-600 ml-1" />
               <span className="transition-all duration-500 group-hover:max-w-xs max-w-0 overflow-hidden whitespace-nowrap ml-1 text-orange-600 font-bold">
                 Beaver is not Connected :(
               </span>

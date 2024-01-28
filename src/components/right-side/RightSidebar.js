@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PrintFileCards from "../left-side/PrintFileCards";
-import DashScreen from "../Data/DashScreen";
+import DashSidebar from "../Data/DashSidebar";
 import { ChartAnalysis, CaretDown, Fileicon } from "../../icons";
 
 function RightSidebar({ page, setSidebarWidth }) {
@@ -49,10 +49,7 @@ function RightSidebar({ page, setSidebarWidth }) {
 
     const doDrag = (e) => {
       const delta = e.clientX - startPosition;
-      const newWidth = Math.min(
-        Math.max(startWidth - delta, minWidth),
-        maxWidth
-      );
+      const newWidth = Math.min(Math.max(startWidth - delta, minWidth), maxWidth);
       setWidth(newWidth);
       setSidebarWidth(newWidth);
 
@@ -78,23 +75,17 @@ function RightSidebar({ page, setSidebarWidth }) {
 
   return (
     <div className="flex h-full">
-      <div
-        className="cursor-col-resize"
-        style={{ width: "10px", cursor: "col-resize" }}
-        onMouseDown={handleMouseDown}
-      ></div>
+      <div className="cursor-col-resize" style={{ width: "10px", cursor: "col-resize" }} onMouseDown={handleMouseDown}></div>
 
       <aside
         className={`${
-          isMinimized
-            ? ""
-            : "max-w-64 max-h-[90vh] p-1 mr-1 backdrop-blur-xl bg-white/80 space-y-2 flex-shrink-0 drop-shadow-lg"
+          isMinimized ? "" : "max-w-64 max-h-[90vh] p-1 mr-1 backdrop-blur-xl bg-white/80 space-y-2 flex-shrink-0 drop-shadow-lg"
         } rounded-[12px] rounded-tl-[12px] overflow-hidden transform transition-all duration-300 ease-in-out
              `}
         style={{ width: `${width}px` }}
       >
         <div className="px-1 max-h-[90vh] overflow-auto">
-          <DashScreen />
+          <DashSidebar />
         </div>
       </aside>
 
