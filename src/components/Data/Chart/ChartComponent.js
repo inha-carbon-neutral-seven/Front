@@ -10,17 +10,20 @@ export const ChartComponent = ({ chartData }) => {
   switch (chartData.type) {
     case "bar":
     case "line":
+    case "area":
+    case "radar":
       series = chartData.series;
       labels = { categories: chartData.labels };
       options = generateOptions(chartData.type, chartData.title, series, labels);
       break;
     case "pie":
+    case "donut":
       series = chartData.series[0].data;
       labels = chartData.labels;
       options = generatePieOptions(chartData.type, chartData.title, series, labels);
       break;
   }
 
-  return <ReactApexChart options={options} type={chartData.type} series={chartData.series} height={"100%"} />;
+  return <ReactApexChart options={options} type={chartData.type} series={chartData.series} width="100%" />;
   // return <ChartWrapperBox>{<ReactApexChart options={options} type={chartData.type} series={chartData.series} height={"100%"} />}</ChartWrapperBox>;
 };

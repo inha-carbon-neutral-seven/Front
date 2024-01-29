@@ -112,7 +112,7 @@ export function CaretDown({ width }) {
     if (width < vwToPx(30)) {
       setRotation(90);
     } else if (width > vwToPx(30)) {
-      setRotation((prevRotation) => (prevRotation + 180) % 360);
+      setRotation(270);
     }
   }, [width]);
 
