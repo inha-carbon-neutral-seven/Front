@@ -10,11 +10,14 @@ export const ChartComponent = ({ chartData }) => {
   switch (chartData.type) {
     case "bar":
     case "line":
+    case "area":
+    case "radar":
       series = chartData.series;
       labels = { categories: chartData.labels };
       options = generateOptions(chartData.type, chartData.title, series, labels);
       break;
     case "pie":
+    case "donut":
       series = chartData.series[0].data;
       labels = chartData.labels;
       options = generatePieOptions(chartData.type, chartData.title, series, labels);
