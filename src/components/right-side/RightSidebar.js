@@ -15,6 +15,7 @@ function RightSidebar({ page, setSidebarWidth }) {
   const [minPxWidth, setMinPxWidth] = useState(vwToPx("20vw"));
   const [defaultPxWidth, setDefaultPxWidth] = useState(vwToPx("30vw"));
   const [maxPxWidth, setMaxPxWidth] = useState(vwToPx("40vw"));
+  const [activeButton, setActiveButton] = useState(null);
 
   const adjustWidthForStage = (stage) => {
     const stageWidths = [0, vwToPx("20vw"), vwToPx("30vw"), vwToPx("40vw")];
@@ -26,20 +27,47 @@ function RightSidebar({ page, setSidebarWidth }) {
       setWidth(0);
     }
   }, [isVisible]);
+  useEffect(() => {
+    const handleResize = () => {
+      // 브라우저 창 너비 업데이트
+      setWindowWidth(window.innerWidth);
+
+      // 브라우저 창 크기에 따른 사이드바 너비 조정
+      setMinPxWidth(vwToPx("20vw"));
+      setDefaultPxWidth(vwToPx("30vw"));
+      setMaxPxWidth(vwToPx("40vw"));
+
+      adjustWidthForStage(currentStage);
+    };
+
+    // 리사이즈 이벤트 리스너 추가
+    window.addEventListener("resize", handleResize);
+
+    // 컴포넌트가 언마운트될 때 리스너 제거
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [currentStage]);
 
   const toggleSidebar = () => {
     const nextStage = (currentStage + 1) % 4;
     setCurrentStage(nextStage);
-    const stageWidths = [0, minPxWidth, defaultPxWidth, maxPxWidth];
-    setWidth(stageWidths[nextStage]);
+    adjustWidthForStage(nextStage);
     setIsMinimized(nextStage === 0);
     setIsVisible(nextStage !== 0);
   };
-
+  const toggleButton = (buttonId) => {
+    if (activeButton === buttonId) {
+      // 이미 활성화된 버튼을 다시 클릭하면 비활성화
+      setActiveButton(null);
+    } else {
+      // 다른 버튼을 클릭하면 활성화
+      setActiveButton(buttonId);
+    }
+  };
   return (
     <div className="flex h-full">
       <div
-        className="cursor-col-resize"
         style={{
           width: "10px",
         }}
@@ -64,21 +92,25 @@ function RightSidebar({ page, setSidebarWidth }) {
           <CaretDown width={width} />
         </button>
         <button
-          onClick={() => toggleSidebar(0)}
-          className="toggle-sidebar-btn h-12 w-12 hover:bg-blue-500 hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200"
+          onClick={() => toggleButton("chartAnalysis")}
+          className={`toggle-sidebar-btn h-12 w-12 ${
+            activeButton === "chartAnalysis" ? "bg-blue-500 text-white shadow-lg scale-110" : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
+          } transform transition duration-200`}
           title="Chart Analysis"
         >
           <ChartAnalysis />
         </button>
         <button
-          onClick={() => toggleSidebar(0)}
-          className="toggle-sidebar-btn h-12 w-12 hover:bg-blue-500 hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200"
+          onClick={() => toggleButton("fileIcon")}
+          className={`toggle-sidebar-btn h-12 w-12 ${
+            activeButton === "fileIcon" ? "bg-blue-500 text-white shadow-lg scale-110" : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
+          } transform transition duration-200`}
           title="File Icon"
         >
           <Fileicon />
         </button>
         <button
-          onClick={() => toggleSidebar(0)}
+          onClick={() => toggleButton("fileIcon")}
           className="toggle-sidebar-btn h-12 w-12 hover:bg-blue-500 hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200 absolute bottom-0"
           title="Help/Info"
         >
