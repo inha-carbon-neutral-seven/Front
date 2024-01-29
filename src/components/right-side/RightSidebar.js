@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import PrintFileCards from "../left-side/PrintFileCards";
 import DashSidebar from "../Data/DashSidebar";
 import { ChartAnalysis, CaretDown, Fileicon, Question } from "../../icons";
-import { click } from "@testing-library/user-event/dist/click";
 
 function RightSidebar({ page, setSidebarWidth }) {
   // 이 컴포넌트에서 사용할 상태변수들.
@@ -55,14 +54,28 @@ function RightSidebar({ page, setSidebarWidth }) {
     adjustWidthForStage(nextStage);
     setIsMinimized(nextStage === 0);
     setIsVisible(nextStage !== 0);
+    if (nextStage && activeButton === null) {
+      setActiveButton("chartAnalysis");
+    } else if (nextStage === 0) {
+      setActiveButton(null);
+    }
   };
   const toggleButton = (buttonId) => {
     if (activeButton === buttonId) {
       // 이미 활성화된 버튼을 다시 클릭하면 비활성화
       setActiveButton(null);
+      adjustWidthForStage(0);
+      setIsMinimized(true);
+      setIsVisible(false);
     } else {
       // 다른 버튼을 클릭하면 활성화
       setActiveButton(buttonId);
+      if (width === 0) {
+        setWidth(defaultPxWidth);
+        setIsMinimized(false);
+        setIsVisible(true);
+        setCurrentStage(1);
+      }
     }
   };
   return (
