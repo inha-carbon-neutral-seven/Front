@@ -123,7 +123,7 @@ function RightSidebar({ page, setSidebarWidth }) {
           <Fileicon />
         </button>
         <button
-          onClick={() => toggleButton("fileIcon")}
+          onClick={() => toggleButton("question")}
           className="toggle-sidebar-btn h-12 w-12 hover:bg-blue-500 hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200 absolute bottom-0"
           title="Help/Info"
         >
