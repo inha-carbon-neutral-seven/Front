@@ -1,14 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAppState } from "../../../reducers/appStateReducer";
-import {
-  addAnalyzedFileData,
-  addRecommendations,
-  clearRecommendations,
-  setShowFileCards,
-} from "../../../reducers/dataReducers";
+import { addAnalyzedFileData, addRecommendations, clearRecommendations, setShowFileCards, setChartdata } from "../../../reducers/dataReducers";
 import { Checkicon } from "../../../icons";
-import { clear } from "@testing-library/user-event/dist/clear";
 
 // 파일 업로드 후(아직 서버로 전송은 안한 상황), 사용자지정 이름 input 입력받기
 // 이름을 입력 받은 후, server로 전송한다.
@@ -71,7 +65,15 @@ function FileUploadToServer() {
           mydata.recommendations.forEach((recommendation) => {
             dispatch(addRecommendations(recommendation));
           });
-
+          if (mydata.charts && mydata.charts.length > 0) {
+            mydata.charts.forEach((chart) => {
+              if (chart.type && chart.title && chart.labels && chart.series) {
+                dispatch(setChartdata(chart));
+              } else {
+                console.log("Invalid chart data");
+              }
+            });
+          }
           // 분석 데이터 정보를 저장한다. (지금은 임시로 이름이나 크기같은 분석안해도 알수 있는거만 저장함.)
           const newAnalyzedFileData = {
             analyzedFileData_name: selectedFile.name,
@@ -117,11 +119,7 @@ function FileUploadToServer() {
           handleFileUpload();
         }}
       >
-        <input
-          className="border border-gray-300"
-          type="text"
-          onChange={(e) => setDataInfo(e.target.value)}
-        ></input>
+        <input className="border border-gray-300" type="text" onChange={(e) => setDataInfo(e.target.value)}></input>
 
         <button
           className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-0.5 px-0.5 border border-blue-500 hover:border-transparent ml-1 rounded"

@@ -16,6 +16,7 @@ import {
   faChartLine,
   faCaretDown,
   faArrowDownLong,
+  faQuestion,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faPaperPlane, faBell } from "@fortawesome/free-regular-svg-icons";
@@ -69,14 +70,7 @@ export function Checkicon() {
 }
 
 export function Bellicon() {
-  return (
-    <FontAwesomeIcon
-      icon={faBell}
-      size="lg"
-      style={{ color: "#ffffff" }}
-      shake
-    />
-  );
+  return <FontAwesomeIcon icon={faBell} size="lg" style={{ color: "#ffffff" }} shake />;
 }
 
 export function Spinnericon() {
@@ -107,27 +101,23 @@ export function Minimizeicon() {
   return <FontAwesomeIcon icon={faSquareMinus} size="xl" />;
 }
 export function ChartAnalysis() {
-  return <FontAwesomeIcon icon={faChartLine} size="xl" />;
+  return <FontAwesomeIcon icon={faChartLine} size="2xl" />;
 }
-export function CaretDown() {
+export function CaretDown({ width }) {
   const [rotation, setRotation] = useState(90);
-  const [isClockwise, setIsClockwise] = useState(false);
-
-  const handleClick = () => {
-    setRotation((prevRotation) => {
-      const newRotation = isClockwise ? prevRotation + 180 : prevRotation - 180;
-      return (newRotation + 360) % 360;
-    });
-    setIsClockwise(!isClockwise); // Toggle the direction
+  const vwToPx = (vw) => {
+    return (parseFloat(vw) * window.innerWidth) / 100;
   };
+  useEffect(() => {
+    if (width < vwToPx(30)) {
+      setRotation(90);
+    } else if (width > vwToPx(30)) {
+      setRotation((prevRotation) => (prevRotation + 180) % 360);
+    }
+  }, [width]);
 
-  return (
-    <FontAwesomeIcon
-      icon={faCaretDown}
-      size="2xl"
-      rotation={rotation}
-      style={{ transition: "transform 0.5s" }}
-      onClick={handleClick}
-    />
-  );
+  return <FontAwesomeIcon icon={faCaretDown} size="2x" rotation={rotation} style={{ transition: "transform 0.5s" }} />;
+}
+export function Question() {
+  return <FontAwesomeIcon icon={faQuestion} size="2x" />;
 }
