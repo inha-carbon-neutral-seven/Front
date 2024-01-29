@@ -103,23 +103,20 @@ export function Minimizeicon() {
 export function ChartAnalysis() {
   return <FontAwesomeIcon icon={faChartLine} size="2xl" />;
 }
-export function CaretDown({ setClickCount, clickCount }) {
+export function CaretDown({ width }) {
   const [rotation, setRotation] = useState(90);
-
-  const handleClick = () => {
-    setClickCount((prevClickCount) => prevClickCount + 1);
-
-    if (clickCount === 2) {
-      // 세 번째 클릭일 때 회전
+  const vwToPx = (vw) => {
+    return (parseFloat(vw) * window.innerWidth) / 100;
+  };
+  useEffect(() => {
+    if (width < vwToPx(30)) {
+      setRotation(90);
+    } else if (width > vwToPx(30)) {
       setRotation((prevRotation) => (prevRotation + 180) % 360);
     }
-    if (clickCount === 3) {
-      setRotation(90); // 회전 각도 초기화
-      setClickCount(0); // 클릭 횟수 초기화
-    }
-  };
+  }, [width]);
 
-  return <FontAwesomeIcon icon={faCaretDown} size="2x" rotation={rotation} style={{ transition: "transform 0.5s" }} onClick={handleClick} />;
+  return <FontAwesomeIcon icon={faCaretDown} size="2x" rotation={rotation} style={{ transition: "transform 0.5s" }} />;
 }
 export function Question() {
   return <FontAwesomeIcon icon={faQuestion} size="2x" />;
