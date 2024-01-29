@@ -20,11 +20,9 @@ function DashSidebar() {
       setChartlist([]);
     }
   }, [ChartsfromStore]);
-  useEffect(() => {
-    console.log("Chartlist", Chartlist);
-  }, [Chartlist]);
+  useEffect(() => {}, [Chartlist]);
   return (
-    <div className="container mx-auto mt-5 flex flex-wrap gap-6 max-w-full max-h-[85vh] justify-center items-center">
+    <div className="container mx-auto flex flex-wrap gap-6 w-full h-full justify-center items-center">
       {Chartlist.length === 0 ? (
         <div className="flex flex-col items-center justify-center dark:bg-gray-800 p-4">
           <div className="max-w-md mx-auto text-center">

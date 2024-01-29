@@ -21,6 +21,6 @@ export const ChartComponent = ({ chartData }) => {
       break;
   }
 
-  return <ReactApexChart options={options} type={chartData.type} series={chartData.series} height={"100%"} />;
+  return <ReactApexChart options={options} type={chartData.type} series={chartData.series} width="100%" />;
   // return <ChartWrapperBox>{<ReactApexChart options={options} type={chartData.type} series={chartData.series} height={"100%"} />}</ChartWrapperBox>;
 };

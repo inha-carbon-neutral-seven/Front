@@ -1,10 +1,9 @@
 [
   {
-    
+    "type": "line",
     "series": [
       {
         "name": "Desktops",
-        "type": "line",
         "data": [10, 41, 35, 51, 49, 62, 69, 91, 148]
       }
     ],
@@ -15,10 +14,10 @@
     "title": "Product Trends by Month"
   },
   {
+    "type": "area",
     "series": [
       {
         "name": "Desktops",
-        "type": "area",
         "data": [10, 41, 35, 51, 49, 62, 69, 91, 148]
       }
     ],
@@ -29,10 +28,10 @@
     "title": "Product Trends by Month"
   },
   {
+    "type": "bar",
     "series": [
       {
         "name": "Desktops",
-        "type": "bar",
         "data": [210425, 219489, 260130, 276096, 254470, 282511, 247228, 242759, 169051, 225617, 164517, 207687]
       }
     ],
@@ -43,10 +42,10 @@
     "title": "Monthly Product Sales Across All Years"
   },
   {
+    "type": "radar",
     "series": [
       {
         "name": "Desktops",
-        "type": "radar",
         "data": [210425, 219489, 260130, 276096, 254470, 282511, 247228, 242759, 169051, 225617, 164517, 207687]
       }
     ],
@@ -57,10 +56,10 @@
     "title": "Monthly Product Sales Across All Years"
   },
   {
+    "type": "bar",
     "series": [
       {
         "name": "Desktops",
-        "type": "bar",
         "data": [210425, 219489, 260130, 276096, 254470, 282511, 247228, 242759, 169051, 225617, 164517, 207687]
       },
       {
@@ -76,15 +75,14 @@
     "title": "Monthly Product Sales Across All Years"
   },
   {
+    "type": "bar",
     "series": [
       {
         "name": "Desktops",
-        "type": "bar",
         "data": [425, 289, 130, 96, 470, 211, 247, 259, 169, 225, 117, 207]
       },
       {
         "name": "Desktops",
-        "type": "line",
         "data": [210, 489, 260, 276, 254, 282, 228, 242, 151, 217, 167, 287]
       }
     ],

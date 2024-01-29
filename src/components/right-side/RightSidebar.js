@@ -81,7 +81,7 @@ function RightSidebar({ page, setSidebarWidth }) {
         style={{ width: width, transition: "width 500ms ease-in-out" }}
       >
         {width > 0 && (
-          <div className="px-1 w-full max-h-[90vh] overflow-auto">
+          <div className="px-1 w-full h-full overflow-auto">
             <DashSidebar />
           </div>
         )}
