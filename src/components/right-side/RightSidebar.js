@@ -7,7 +7,6 @@ function RightSidebar({ page, setSidebarWidth }) {
   // 이 컴포넌트에서 사용할 상태변수들.
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [width, setWidth] = useState(0); // RightSidebar width
-  const [isVisible, setIsVisible] = useState(true);
   const [isMinimized, setIsMinimized] = useState(true);
   const [currentStage, setCurrentStage] = useState(0); //0: min, 1: default, 2: max, 3: closed
   const vwToPx = (vw) => (parseFloat(vw) * window.innerWidth) / 100;
@@ -19,13 +18,9 @@ function RightSidebar({ page, setSidebarWidth }) {
   const adjustWidthForStage = (stage) => {
     const stageWidths = [0, vwToPx("20vw"), vwToPx("30vw"), vwToPx("40vw")];
     setWidth(stageWidths[stage]);
+    setCurrentStage(stage);
   };
-  // 사이드바 너비 조절.
-  useEffect(() => {
-    if (!isVisible) {
-      setWidth(0);
-    }
-  }, [isVisible]);
+
   useEffect(() => {
     const handleResize = () => {
       // 브라우저 창 너비 업데이트
@@ -50,10 +45,8 @@ function RightSidebar({ page, setSidebarWidth }) {
 
   const toggleSidebar = () => {
     const nextStage = (currentStage + 1) % 4;
-    setCurrentStage(nextStage);
     adjustWidthForStage(nextStage);
     setIsMinimized(nextStage === 0);
-    setIsVisible(nextStage !== 0);
     if (nextStage && activeButton === null) {
       setActiveButton("chartAnalysis");
     } else if (nextStage === 0) {
@@ -66,15 +59,12 @@ function RightSidebar({ page, setSidebarWidth }) {
       setActiveButton(null);
       adjustWidthForStage(0);
       setIsMinimized(true);
-      setIsVisible(false);
     } else {
       // 다른 버튼을 클릭하면 활성화
       setActiveButton(buttonId);
       if (width === 0) {
-        setWidth(defaultPxWidth);
         setIsMinimized(false);
-        setIsVisible(true);
-        setCurrentStage(1);
+        adjustWidthForStage(2);
       }
     }
   };
@@ -86,14 +76,15 @@ function RightSidebar({ page, setSidebarWidth }) {
         }}
       ></div>
       <aside
-        className={`${isVisible ? "visible " : "hidden "}${
-          isMinimized ? "custom-minimized-classes " : "max-w-64 max-h-[90vh] p-1 mr-1 backdrop-blur-xl bg-white/80 space-y-2 flex-shrink-0 drop-shadow-lg "
-        }rounded-[12px] rounded-tl-[12px] overflow-hidden transform transition-all duration-100 ease-in-out`}
+        className={` "max-w-64 max-h-[90vh] mr-1 backdrop-blur-xl bg-white/80 space-y-2 flex-shrink-0 drop-shadow-lg"
+        } rounded-[12px] rounded-tl-[12px] overflow-hidden transform transition-all duration-100 ease-in-out flex items-center justify-center h-screen`}
         style={{ width: width, transition: "width 500ms ease-in-out" }}
       >
-        <div className="px-1 max-h-[90vh] overflow-auto">
-          <DashSidebar />
-        </div>
+        {width > 0 && (
+          <div className="px-1 w-full max-h-[90vh] overflow-auto">
+            <DashSidebar />
+          </div>
+        )}
       </aside>
 
       <aside className="max-h-[90vh] backdrop-blur-xl bg-white/80 flex-shrink-0 drop-shadow-lg rounded-[12px] overflow-hidden flex flex-col items-center w-12">
