@@ -18,9 +18,9 @@ function DashScreen() {
   const currentChart = ChartfromStore ? Chartlist[Chartlist.length - 1] : ChartExample;
 
   return (
-    <div className="container mx-auto mt-5 flex flex-wrap gap-6 max-w-full max-h-[85vh]">
+    <div className="container mx-auto py-5 gap-6 max-w-full max-h-[85vh]">
       {Chartlist.map((chartConfig, index) => (
-        <div key={index} className="chart-container">
+        <div key={index} className="chart-container pt-3 pb-8">
           <ChartComponent chartData={chartConfig} />
         </div>
       ))}

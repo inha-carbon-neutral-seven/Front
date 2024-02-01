@@ -77,7 +77,7 @@ function RightSidebar({ page, setSidebarWidth }) {
       ></div>
       <aside
         className={` "max-w-64 max-h-[90vh] mr-1 backdrop-blur-xl bg-white/80 space-y-2 flex-shrink-0 drop-shadow-lg"
-        } rounded-[12px] rounded-tl-[12px] overflow-hidden transform transition-all duration-100 ease-in-out flex items-center justify-center h-screen`}
+        } rounded-[12px] rounded-tl-[12px] overflow-hidden transform transition-all duration-100 ease-in-out flex items-center justify-center`}
         style={{ width: width, transition: "width 500ms ease-in-out" }}
       >
         {width > 0 && (

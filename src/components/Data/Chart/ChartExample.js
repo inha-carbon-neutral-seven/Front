@@ -44,7 +44,7 @@ function ChartExample() {
   return (
     <>
       {ExampleData.map((chartConfig, index) => (
-        <div key={index} className="chart-container">
+        <div key={index} className="chart-container pt-3 pb-8">
           <ChartComponent jsonData={chartConfig} />
         </div>
       ))}
