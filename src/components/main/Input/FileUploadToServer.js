@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAppState } from "../../../reducers/appStateReducer";
-import { addAnalyzedFileData, addRecommendations, clearRecommendations, setShowFileCards, setChartdata } from "../../../reducers/dataReducers";
+import {
+  addAnalyzedFileData,
+  addRecommendations,
+  clearRecommendations,
+  setShowFileCards,
+  setChartdata,
+} from "../../../reducers/dataReducers";
 import { Checkicon } from "../../../icons";
 
 // 파일 업로드 후(아직 서버로 전송은 안한 상황), 사용자지정 이름 input 입력받기
@@ -22,11 +28,12 @@ function FileUploadToServer() {
   // 파일 업로드 시, 전송
   const handleFileUpload = async () => {
     const finalDataInfo = dataInfo || selectedFile.name;
+    setDataInfo(finalDataInfo);
 
     try {
       const formData = new FormData();
       formData.append("file", selectedFile);
-      formData.append("description", dataInfo);
+      formData.append("description", finalDataInfo);
 
       dispatch(updateAppState("response_waiting"));
 
@@ -119,7 +126,12 @@ function FileUploadToServer() {
           handleFileUpload();
         }}
       >
-        <input className="border border-gray-300" type="text" onChange={(e) => setDataInfo(e.target.value)}></input>
+        <input
+          className="border border-gray-300"
+          type="text"
+          onChange={(e) => setDataInfo(e.target.value)}
+          placeholder={selectedFile.name}
+        ></input>
 
         <button
           className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-0.5 px-0.5 border border-blue-500 hover:border-transparent ml-1 rounded"
