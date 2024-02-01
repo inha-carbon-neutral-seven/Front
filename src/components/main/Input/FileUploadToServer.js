@@ -37,7 +37,7 @@ function FileUploadToServer() {
 
       dispatch(updateAppState("response_waiting"));
 
-      // 서버로 FormData 전송, 응답 요청
+      // 1. 서버로 FormData 전송, 응답 요청
       let response = await fetch("http://165.246.21.213:10100/upload", {
         method: "POST",
         body: formData,
@@ -53,7 +53,41 @@ function FileUploadToServer() {
           console.error("파일 업로드 오류:", error);
         });
 
-      response = await fetch("http://165.246.21.213:10100/embed")
+      // 2. recap processing
+      // "파일을 분석하고 있습니다 ..." 문구 표시
+      response = await fetch("http://165.246.21.213:10100/process", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          type: "recap",
+        }),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          const mydata = res;
+          const recap = mydata.output;
+
+          // TODO: recap을 이용한 요약 문서 제작
+          console.log(recap);
+
+          // 대시보드 'recap' 부분이 생성되었다는 효과(flash)와 함께 펼쳐졌으면 좋겠음!
+        });
+
+      // 3. chart processing
+      // "데이터를 시각화하고 있습니다 ..." 문구 표시
+      response = await fetch("http://165.246.21.213:10100/process", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          type: "chart",
+        }),
+      })
         .then((res) => {
           return res.json();
         })
@@ -61,19 +95,16 @@ function FileUploadToServer() {
           // 분석이 끝났다는 요청을 받는다.
           dispatch(updateAppState("analyzed"));
 
-          // 추천 문구를 받는다.
-          let mydata = res;
-          console.log(mydata.recommendations);
+          const mydata = res;
+          const charts = mydata.output;
 
-          // 추천 문구 clear
-          dispatch(clearRecommendations());
+          // charts를 이용한 차트 렌더링
+          console.log(charts);
 
-          // 추천 문구 add
-          mydata.recommendations.forEach((recommendation) => {
-            dispatch(addRecommendations(recommendation));
-          });
-          if (mydata.charts && mydata.charts.length > 0) {
-            mydata.charts.forEach((chart) => {
+          // 대시보드 'chart' 부분이 생성되었다는 효과(flash)와 있으면 좋겠음! (펼칠 지는 자유)
+          // 문서 데이터는 'chart' 대시보드가 존재하지 않는데, 이걸 어떻게 사용자에게 전달할 지 고민해봐야 할듯?
+          if (charts && charts.length > 0) {
+            charts.forEach((chart) => {
               if (chart.type && chart.title && chart.labels && chart.series) {
                 dispatch(setChartdata(chart));
               } else {
@@ -81,20 +112,53 @@ function FileUploadToServer() {
               }
             });
           }
-          // 분석 데이터 정보를 저장한다. (지금은 임시로 이름이나 크기같은 분석안해도 알수 있는거만 저장함.)
-          const newAnalyzedFileData = {
-            analyzedFileData_name: selectedFile.name,
-            analyzedFileData_size: selectedFile.size, // Size in bytes
-            analyzedFileData_type: selectedFile.type, // 타입 유형 : text/plain, text/csv , ...
-            userCustomName: finalDataInfo, // 사용자가 지정한 데이터 이름도 같이 저장한다.
-          };
-
-          // 파일 업로드 후, 업로드된 파일들 보여주는 버튼의 visibility 상태 변수
-          dispatch(setShowFileCards(true));
-
-          // 분석 데이터를 리스트에 저장한다.
-          dispatch(addAnalyzedFileData(newAnalyzedFileData));
         });
+
+      // 4. recommendation processing
+      // "파일 분석을 마무리하는 중입니다 ..." 문구 표시
+      response = await fetch("http://165.246.21.213:10100/process", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          type: "recommendation",
+        }),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          const mydata = res;
+          const recommendations = mydata.output;
+
+          // recommendations을 이용한 질문 추천
+          console.log(recommendations);
+
+          // 추천 문구 clear
+          dispatch(clearRecommendations());
+
+          // 추천 문구 add
+          recommendations.forEach((recommendation) => {
+            dispatch(addRecommendations(recommendation));
+          });
+        });
+
+      // 5. 웹 통신 이후 작업
+
+      // 분석 데이터 정보를 저장한다. (지금은 임시로 이름이나 크기같은 분석안해도 알수 있는거만 저장함.)
+      const newAnalyzedFileData = {
+        analyzedFileData_name: selectedFile.name,
+        analyzedFileData_size: selectedFile.size, // Size in bytes
+        analyzedFileData_type: selectedFile.type, // 타입 유형 : text/plain, text/csv , ...
+        userCustomName: finalDataInfo, // 사용자가 지정한 데이터 이름도 같이 저장한다.
+      };
+
+      // 파일 업로드 후, 업로드된 파일들 보여주는 버튼의 visibility 상태 변수
+      dispatch(setShowFileCards(true));
+
+      // 분석 데이터를 리스트에 저장한다.
+      dispatch(addAnalyzedFileData(newAnalyzedFileData));
 
       // 서버 응답 처리
       console.log("파일 임베딩 성공:", response);
