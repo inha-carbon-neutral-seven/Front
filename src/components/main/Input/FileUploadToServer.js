@@ -93,9 +93,6 @@ function FileUploadToServer() {
           return res.json();
         })
         .then((res) => {
-          // 분석이 끝났다는 요청을 받는다.
-          dispatch(updateAppState("analyzed"));
-
           const mydata = res;
           const status = mydata.status; // (사용 안 해도 됨, 서버 내부 작업이 성공했는지 여부)
           const charts = mydata.output;
@@ -131,8 +128,10 @@ function FileUploadToServer() {
           return res.json();
         })
         .then((res) => {
-          const mydata = res;
+          // 분석이 끝났다는 요청을 받는다.
+          dispatch(updateAppState("analyzed"));
 
+          const mydata = res;
           const status = mydata.status; // (사용 안 해도 됨, 서버 내부 작업이 성공했는지 여부)
           const recommendations = mydata.output;
 
@@ -165,7 +164,7 @@ function FileUploadToServer() {
       dispatch(addAnalyzedFileData(newAnalyzedFileData));
 
       // 서버 응답 처리
-      console.log("파일 임베딩 성공:", response);
+      console.log("파일 처리 성공:", response);
     } catch (error) {
       dispatch(updateAppState("analyzed error"));
       console.error("파일 업로드 오류:", error);
