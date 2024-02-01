@@ -69,6 +69,7 @@ function FileUploadToServer() {
         })
         .then((res) => {
           const mydata = res;
+          const status = mydata.status; // (사용 안 해도 됨, 서버 내부 작업이 성공했는지 여부)
           const recap = mydata.output;
 
           // TODO: recap을 이용한 요약 문서 제작
@@ -96,6 +97,7 @@ function FileUploadToServer() {
           dispatch(updateAppState("analyzed"));
 
           const mydata = res;
+          const status = mydata.status; // (사용 안 해도 됨, 서버 내부 작업이 성공했는지 여부)
           const charts = mydata.output;
 
           // charts를 이용한 차트 렌더링
@@ -130,6 +132,8 @@ function FileUploadToServer() {
         })
         .then((res) => {
           const mydata = res;
+
+          const status = mydata.status; // (사용 안 해도 됨, 서버 내부 작업이 성공했는지 여부)
           const recommendations = mydata.output;
 
           // recommendations을 이용한 질문 추천
