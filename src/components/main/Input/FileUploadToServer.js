@@ -38,7 +38,7 @@ function FileUploadToServer() {
       dispatch(updateAppState("response_waiting"));
 
       // 1. 서버로 FormData 전송, 응답 요청
-      let response = await fetch("http://165.246.21.213:10100/upload", {
+      let response = await fetch("http://165.246.75.159:10100/upload", {
         method: "POST",
         body: formData,
       })
@@ -50,12 +50,13 @@ function FileUploadToServer() {
           dispatch(updateAppState("analyzing"));
         })
         .catch((error) => {
-          console.error("파일 업로드 오류:", error);
+          console.error("파일 업로드 서버 통신 오류:", error);
+          throw error;
         });
 
       // 2. recap processing
       // "파일을 분석하고 있습니다 ..." 문구 표시
-      response = await fetch("http://165.246.21.213:10100/process", {
+      response = await fetch("http://165.246.75.159:10100/process", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -76,11 +77,16 @@ function FileUploadToServer() {
           console.log(recap);
 
           // 대시보드 'recap' 부분이 생성되었다는 효과(flash)와 함께 펼쳐졌으면 좋겠음!
+        })
+        .catch((error) => {
+          console.error("recap process 서버 통신 오류:", error);
+
+          throw error;
         });
 
       // 3. chart processing
       // "데이터를 시각화하고 있습니다 ..." 문구 표시
-      response = await fetch("http://165.246.21.213:10100/process", {
+      response = await fetch("http://165.246.75.159:10100/process", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -111,11 +117,15 @@ function FileUploadToServer() {
               }
             });
           }
+        })
+        .catch((error) => {
+          console.error("chart process 서버 통신 오류:", error);
+          throw error;
         });
 
       // 4. recommendation processing
       // "파일 분석을 마무리하는 중입니다 ..." 문구 표시
-      response = await fetch("http://165.246.21.213:10100/process", {
+      response = await fetch("http://165.246.75.159:10100/process", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -145,6 +155,10 @@ function FileUploadToServer() {
           recommendations.forEach((recommendation) => {
             dispatch(addRecommendations(recommendation));
           });
+        })
+        .catch((error) => {
+          console.error("recommendation process 서버 통신 오류:", error);
+          throw error;
         });
 
       // 5. 웹 통신 이후 작업
@@ -167,6 +181,8 @@ function FileUploadToServer() {
       console.log("파일 처리 성공:", response);
     } catch (error) {
       dispatch(updateAppState("analyzed error"));
+      dispatch(setShowFileCards(false));
+
       console.error("파일 업로드 오류:", error);
     }
   };
