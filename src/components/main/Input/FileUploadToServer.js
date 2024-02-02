@@ -10,6 +10,12 @@ import {
 } from "../../../reducers/dataReducers";
 import { Checkicon } from "../../../icons";
 
+import CSV_icon from "../../../image/icons/CSV_icon.svg";
+import PDF_icon from "../../../image/icons/PDF_icon.svg";
+import DOCX_icon from "../../../image/icons/DOCX_icon.svg";
+import TXT_icon from "../../../image/icons/TXT_icon.svg";
+import UNKNOWN_icon from "../../../image/icons/UNKNOWN_icon.svg";
+
 // 파일 업로드 후(아직 서버로 전송은 안한 상황), 사용자지정 이름 input 입력받기
 // 이름을 입력 받은 후, server로 전송한다.
 function FileUploadToServer() {
@@ -186,6 +192,25 @@ function FileUploadToServer() {
       console.error("파일 업로드 오류:", error);
     }
   };
+  const loadImageToExt = (ext_keyword = "unknown") => {
+    const extensionMap = new Map([
+      ["text/csv", CSV_icon],
+      ["pdf", PDF_icon],
+      ["officedocument", DOCX_icon],
+      ["text/plain", TXT_icon],
+    ]);
+    const matchedExt = [...extensionMap.keys()].find((keyword) =>
+      ext_keyword.includes(keyword)
+    );
+
+    const iconImage = matchedExt ? extensionMap.get(matchedExt) : UNKNOWN_icon;
+
+    return (
+      <div style={{ textAlign: "-webkit-center" }}>
+        <img className="h-20" src={iconImage} alt={ext_keyword} />
+      </div>
+    );
+  };
 
   // 파일 크기를 B, KB, MB, GB 단위로 변환
   const formatBytes = (bytes = 0) => {
@@ -198,9 +223,9 @@ function FileUploadToServer() {
   /* 이후에 파일과 사용자 지정 이름을 같이 서버로 보낸다 */
   return currentState === "file_uploading" ? (
     <div className="max-w-sm p-6 border border-gray-200 rounded-lg shadow ">
-      <p>파일명: {selectedFile.name}</p>
-      <p>파일크기: {formatBytes(selectedFile.size)}</p>
-      <p>파일타입: {selectedFile.type}</p>
+      <p className="text-center">{formatBytes(selectedFile.size)}</p>
+      {loadImageToExt(selectedFile.type)}
+      <p className="text-center mb-4 font-bold">{selectedFile.name}</p>
       <p>무슨 데이터인가요?</p>
       <form
         onSubmit={(e) => {
