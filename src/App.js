@@ -54,7 +54,7 @@ function App() {
     <div className="w-full h-screen bg-gradient-to-br from-beaver-3 to-beaver-lightbrown flex flex-col overflow-y-auto">
       <Header param={handlePage} />
 
-      <div className="flex flex-grow mt-20 mb-2 pt-1 pb-1 w-4/5 place-self-center overflow-y-auto">
+      <div className="flex flex-grow mt-20 mb-2 py-1 w-4/5 place-self-center overflow-y-auto">
         <div className="flex-grow" style={{ maxWidth: "100%" }}>
           <div className="w-full h-full pl-0 space-y-2 rounded-[12px]">
             {showComponent === 0 && <ChatScreen />}

@@ -32,8 +32,5 @@ module.exports = {
       large: "12px",
     },
   },
-  corePlugins: {
-    aspectRatio: false,
-  },
-  plugins: [require("@tailwindcss/aspect-ratio")],
+  plugins: [],
 };

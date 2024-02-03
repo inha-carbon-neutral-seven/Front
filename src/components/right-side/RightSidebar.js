@@ -81,8 +81,7 @@ function RightSidebar({ page, setSidebarWidth }) {
         }}
       ></div>
       <aside
-        className={` "max-w-64 max-h-[90vh] mr-1 backdrop-blur-xl bg-white/80 space-y-2 flex-shrink-0 drop-shadow-lg"
-        } rounded-[12px] rounded-tl-[12px] overflow-hidden transform transition-all duration-100 ease-in-out flex items-center justify-center`}
+        className={`max-w-64 max-h-[90vh] mr-1 backdrop-blur-xl bg-white/80 space-y-2 flex-shrink-0 drop-shadow-lg rounded-[12px] rounded-tl-[12px] overflow-hidden transform transition-all duration-100 ease-in-out flex items-center justify-center`}
         style={{ width: width, transition: "width 500ms ease-in-out" }}
       >
         {width > 0 && <div className="px-1 w-full h-full overflow-auto">{renderContent()}</div>}
@@ -99,7 +98,9 @@ function RightSidebar({ page, setSidebarWidth }) {
         <button
           onClick={() => toggleButton("chartAnalysis")}
           className={`toggle-sidebar-btn h-12 w-12 ${
-            activeButton === "chartAnalysis" ? "bg-blue-500 text-white shadow-lg scale-110" : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
+            activeButton === "chartAnalysis"
+              ? "bg-blue-500 text-white shadow-lg scale-110"
+              : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
           } transform transition duration-200`}
           title="Chart Analysis"
         >
@@ -108,7 +109,9 @@ function RightSidebar({ page, setSidebarWidth }) {
         <button
           onClick={() => toggleButton("fileIcon")}
           className={`toggle-sidebar-btn h-12 w-12 ${
-            activeButton === "fileIcon" ? "bg-blue-500 text-white shadow-lg scale-110" : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
+            activeButton === "fileIcon"
+              ? "bg-blue-500 text-white shadow-lg scale-110"
+              : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
           } transform transition duration-200`}
           title="File"
         >

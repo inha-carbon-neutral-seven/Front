@@ -3,7 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFileData } from "../../../reducers/dataReducers";
 import { updateAppState } from "../../../reducers/appStateReducer";
 import PrintFileCards from "../../left-side/PrintFileCards";
-import { Bellicon, DownArrowicon, Exclamicon, Fileicon, Minimizeicon } from "../../../icons";
+import {
+  Bellicon,
+  DownArrowicon,
+  Exclamicon,
+  Fileicon,
+  Minimizeicon,
+} from "../../../icons";
 import FileUploadToServer from "./FileUploadToServer";
 import Loader from "../Chat/Loader";
 
@@ -60,7 +66,11 @@ function FileInput() {
 
   // 알림창 컴포넌트
   const Alert = () => (
-    <div className={`absolute bottom-14 text-blue-100 bg-blue-800 shadow-xl p-4 rounded-lg z-50 w-52 ${showAlert ? "opacity-100" : "opacity-0 hidden"}`}>
+    <div
+      className={`absolute bottom-14 text-white bg-[#F6A683] shadow-xl p-4 rounded-lg z-50 w-52 ${
+        showAlert ? "opacity-100" : "opacity-0 hidden"
+      }`}
+    >
       <div className="right-0">
         {currentState === "analyzed error" ? <Exclamicon /> : <Bellicon />}
         <Loader />
@@ -72,12 +82,18 @@ function FileInput() {
     <div className="relative">
       {showAlert && <Alert />}
 
-      <input type="file" onChange={handleFileChange} ref={fileInput} style={{ display: "none" }} accept=".csv, .pdf, .docx, .txt" />
+      <input
+        type="file"
+        onChange={handleFileChange}
+        ref={fileInput}
+        style={{ display: "none" }}
+        accept=".csv, .pdf, .docx, .txt"
+      />
       <button
-        className="bg-transparent text-black font-semibold hover:text-white hover:bg-blue-500 py-2 px-4 border border-black hover:border-transparent rounded-full"
+        className="bg-transparent text-black/80 font-semibold hover:text-black/80 hover:bg-[#F6A683] py-2 px-4 border border-black/80 hover:border-transparent rounded-lg"
         onClick={openFileInput}
       >
-        업로드
+        Upload
       </button>
 
       {/* 파일 업로드 안내 문구 */}
@@ -92,7 +108,7 @@ function FileInput() {
       <button
         className={
           showFileCards
-            ? `absolute bottom-14 right-5 w-10 h-10 shadow-md bg-blue-500 hover:bg-blue-700 text-white hover:text-gray-200 rounded-full transform transition-transform ease-in-out duration-300 ${
+            ? `absolute bottom-14 right-5 w-10 h-10 shadow-md bg-[#F6A683] hover:bg-[#F38453] text-white hover:text-gray-200 rounded-full transform transition-transform ease-in-out duration-300 ${
                 isPrintFileCards ? "scale-0 opacity-0" : "scale-100"
               }`
             : "hidden"
@@ -104,18 +120,23 @@ function FileInput() {
 
       {/* 업로드한 파일들 보여주는 컴포넌트 */}
       <div
-        className={`absolute bottom-14 bg-blue-200 p-2 border rounded shadow w-[300px] transition-transform transform ease-in-out duration-300 opacity-100 origin-[15%_90%] ${
+        className={`absolute bottom-14 bg-[#F9C8B3] p-2 border rounded shadow w-[300px] transition-transform transform ease-in-out duration-300 opacity-100 origin-[15%_90%] ${
           isPrintFileCards ? "scale-100" : "scale-0 opacity-0"
         }`}
       >
-        <span onClick={() => setIsPrintFileCards(false)} className="cursor-pointer text-gray-500 hover:text-gray-700">
+        <span
+          onClick={() => setIsPrintFileCards(false)}
+          className="cursor-pointer text-gray-500 hover:text-gray-700"
+        >
           <Minimizeicon />
         </span>
         <PrintFileCards />
       </div>
 
       {/* 파일 업로드 버튼 클릭 시, 파일 업로드 컴포넌트 */}
-      <div className="absolute bottom-14 bg-white rounded w-[300px]">{isConnected && <FileUploadToServer />}</div>
+      <div className="absolute bottom-14 bg-white rounded w-[300px]">
+        {isConnected && <FileUploadToServer />}
+      </div>
     </div>
   );
 }

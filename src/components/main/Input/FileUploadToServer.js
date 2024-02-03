@@ -235,14 +235,14 @@ function FileUploadToServer() {
         }}
       >
         <input
-          className="border border-gray-300"
+          className="border border-gray-300 rounded"
           type="text"
           onChange={(e) => setDataInfo(e.target.value)}
           placeholder={selectedFile.name}
         ></input>
 
         <button
-          className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-0.5 px-0.5 border border-blue-500 hover:border-transparent ml-1 rounded"
+          className="bg-transparent hover:bg-[#F6A683] text-black/80 font-semibold hover:text-white py-0.5 px-0.5 border border-black/80 hover:border-transparent ml-1 rounded"
           type="submit"
         >
           <Checkicon />
