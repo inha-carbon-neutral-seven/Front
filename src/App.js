@@ -4,7 +4,7 @@ import ChatScreen from "./components/main/Chat/ChatScreen";
 import Header from "./components/top-side/Header";
 import DashScreen from "./components/Data/DashScreen";
 import DashBoard from "./components/Data/DashBoard";
-import DataToTable from "./components/Data/DataToTable";
+import CSVViewer from "./components/Data/CSVViewer";
 import { useDispatch, useSelector } from "react-redux";
 import { setJsonData } from "./reducers/dataReducers";
 import RightSidebar from "./components/right-side/RightSidebar";
@@ -63,10 +63,7 @@ function App() {
         </div>
 
         <div className="fixed-left h-full">
-          <RightSidebar
-            page={showComponent}
-            setSidebarWidth={setSidebarWidth}
-          />
+          <RightSidebar page={showComponent} setSidebarWidth={setSidebarWidth} />
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import PrintFileCards from "../left-side/PrintFileCards";
 import DashSidebar from "../Data/DashSidebar";
+import PDFViewer from "../Data/PDFViewer";
+import CSVviewer from "../Data/CSVViewer";
 import { ChartAnalysis, CaretDown, Fileicon, Question } from "../../icons";
 
 function RightSidebar({ page, setSidebarWidth }) {
@@ -54,20 +56,23 @@ function RightSidebar({ page, setSidebarWidth }) {
     }
   };
   const toggleButton = (buttonId) => {
-    if (activeButton === buttonId) {
-      // 이미 활성화된 버튼을 다시 클릭하면 비활성화
-      setActiveButton(null);
-      adjustWidthForStage(0);
-      setIsMinimized(true);
-    } else {
-      // 다른 버튼을 클릭하면 활성화
-      setActiveButton(buttonId);
-      if (width === 0) {
-        setIsMinimized(false);
-        adjustWidthForStage(2);
-      }
+    setActiveButton(activeButton === buttonId ? null : buttonId);
+    adjustWidthForStage(activeButton === buttonId ? 0 : 2);
+    setIsMinimized(activeButton === buttonId);
+  };
+  const renderContent = () => {
+    switch (activeButton) {
+      case "chartAnalysis":
+        return <DashSidebar />;
+      case "fileIcon":
+        return <PDFViewer />;
+      case "question":
+      // return <QuestionComponent />;
+      default:
+        return <DashSidebar />;
     }
   };
+
   return (
     <div className="flex h-full">
       <div
@@ -79,11 +84,7 @@ function RightSidebar({ page, setSidebarWidth }) {
         className={`max-w-64 max-h-[90vh] mr-1 backdrop-blur-xl bg-white/80 space-y-2 flex-shrink-0 drop-shadow-lg rounded-[12px] rounded-tl-[12px] overflow-hidden transform transition-all duration-100 ease-in-out flex items-center justify-center`}
         style={{ width: width, transition: "width 500ms ease-in-out" }}
       >
-        {width > 0 && (
-          <div className="px-1 w-full h-full overflow-auto">
-            <DashSidebar />
-          </div>
-        )}
+        {width > 0 && <div className="px-1 w-full h-full overflow-auto">{renderContent()}</div>}
       </aside>
 
       <aside className="max-h-[90vh] backdrop-blur-xl bg-white/80 flex-shrink-0 drop-shadow-lg rounded-[12px] overflow-hidden flex flex-col items-center w-12">
@@ -112,7 +113,7 @@ function RightSidebar({ page, setSidebarWidth }) {
               ? "bg-blue-500 text-white shadow-lg scale-110"
               : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
           } transform transition duration-200`}
-          title="File Icon"
+          title="File"
         >
           <Fileicon />
         </button>

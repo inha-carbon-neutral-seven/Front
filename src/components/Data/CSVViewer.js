@@ -2,7 +2,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { DataGrid } from "@mui/x-data-grid";
 
-function DataToTable({ selectedColumns, handleColumnChange }) {
+function CSVViewer({ selectedColumns, handleColumnChange }) {
   const jsonData = useSelector((state) => state.dataVar.jsonData);
   if (!jsonData || jsonData.length === 0) {
     return <div>No data available</div>;
@@ -44,4 +44,4 @@ function DataToTable({ selectedColumns, handleColumnChange }) {
   );
 }
 
-export default DataToTable;
+export default CSVViewer;
