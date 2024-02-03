@@ -1,4 +1,4 @@
-import DataToTable from "./DataToTable";
+import CSVViewer from "./CSVViewer";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -71,7 +71,7 @@ export default function DashBoard() {
         </div>
         <div className="flex justify-center">{checkboxes}</div>
         <DashScreen />
-        <DataToTable selectedColumns={selectedColumns} handleColumnChange={handleColumnChange} />
+        <CSVViewer selectedColumns={selectedColumns} handleColumnChange={handleColumnChange} />
       </div>
     </div>
   );
