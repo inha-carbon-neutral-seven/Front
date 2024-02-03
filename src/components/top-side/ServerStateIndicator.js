@@ -13,7 +13,7 @@ const ServerStatusIndicator = () => {
       try {
         // console.log("서버 상태 확인 시도");
         // 서버에 핑 보내기
-        const response = await fetch("http://165.246.21.213:10100/ping");
+        const response = await fetch("http://165.246.75.159:10100/ping");
 
         // response.status === true : 웹, 모델 살아있음
         // response.status === false : 웹은 살고, 모델 죽음

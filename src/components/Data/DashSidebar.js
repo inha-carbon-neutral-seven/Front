@@ -22,7 +22,7 @@ function DashSidebar() {
   }, [ChartsfromStore]);
   useEffect(() => {}, [Chartlist]);
   return (
-    <div className="container mx-auto flex flex-wrap gap-6 w-full h-full justify-center items-center">
+    <div className="container mx-auto py-5 gap-6 w-full h-full justify-center items-center">
       {Chartlist.length === 0 ? (
         <div className="flex flex-col items-center justify-center dark:bg-gray-800 p-4">
           <div className="max-w-md mx-auto text-center">
@@ -32,7 +32,7 @@ function DashSidebar() {
         </div>
       ) : (
         Chartlist.map((chartConfig, index) => (
-          <div key={index} className="chart-container">
+          <div key={index} className="chart-container pt-3 pb-8">
             <ChartComponent chartData={chartConfig} />
           </div>
         ))

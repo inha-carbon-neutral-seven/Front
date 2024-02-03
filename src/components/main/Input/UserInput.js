@@ -39,7 +39,7 @@ function UserInput({ submitButtonRef }) {
       dispatch(setAIAnswer(""));
 
       try {
-        const response = await fetch("http://165.246.21.213:10100/generate", {
+        const response = await fetch("http://165.246.75.159:10100/generate", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
