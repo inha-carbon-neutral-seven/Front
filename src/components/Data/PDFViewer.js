@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Document, Page, pdfjs, Outline } from "react-pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
@@ -55,11 +55,9 @@ const PDFViewer = () => {
         <Outline onItemClick={onItemClick} />
 
         {singlePage ? (
-          Array.from({ length: numPages }, (el, index) => (
-            <Page key={`page_${index + 1}`} pageNumber={index + 1} renderTextLayer={false} loading={loading} customTextRenderer={textRenderer} />
-          ))
+          Array.from({ length: numPages }, (el, index) => <Page key={`page_${index + 1}`} pageNumber={index + 1} renderTextLayer={false} loading={loading} />)
         ) : (
-          <Page pageNumber={pageNumber} renderTextLayer={false} loading={loading} customTextRenderer={textRenderer} />
+          <Page pageNumber={pageNumber} renderTextLayer={false} loading={loading} />
         )}
       </Document>
       <div>

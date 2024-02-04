@@ -3,6 +3,7 @@ import PrintFileCards from "../left-side/PrintFileCards";
 import DashSidebar from "../Data/DashSidebar";
 import PDFViewer from "../Data/PDFViewer";
 import CSVviewer from "../Data/CSVViewer";
+import DOCViewer from "../Data/DOCViewer";
 import { ChartAnalysis, CaretDown, Fileicon, Question } from "../../icons";
 
 function RightSidebar({ page, setSidebarWidth }) {
@@ -65,7 +66,7 @@ function RightSidebar({ page, setSidebarWidth }) {
       case "chartAnalysis":
         return <DashSidebar />;
       case "fileIcon":
-        return <PDFViewer />;
+        return <DOCViewer />;
       case "question":
       // return <QuestionComponent />;
       default:
@@ -98,9 +99,7 @@ function RightSidebar({ page, setSidebarWidth }) {
         <button
           onClick={() => toggleButton("chartAnalysis")}
           className={`toggle-sidebar-btn h-12 w-12 ${
-            activeButton === "chartAnalysis"
-              ? "bg-blue-500 text-white shadow-lg scale-110"
-              : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
+            activeButton === "chartAnalysis" ? "bg-blue-500 text-white shadow-lg scale-110" : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
           } transform transition duration-200`}
           title="Chart Analysis"
         >
@@ -109,9 +108,7 @@ function RightSidebar({ page, setSidebarWidth }) {
         <button
           onClick={() => toggleButton("fileIcon")}
           className={`toggle-sidebar-btn h-12 w-12 ${
-            activeButton === "fileIcon"
-              ? "bg-blue-500 text-white shadow-lg scale-110"
-              : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
+            activeButton === "fileIcon" ? "bg-blue-500 text-white shadow-lg scale-110" : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
           } transform transition duration-200`}
           title="File"
         >

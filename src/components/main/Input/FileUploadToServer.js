@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAppState } from "../../../reducers/appStateReducer";
-import {
-  addAnalyzedFileData,
-  addRecommendations,
-  clearRecommendations,
-  setShowFileCards,
-  setChartdata,
-} from "../../../reducers/dataReducers";
+import { addAnalyzedFileData, addRecommendations, clearRecommendations, setShowFileCards, setChartdata } from "../../../reducers/dataReducers";
 import { Checkicon } from "../../../icons";
 
 import CSV_icon from "../../../image/icons/CSV_icon.svg";
@@ -109,9 +103,6 @@ function FileUploadToServer() {
           const status = mydata.status; // (사용 안 해도 됨, 서버 내부 작업이 성공했는지 여부)
           const charts = mydata.output;
 
-          // charts를 이용한 차트 렌더링
-          console.log(charts);
-
           // 대시보드 'chart' 부분이 생성되었다는 효과(flash)와 있으면 좋겠음! (펼칠 지는 자유)
           // 문서 데이터는 'chart' 대시보드가 존재하지 않는데, 이걸 어떻게 사용자에게 전달할 지 고민해봐야 할듯?
           if (charts && charts.length > 0) {
@@ -199,9 +190,7 @@ function FileUploadToServer() {
       ["officedocument", DOCX_icon],
       ["text/plain", TXT_icon],
     ]);
-    const matchedExt = [...extensionMap.keys()].find((keyword) =>
-      ext_keyword.includes(keyword)
-    );
+    const matchedExt = [...extensionMap.keys()].find((keyword) => ext_keyword.includes(keyword));
 
     const iconImage = matchedExt ? extensionMap.get(matchedExt) : UNKNOWN_icon;
 
@@ -234,12 +223,7 @@ function FileUploadToServer() {
           handleFileUpload();
         }}
       >
-        <input
-          className="border border-gray-300 rounded"
-          type="text"
-          onChange={(e) => setDataInfo(e.target.value)}
-          placeholder={selectedFile.name}
-        ></input>
+        <input className="border border-gray-300 rounded" type="text" onChange={(e) => setDataInfo(e.target.value)} placeholder={selectedFile.name}></input>
 
         <button
           className="bg-transparent hover:bg-[#F6A683] text-black/80 font-semibold hover:text-white py-0.5 px-0.5 border border-black/80 hover:border-transparent ml-1 rounded"
