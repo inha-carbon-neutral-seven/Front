@@ -17,6 +17,7 @@ import {
   faCaretDown,
   faArrowDownLong,
   faQuestion,
+  faListCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faPaperPlane, faBell } from "@fortawesome/free-regular-svg-icons";
@@ -70,7 +71,14 @@ export function Checkicon() {
 }
 
 export function Bellicon() {
-  return <FontAwesomeIcon icon={faBell} size="lg" style={{ color: "#ffffff" }} shake />;
+  return (
+    <FontAwesomeIcon
+      icon={faBell}
+      size="lg"
+      style={{ color: "#ffffff" }}
+      shake
+    />
+  );
 }
 
 export function Spinnericon() {
@@ -101,7 +109,7 @@ export function Minimizeicon() {
   return <FontAwesomeIcon icon={faSquareMinus} size="xl" />;
 }
 export function ChartAnalysis() {
-  return <FontAwesomeIcon icon={faChartLine} size="2xl" />;
+  return <FontAwesomeIcon icon={faChartLine} size="xl" />;
 }
 export function CaretDown({ width }) {
   const [rotation, setRotation] = useState(90);
@@ -116,8 +124,19 @@ export function CaretDown({ width }) {
     }
   }, [width]);
 
-  return <FontAwesomeIcon icon={faCaretDown} size="2x" rotation={rotation} style={{ transition: "transform 0.5s" }} />;
+  return (
+    <FontAwesomeIcon
+      icon={faCaretDown}
+      size="2x"
+      rotation={rotation}
+      style={{ transition: "transform 0.5s" }}
+    />
+  );
 }
 export function Question() {
   return <FontAwesomeIcon icon={faQuestion} size="2x" />;
+}
+
+export function RecapIcon() {
+  return <FontAwesomeIcon icon={faListCheck} size="xl" />;
 }

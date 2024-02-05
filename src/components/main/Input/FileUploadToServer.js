@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAppState } from "../../../reducers/appStateReducer";
-import { addAnalyzedFileData, addRecommendations, clearRecommendations, setShowFileCards, setChartdata } from "../../../reducers/dataReducers";
+import {
+  addAnalyzedFileData,
+  addRecommendations,
+  clearRecommendations,
+  setShowFileCards,
+  setChartdata,
+} from "../../../reducers/dataReducers";
 import { Checkicon } from "../../../icons";
 
 import CSV_icon from "../../../image/icons/CSV_icon.svg";
@@ -46,7 +52,7 @@ function FileUploadToServer() {
           if (!res.ok) throw new Error("서버 응답 오류");
           console.log("파일 업로드 성공", res.body);
 
-          // 응답을 받으면, 분석 요청
+          // appState 업데이트
           dispatch(updateAppState("analyzing"));
         })
         .catch((error) => {
@@ -56,7 +62,7 @@ function FileUploadToServer() {
 
       // 2. recap processing
       // "파일을 분석하고 있습니다 ..." 문구 표시
-      response = await fetch("http://165.246.75.159:10100/process", {
+      response = await fetch("http://165.246.75.159:10100/debug/process", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -69,6 +75,9 @@ function FileUploadToServer() {
           return res.json();
         })
         .then((res) => {
+          // appState 업데이트
+          dispatch(updateAppState("recap_finish"));
+
           const mydata = res;
           const status = mydata.status; // (사용 안 해도 됨, 서버 내부 작업이 성공했는지 여부)
           const recap = mydata.output;
@@ -86,7 +95,7 @@ function FileUploadToServer() {
 
       // 3. chart processing
       // "데이터를 시각화하고 있습니다 ..." 문구 표시
-      response = await fetch("http://165.246.75.159:10100/process", {
+      response = await fetch("http://165.246.75.159:10100/debug/process", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -99,6 +108,9 @@ function FileUploadToServer() {
           return res.json();
         })
         .then((res) => {
+          // appState 업데이트
+          dispatch(updateAppState("chart_finish"));
+
           const mydata = res;
           const status = mydata.status; // (사용 안 해도 됨, 서버 내부 작업이 성공했는지 여부)
           const charts = mydata.output;
@@ -122,7 +134,7 @@ function FileUploadToServer() {
 
       // 4. recommendation processing
       // "파일 분석을 마무리하는 중입니다 ..." 문구 표시
-      response = await fetch("http://165.246.75.159:10100/process", {
+      response = await fetch("http://165.246.75.159:10100/debug/process", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -135,7 +147,7 @@ function FileUploadToServer() {
           return res.json();
         })
         .then((res) => {
-          // 분석이 끝났다는 요청을 받는다.
+          // appState 업데이트
           dispatch(updateAppState("analyzed"));
 
           const mydata = res;
@@ -190,7 +202,9 @@ function FileUploadToServer() {
       ["officedocument", DOCX_icon],
       ["text/plain", TXT_icon],
     ]);
-    const matchedExt = [...extensionMap.keys()].find((keyword) => ext_keyword.includes(keyword));
+    const matchedExt = [...extensionMap.keys()].find((keyword) =>
+      ext_keyword.includes(keyword)
+    );
 
     const iconImage = matchedExt ? extensionMap.get(matchedExt) : UNKNOWN_icon;
 
@@ -223,7 +237,12 @@ function FileUploadToServer() {
           handleFileUpload();
         }}
       >
-        <input className="border border-gray-300 rounded" type="text" onChange={(e) => setDataInfo(e.target.value)} placeholder={selectedFile.name}></input>
+        <input
+          className="border border-gray-300 rounded"
+          type="text"
+          onChange={(e) => setDataInfo(e.target.value)}
+          placeholder={selectedFile.name}
+        ></input>
 
         <button
           className="bg-transparent hover:bg-[#F6A683] text-black/80 font-semibold hover:text-white py-0.5 px-0.5 border border-black/80 hover:border-transparent ml-1 rounded"
