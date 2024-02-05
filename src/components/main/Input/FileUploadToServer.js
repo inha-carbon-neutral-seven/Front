@@ -115,10 +115,10 @@ function FileUploadToServer() {
           // 대시보드 'chart' 부분이 생성되었다는 효과(flash)와 있으면 좋겠음! (펼칠 지는 자유)
           // 문서 데이터는 'chart' 대시보드가 존재하지 않는데, 이걸 어떻게 사용자에게 전달할 지 고민해봐야 할듯?
           if (charts && charts.length > 0) {
+            // appState 업데이트
+            dispatch(updateAppState("chart_finish"));
             charts.forEach((chart) => {
               if (chart.type && chart.title && chart.labels && chart.series) {
-                // appState 업데이트
-                dispatch(updateAppState("chart_finish"));
                 // 차트 데이터 저장
                 dispatch(setChartdata(chart));
               } else {
