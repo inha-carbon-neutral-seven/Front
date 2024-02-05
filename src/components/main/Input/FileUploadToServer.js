@@ -108,9 +108,6 @@ function FileUploadToServer() {
           return res.json();
         })
         .then((res) => {
-          // appState 업데이트
-          dispatch(updateAppState("chart_finish"));
-
           const mydata = res;
           const status = mydata.status; // (사용 안 해도 됨, 서버 내부 작업이 성공했는지 여부)
           const charts = mydata.output;
@@ -120,6 +117,9 @@ function FileUploadToServer() {
           if (charts && charts.length > 0) {
             charts.forEach((chart) => {
               if (chart.type && chart.title && chart.labels && chart.series) {
+                // appState 업데이트
+                dispatch(updateAppState("chart_finish"));
+                // 차트 데이터 저장
                 dispatch(setChartdata(chart));
               } else {
                 console.log("Invalid chart data");
