@@ -22,6 +22,12 @@
 // init -> (사용자가 파일을 업로드함) -> file_uploading -> file_sent -> response_waiting
 // -> analyzing -> analyzed -> 3초후 show_recommendations(FileInputButton.js의 useEffect에서) -> message_sent ... 반복
 
+// embed 단계가 세부화 됨에 따라
+// analyzing -> analyzed 사이 state를 세분화 한다.
+
+// 파일 첨부 후  리캡완료         차트완료        분석 완료
+// analyzing -> recap_finish -> chart_finish -> analyzed 로 한다.
+
 // action type
 const UPDATE_APP_STATE = "UPDATE_APP_STATE";
 

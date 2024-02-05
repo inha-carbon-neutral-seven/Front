@@ -84,8 +84,7 @@ function UserInput({ submitButtonRef }) {
             value={message}
             disabled={
               !isConnected ||
-              currentState === "analyzing" ||
-              currentState === "response_waiting"
+              ["response_waiting", "analyzing"].includes(currentState)
             }
             onChange={(e) => dispatch(setMessage(e.target.value))}
           />
