@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAppState } from "../../../reducers/appStateReducer";
-import { addAnalyzedFileData, addRecommendations, clearRecommendations, setShowFileCards, setChartdata } from "../../../reducers/dataReducers";
+import { addAnalyzedFileData, addRecommendations, clearRecommendations, setShowFileCards, setChartdata, setRecap } from "../../../reducers/dataReducers";
 import { Checkicon } from "../../../icons";
 
 import CSV_icon from "../../../image/icons/CSV_icon.svg";
@@ -72,9 +72,9 @@ function FileUploadToServer() {
           const mydata = res;
           const status = mydata.status; // (사용 안 해도 됨, 서버 내부 작업이 성공했는지 여부)
           const recap = mydata.output;
-
-          // TODO: recap을 이용한 요약 문서 제작
-          console.log(recap);
+          if (recap) {
+            dispatch(setRecap(recap));
+          }
 
           // 대시보드 'recap' 부분이 생성되었다는 효과(flash)와 함께 펼쳐졌으면 좋겠음!
         })
