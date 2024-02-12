@@ -19,7 +19,9 @@ function Loader() {
             <Spinnericon />
           </div>
         )}
-        {currentState === "analyzing" && (
+        {["analyzing", "recap_finish", "chart_finish"].includes(
+          currentState
+        ) && (
           <div className="flex items-center space-x-2">
             <p className="text-sm text-center">{messages[1]}</p>
             <Spinnericon />
