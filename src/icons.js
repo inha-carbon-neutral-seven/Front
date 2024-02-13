@@ -18,7 +18,6 @@ import {
   faQuestion,
   faListCheck,
   faBinoculars,
-  faBinoculars,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faPaperPlane, faBell } from "@fortawesome/free-regular-svg-icons";
@@ -69,14 +68,7 @@ export function Checkicon() {
 }
 
 export function Bellicon() {
-  return (
-    <FontAwesomeIcon
-      icon={faBell}
-      size="lg"
-      style={{ color: "#ffffff" }}
-      shake
-    />
-  );
+  return <FontAwesomeIcon icon={faBell} size="lg" style={{ color: "#ffffff" }} shake />;
 }
 
 export function Spinnericon() {
@@ -122,14 +114,7 @@ export function CaretDown({ width }) {
     }
   }, [width]);
 
-  return (
-    <FontAwesomeIcon
-      icon={faCaretDown}
-      size="2x"
-      rotation={rotation}
-      style={{ transition: "transform 0.5s" }}
-    />
-  );
+  return <FontAwesomeIcon icon={faCaretDown} size="2x" rotation={rotation} style={{ transition: "transform 0.5s" }} />;
 }
 export function Question() {
   return <FontAwesomeIcon icon={faQuestion} size="2x" />;

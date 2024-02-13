@@ -43,7 +43,7 @@ function CSVViewer() {
   }, [fileData]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="flex flex-col justify-center items-center h-full text-3xl font-bold text-gray-900 dark:text-gray-100">잠시만 기다려주세요...</div>;
   }
 
   if (!jsonData || jsonData.length === 0) {

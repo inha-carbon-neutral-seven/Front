@@ -112,10 +112,10 @@ function RightSidebar({ page, setSidebarWidth }) {
     <div className="flex h-full ">
       <div className="w-1"></div>
       <aside
-        className="max-w-64 max-h-[90vh] mr-1 backdrop-blur-xl space-y-2 flex-shrink-0 drop-shadow-lg rounded-[12px] rounded-tl-[12px] overflow-hidden transform transition-all duration-100 ease-in-out flex items-center justify-center bg-white shadow-md rounded-lg"
+        className="max-w-64 max-h-[90vh] mr-1 backdrop-blur-xl space-y-2 flex-shrink-0 drop-shadow-lg rounded-[12px] rounded-tl-[12px] overflow-hidden transform transition-all duration-100 ease-in-out flex flex-col justify-center items-center bg-white shadow-md rounded-lg"
         style={{ width: width, transition: "width 500ms ease-in-out" }}
       >
-        {width > 0 && <div className="px-1 w-full h-full overflow-auto">{renderContent()}</div>}
+        {width > 0 && <div className=" px-1 w-full h-full overflow-auto">{renderContent()}</div>}{" "}
       </aside>
 
       <aside className="max-h-[90vh] backdrop-blur-xl bg-white/80 flex-shrink-0 drop-shadow-lg rounded-[12px] overflow-hidden flex flex-col items-center w-12">
