@@ -2,12 +2,12 @@ import { useSelector } from "react-redux";
 import beaver from "../../../image/logo.jpg";
 
 function Recommendations({ onRecommendationClick }) {
-  //const recommendations = useSelector((state) => state.dataVar.recommendations);
-  const recommendations = [
-    "testesetsetaefasdfaesfasfdaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaaaaaaa  ",
-    "asdf",
-    "qqqq",
-  ];
+  const recommendations = useSelector((state) => state.dataVar.recommendations);
+  // const recommendations = [
+  //   "testesetsetaefasdfaesfasfdaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaa aaaaaaaaaaaaaa  ",
+  //   "asdf",
+  //   "qqqq",
+  // ];
 
   return (
     <div className="flex-grow">
