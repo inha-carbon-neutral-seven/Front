@@ -22,6 +22,7 @@ import {
 
 import { faPaperPlane, faBell } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPython } from "@fortawesome/free-brands-svg-icons";
 
 export function Expandicon() {
   return <FontAwesomeIcon icon={faExpand} size="2xs" />;
@@ -139,4 +140,8 @@ export function Question() {
 
 export function RecapIcon() {
   return <FontAwesomeIcon icon={faListCheck} size="xl" />;
+}
+
+export function PythonIcon() {
+  return <FontAwesomeIcon icon={faPython} size="xl" />;
 }
