@@ -54,7 +54,16 @@ function UserInput({ submitButtonRef }) {
         })
           .then((res) => res.json())
           .then((res) => {
-            //console.log(res.sources);
+            console.log(res);
+
+            // const sources = res.sources;
+
+            // for (const source of sources) {
+            //   const input = source.input;
+            //   const output = source.output;
+            //   console.log(input, output);
+            // }
+
             dispatch(setAIAnswer(res.message, res.sources));
             dispatch(updateAppState("response_received"));
             dispatch(updateAppState("message_waiting"));
