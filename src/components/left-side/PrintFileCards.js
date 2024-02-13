@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Download from "../Utility/Download";
 
 import CSV_icon from "../../image/icons/CSV_icon.svg";
 import PDF_icon from "../../image/icons/PDF_icon.svg";
@@ -10,9 +9,7 @@ import UNKNOWN_icon from "../../image/icons/UNKNOWN_icon.svg";
 
 function PrintFileCards({ processAll = false }) {
   // 이 컴포넌트에서 사용할 data 변수
-  const analyzedFileDataList = useSelector(
-    (state) => state.dataVar.analyzedFileDataList
-  );
+  const analyzedFileDataList = useSelector((state) => state.dataVar.analyzedFileDataList);
 
   // dispatch func.
   const dispatch = useDispatch();
@@ -40,9 +37,7 @@ function PrintFileCards({ processAll = false }) {
       ["text/plain", TXT_icon],
     ]);
 
-    const matchedExt = [...extensionMap.keys()].find((keyword) =>
-      ext_keyword.includes(keyword)
-    );
+    const matchedExt = [...extensionMap.keys()].find((keyword) => ext_keyword.includes(keyword));
 
     const iconImage = matchedExt ? extensionMap.get(matchedExt) : UNKNOWN_icon;
 
@@ -59,9 +54,7 @@ function PrintFileCards({ processAll = false }) {
     return `${bytes.toFixed(1)}${["B", "KB", "MB", "GB"][i]}`;
   };
   // 모든 데이터를 처리할지, 마지막 데이터만 처리할지 결정
-  const dataListToProcess = processAll
-    ? analyzedFileDataList
-    : [analyzedFileDataList[analyzedFileDataList.length - 1]];
+  const dataListToProcess = processAll ? analyzedFileDataList : [analyzedFileDataList[analyzedFileDataList.length - 1]];
 
   return (
     <div>
@@ -73,16 +66,9 @@ function PrintFileCards({ processAll = false }) {
           } break-words flex flex-col `}
           onClick={() => handleCardClick(index)}
         >
-          <div className="ml-auto space-x-2">
-            <Download />
-          </div>
-          <p className="text-center">
-            {formatBytes(analyzedFileData?.analyzedFileData_size)}
-          </p>
+          <p className="text-center">{formatBytes(analyzedFileData?.analyzedFileData_size)}</p>
           {loadImageFromExt(analyzedFileData?.analyzedFileData_type)}
-          <p className="text-center mb-4 font-bold">
-            파일 설명: {analyzedFileData?.userCustomName}
-          </p>
+          <p className="text-center mb-4 font-bold">파일 설명: {analyzedFileData?.userCustomName}</p>
         </div>
       ))}
     </div>

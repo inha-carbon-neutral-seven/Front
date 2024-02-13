@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   faExpand,
-  faDownload,
   faChevronRight,
   faHourglass1,
   faHourglass2,
@@ -18,6 +17,7 @@ import {
   faArrowDownLong,
   faQuestion,
   faListCheck,
+  faBinoculars,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faPaperPlane, faBell } from "@fortawesome/free-regular-svg-icons";
@@ -25,10 +25,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export function Expandicon() {
   return <FontAwesomeIcon icon={faExpand} size="2xs" />;
-}
-
-export function Downloadicon() {
-  return <FontAwesomeIcon icon={faDownload} size="1x" />;
 }
 
 export function Nexticon() {
@@ -71,14 +67,7 @@ export function Checkicon() {
 }
 
 export function Bellicon() {
-  return (
-    <FontAwesomeIcon
-      icon={faBell}
-      size="lg"
-      style={{ color: "#ffffff" }}
-      shake
-    />
-  );
+  return <FontAwesomeIcon icon={faBell} size="lg" style={{ color: "#ffffff" }} shake />;
 }
 
 export function Spinnericon() {
@@ -124,14 +113,7 @@ export function CaretDown({ width }) {
     }
   }, [width]);
 
-  return (
-    <FontAwesomeIcon
-      icon={faCaretDown}
-      size="2x"
-      rotation={rotation}
-      style={{ transition: "transform 0.5s" }}
-    />
-  );
+  return <FontAwesomeIcon icon={faCaretDown} size="2x" rotation={rotation} style={{ transition: "transform 0.5s" }} />;
 }
 export function Question() {
   return <FontAwesomeIcon icon={faQuestion} size="2x" />;
@@ -139,4 +121,8 @@ export function Question() {
 
 export function RecapIcon() {
   return <FontAwesomeIcon icon={faListCheck} size="xl" />;
+}
+
+export function BinocularIcon() {
+  return <FontAwesomeIcon icon={faBinoculars} size="xl" />;
 }

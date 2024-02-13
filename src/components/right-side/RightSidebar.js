@@ -3,13 +3,8 @@ import DashSidebar from "../Data/DashSidebar";
 import PDFViewer from "../Data/PDFViewer";
 import CSVviewer from "../Data/CSVViewer";
 import DOCViewer from "../Data/DOCViewer";
-import {
-  ChartAnalysis,
-  CaretDown,
-  Fileicon,
-  Question,
-  RecapIcon,
-} from "../../icons";
+import RecapViewer from "../Data/RecapViewer";
+import { ChartAnalysis, CaretDown, BinocularIcon, Question, RecapIcon } from "../../icons";
 import { useSelector } from "react-redux";
 
 function RightSidebar({ page, setSidebarWidth }) {
@@ -103,7 +98,7 @@ function RightSidebar({ page, setSidebarWidth }) {
       case "fileIcon":
         return <DOCViewer />;
       case "recap":
-      // return <Recap />
+        return <RecapViewer />;
       case "chartAnalysis":
         return <DashSidebar />;
       case "question":
@@ -114,17 +109,13 @@ function RightSidebar({ page, setSidebarWidth }) {
   };
 
   return (
-    <div className="flex h-full">
+    <div className="flex h-full ">
       <div className="w-1"></div>
       <aside
-        className={`max-w-64 max-h-[90vh] mr-1 backdrop-blur-xl bg-white/80 space-y-2 flex-shrink-0 drop-shadow-lg rounded-[12px] rounded-tl-[12px] overflow-hidden transform transition-all duration-100 ease-in-out flex items-center justify-center`}
+        className="max-w-64 max-h-[90vh] mr-1 backdrop-blur-xl space-y-2 flex-shrink-0 drop-shadow-lg rounded-[12px] rounded-tl-[12px] overflow-hidden transform transition-all duration-100 ease-in-out flex items-center justify-center bg-white shadow-md rounded-lg"
         style={{ width: width, transition: "width 500ms ease-in-out" }}
       >
-        {width > 0 && (
-          <div className="px-1 w-full h-full overflow-auto">
-            {renderContent()}
-          </div>
-        )}
+        {width > 0 && <div className="px-1 w-full h-full overflow-auto">{renderContent()}</div>}
       </aside>
 
       <aside className="max-h-[90vh] backdrop-blur-xl bg-white/80 flex-shrink-0 drop-shadow-lg rounded-[12px] overflow-hidden flex flex-col items-center w-12">
@@ -141,15 +132,13 @@ function RightSidebar({ page, setSidebarWidth }) {
           className={`${
             showFileBtn
               ? `toggle-sidebar-btn h-12 w-12 ${
-                  activeButton === "fileIcon"
-                    ? "bg-blue-500 text-white shadow-lg scale-110"
-                    : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
+                  activeButton === "fileIcon" ? "bg-blue-500 text-white shadow-lg scale-110" : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
                 } ${newBtn === "file" ? "blink" : ""}`
               : "scale-0 opacity-0"
           } transform transition duration-200`}
           title="File"
         >
-          <Fileicon />
+          <BinocularIcon />
         </button>
 
         <button
@@ -157,9 +146,7 @@ function RightSidebar({ page, setSidebarWidth }) {
           className={`${
             showRecapBtn
               ? `toggle-sidebar-btn h-12 w-12 ${
-                  activeButton === "recap"
-                    ? "bg-blue-500 text-white shadow-lg scale-110"
-                    : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
+                  activeButton === "recap" ? "bg-blue-500 text-white shadow-lg scale-110" : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
                 } ${newBtn === "recap" ? "blink" : ""}`
               : "scale-0 opacity-0"
           } transform transition duration-200`}
@@ -173,9 +160,7 @@ function RightSidebar({ page, setSidebarWidth }) {
           className={`${
             showChartBtn
               ? `toggle-sidebar-btn h-12 w-12 ${
-                  activeButton === "chartAnalysis"
-                    ? "bg-blue-500 text-white shadow-lg scale-110"
-                    : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
+                  activeButton === "chartAnalysis" ? "bg-blue-500 text-white shadow-lg scale-110" : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
                 } ${newBtn === "chart" ? "blink" : ""}`
               : "scale-0 opacity-0"
           } transform transition duration-200`}

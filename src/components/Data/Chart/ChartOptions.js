@@ -1,37 +1,37 @@
 import { generateplotOptions } from "./plotOptions";
-// const commonOptions = {
-//   chart: {
-//     toolbar: {
-//       show: true,
-//       tools: {
-//         download: true,
-//         selection: true,
-//         zoom: true,
-//         zoomin: true,
-//         zoomout: true,
-//         pan: true,
-//         reset: true,
-//       },
-//     },
-//   },
-//   dataLabels: {
-//     enabled: false,
-//   },
-//   stroke: {
-//     curve: "smooth",
-//   },
-//   xaxis: {
-//     type: "category",
-//   },
-//   yaxis: {
-//     title: {
-//       text: "Values",
-//     },
-//   },
-//   tooltip: {
-//     enabled: true,
-//   },
-// };
+const commonOptions = {
+  chart: {
+    toolbar: {
+      show: true,
+      tools: {
+        download: true,
+        selection: true,
+        zoom: true,
+        zoomin: true,
+        zoomout: true,
+        pan: true,
+        reset: true,
+      },
+    },
+  },
+  // dataLabels: {
+  //   enabled: false,
+  // },
+  // stroke: {
+  //   curve: "smooth",
+  // },
+  // xaxis: {
+  //   type: "category",
+  // },
+  // yaxis: {
+  //   title: {
+  //     text: "Values",
+  //   },
+  // },
+  // tooltip: {
+  //   enabled: true,
+  // },
+};
 
 // const lineChartOptions = {
 //   ...commonOptions,
@@ -224,28 +224,17 @@ import { generateplotOptions } from "./plotOptions";
 //   },
 // };
 
-// const pieChartOptions = {
-//   ...commonOptions,
-//   // Add or override options specific to pie charts
-//   chart: {
-//     ...commonOptions.chart,
-//     type: "pie",
-//   },
-//   labels: [], // Add labels if required
-//   responsive: [
-//     {
-//       breakpoint: 480,
-//       options: {
-//         chart: {
-//           width: 200,
-//         },
-//         legend: {
-//           position: "bottom",
-//         },
-//       },
-//     },
-//   ],
-// };
+const pieChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to pie charts
+  chart: {
+    ...commonOptions.chart,
+    type: "pie",
+  },
+  legend: {
+    position: "bottom",
+  },
+};
 // const donutChartOptions = {
 //   ...commonOptions,
 //   // Add or override options specific to pie charts
@@ -357,10 +346,11 @@ export const generatePieOptions = (type, title, seriesConfig, labelsConfig) => {
 
     labels: labelsConfig,
   };
-  // switch (type) {
-  //   case "pie":
-  //     options = { ...options, ...pieChartOptions };
-  //     break;
+  switch (type) {
+    case "pie":
+      options = { ...options, ...pieChartOptions };
+      break;
+  }
   //   case "donut":
   //     options = { ...options, ...donutChartOptions };
   //     break;
