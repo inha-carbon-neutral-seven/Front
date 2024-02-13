@@ -18,13 +18,23 @@ function RecapViewer() {
     }
   }, [recap]);
   return (
-    <div>
-      <h1 className="text-2xl font-bold text-gray-900 mb-2">{title}</h1>
-      <h3 className="text-xl font-semibold text-gray-700 mb-4">{subtitle}</h3>
+    <div className="p-4">
+      <h1 className="text-2xl font-bold text-center text-gray-900 mb-2">
+        {title}
+      </h1>
+      <h3 className="text-xl font-semibold text-center text-gray-700 mb-4">
+        {subtitle}
+      </h3>
       <p className="text-gray-600 mb-4">{summary}</p>
       <div>
-        <strong className="font-semibold text-gray-900">Keywords: </strong>
-        <span className="text-gray-600">{keywords.join(", ")}</span>
+        {keywords.map((keyword, index) => (
+          <span
+            key={index}
+            className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+          >
+            {keyword}
+          </span>
+        ))}
       </div>
     </div>
   );
