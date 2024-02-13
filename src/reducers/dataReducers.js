@@ -9,6 +9,7 @@ const ADD_RECOMMENDATIONS = "ADD_RECOMMENDATIONS";
 const CLEAR_RECOMMENDATIONS = "CLEAR_RECOMMENDATIONS";
 const SET_CHART_DATA = "SET_CHART_DATA";
 const SET_FILE_TYPE = "SET_FILE_TYPE";
+const SET_RECAP = "SET_RECAP";
 
 // action creator 정의
 export function setShowFileCards(showFileCards) {
@@ -64,6 +65,13 @@ export function setFileType(fileType) {
   };
 }
 
+export function setRecap(recap) {
+  return {
+    type: SET_RECAP,
+    payload: recap,
+  };
+}
+
 // 초기 state 정의
 const initialState = {
   showFileCards: false, // FileInputButton.js 에서 사용
@@ -72,6 +80,7 @@ const initialState = {
   analyzedFileDataList: [],
   recommendations: [],
   charts: [],
+  recaps: [],
 };
 
 // reducer
@@ -116,6 +125,11 @@ function dataReducer(state = initialState, action) {
       return {
         ...state,
         charts: action.payload,
+      };
+    case SET_RECAP:
+      return {
+        ...state,
+        recaps: action.payload,
       };
     default:
       return state;

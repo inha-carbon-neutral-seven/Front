@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAppState } from "../../../reducers/appStateReducer";
-import {
-  addAnalyzedFileData,
-  addRecommendations,
-  clearRecommendations,
-  setShowFileCards,
-  setChartdata,
-} from "../../../reducers/dataReducers";
+import { addAnalyzedFileData, addRecommendations, clearRecommendations, setShowFileCards, setChartdata, setRecap } from "../../../reducers/dataReducers";
 import { Checkicon } from "../../../icons";
 
 import CSV_icon from "../../../image/icons/CSV_icon.svg";
@@ -81,9 +75,9 @@ function FileUploadToServer() {
           const mydata = res;
           const status = mydata.status; // (사용 안 해도 됨, 서버 내부 작업이 성공했는지 여부)
           const recap = mydata.output;
-
-          // TODO: recap을 이용한 요약 문서 제작
-          console.log(recap);
+          if (recap) {
+            dispatch(setRecap(recap));
+          }
 
           // 대시보드 'recap' 부분이 생성되었다는 효과(flash)와 함께 펼쳐졌으면 좋겠음!
         })
@@ -202,9 +196,7 @@ function FileUploadToServer() {
       ["officedocument", DOCX_icon],
       ["text/plain", TXT_icon],
     ]);
-    const matchedExt = [...extensionMap.keys()].find((keyword) =>
-      ext_keyword.includes(keyword)
-    );
+    const matchedExt = [...extensionMap.keys()].find((keyword) => ext_keyword.includes(keyword));
 
     const iconImage = matchedExt ? extensionMap.get(matchedExt) : UNKNOWN_icon;
 
@@ -237,12 +229,7 @@ function FileUploadToServer() {
           handleFileUpload();
         }}
       >
-        <input
-          className="border border-gray-300 rounded"
-          type="text"
-          onChange={(e) => setDataInfo(e.target.value)}
-          placeholder={selectedFile.name}
-        ></input>
+        <input className="border border-gray-300 rounded" type="text" onChange={(e) => setDataInfo(e.target.value)} placeholder={selectedFile.name}></input>
 
         <button
           className="bg-transparent hover:bg-[#F6A683] text-black/80 font-semibold hover:text-white py-0.5 px-0.5 border border-black/80 hover:border-transparent ml-1 rounded"
