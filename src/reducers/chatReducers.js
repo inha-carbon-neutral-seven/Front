@@ -34,10 +34,10 @@ export function setSentMessage(sentMessage) {
   };
 }
 
-export function setAIAnswer(aiAnswer) {
+export function setAIAnswer(aiAnswer, ai_source) {
   return {
     type: SET_AIANSWER,
-    payload: aiAnswer,
+    payload: { aiAnswer, ai_source },
   };
 }
 
@@ -66,6 +66,7 @@ const initialState = {
   message: "",
   sentMessage: "",
   aiAnswer: "",
+  ai_source: [],
   chatlog: [],
 };
 
@@ -90,7 +91,7 @@ function chatReducer(state = initialState, action) {
     case SET_AIANSWER:
       return {
         ...state,
-        aiAnswer: action.payload,
+        aiAnswer: [action.payload.aiAnswer, action.payload.ai_source],
       };
     case ADD_TO_CHATLOG:
       return {

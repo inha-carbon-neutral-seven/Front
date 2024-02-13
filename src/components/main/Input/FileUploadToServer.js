@@ -56,7 +56,7 @@ function FileUploadToServer() {
 
       // 2. recap processing
       // "파일을 분석하고 있습니다 ..." 문구 표시
-      response = await fetch("http://165.246.75.159:10100/debug/process", {
+      response = await fetch("http://165.246.75.159:10100/process", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -89,7 +89,7 @@ function FileUploadToServer() {
 
       // 3. chart processing
       // "데이터를 시각화하고 있습니다 ..." 문구 표시
-      response = await fetch("http://165.246.75.159:10100/debug/process", {
+      response = await fetch("http://165.246.75.159:10100/process", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -128,7 +128,7 @@ function FileUploadToServer() {
 
       // 4. recommendation processing
       // "파일 분석을 마무리하는 중입니다 ..." 문구 표시
-      response = await fetch("http://165.246.75.159:10100/debug/process", {
+      response = await fetch("http://165.246.75.159:10100/process", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
