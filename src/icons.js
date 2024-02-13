@@ -18,6 +18,7 @@ import {
   faArrowDownLong,
   faQuestion,
   faListCheck,
+  faBinoculars,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faPaperPlane, faBell } from "@fortawesome/free-regular-svg-icons";
@@ -140,6 +141,10 @@ export function Question() {
 
 export function RecapIcon() {
   return <FontAwesomeIcon icon={faListCheck} size="xl" />;
+}
+
+export function BinocularIcon() {
+  return <FontAwesomeIcon icon={faBinoculars} size="xl" />;
 }
 
 export function PythonIcon() {
