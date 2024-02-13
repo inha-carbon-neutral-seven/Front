@@ -41,7 +41,6 @@ function UserInput({ submitButtonRef }) {
       dispatch(setLoading(true));
       dispatch(setMessage(""));
       dispatch(setSentMessage(message));
-      dispatch(setAIAnswer(""));
 
       try {
         const response = await fetch("http://165.246.75.159:10100/generate", {
@@ -55,7 +54,8 @@ function UserInput({ submitButtonRef }) {
         })
           .then((res) => res.json())
           .then((res) => {
-            dispatch(setAIAnswer(res.message));
+            //console.log(res.sources);
+            dispatch(setAIAnswer(res.message, res.sources));
             dispatch(updateAppState("response_received"));
             dispatch(updateAppState("message_waiting"));
             return res;

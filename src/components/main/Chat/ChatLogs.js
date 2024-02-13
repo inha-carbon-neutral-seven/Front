@@ -1,13 +1,20 @@
 import { useSelector } from "react-redux";
 import TypingAnimation from "./TypingAnimation";
-import { Spinnericon } from "../../../icons";
+import { PythonIcon, Spinnericon } from "../../../icons";
 import beaver from "../../../image/logo.jpg";
+import { useState } from "react";
+import MessageSource from "./MessageSource";
 
 // 채팅 log 컴포넌트
 function ChatLogs() {
   // 이 컴포넌트에서 사용할 상태변수들
   const loading = useSelector((state) => state.chatVar.loading);
   const chatlog = useSelector((state) => state.chatVar.chatlog);
+  const [showSource, setShowSource] = useState(false);
+
+  const handleBtnClick = () => {
+    setShowSource(!showSource);
+  };
 
   return (
     /* 채팅 메시지 출력 */
@@ -19,14 +26,35 @@ function ChatLogs() {
               <img src={beaver} className="h-12 rounded-full my-5 ml-5" />
             )}
             <li
-              key={index}
-              className={`p-3 m-5 rounded-md max-w-2/3 max-h-200 overflow-hidden ${
+              key={message.message[0] + index}
+              className={`relative p-3 m-5 rounded-md max-w-2/3 h-auto overflow-hidden ${
                 message.user === "user"
                   ? "bg-blue-200 ml-auto mr-1"
-                  : "bg-gray-200 ml-1"
+                  : "bg-gray-200 ml-1 pr-10"
               }`}
             >
-              {<TypingAnimation text={message.message} isNew={message.isNew} />}
+              {message.user === "user" ? (
+                <TypingAnimation text={message.message} isNew={message.isNew} />
+              ) : (
+                <TypingAnimation
+                  text={message.message[0]}
+                  isNew={message.isNew}
+                />
+              )}
+              {message.user === "ai" && (
+                <div className="flex justify-center items-center">
+                  {showSource && (
+                    <MessageSource message={message.message[1][0]} />
+                  )}
+                  <button
+                    className="border absolute right-1 bottom-1"
+                    onClick={handleBtnClick}
+                    title="Show Python Code"
+                  >
+                    <PythonIcon />
+                  </button>
+                </div>
+              )}
             </li>
           </div>
         ))}

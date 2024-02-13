@@ -33,10 +33,10 @@ module.exports = {
     },
   },
   plugins: [
-    function ({ addUtilities }) {
-      const blinkUtilities = {
+    ({ addUtilities }) => {
+      addUtilities({
         ".blink": {
-          animation: "blink 1s infinite",
+          animation: "blink 1s 5",
         },
         "@keyframes blink": {
           "0%, 100%": {
@@ -46,8 +46,7 @@ module.exports = {
             opacity: 0,
           },
         },
-      };
-      addUtilities(blinkUtilities, ["responsive", "hover"]);
+      });
     },
   ],
 };
