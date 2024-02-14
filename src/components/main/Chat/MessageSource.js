@@ -1,17 +1,17 @@
 function MessageSource({ message }) {
   return (
-    <div className="bg-black/70 text-white rounded w-11/12 mt-2">
-      <div className="bg-gray-50/50 w-auto h-6 pl-1">Python Source</div>
+    <div className="bg-white/70 text-black/80 rounded w-11/12 mt-2">
+      <div className="bg-gray-50/50 w-auto h-6 pl-1 my-2 font-bold">Source</div>
       {message.input && (
         <div className="border m-1 rounded">
-          <div className="bg-gray-50/50 pl-1">input</div>
-          <div className="px-1">{message.input}</div>
+          <div className="bg-gray-50/50 pl-1 my-2 text-green-600">input</div>
+          <div className="pl-4">{message.input}</div>
         </div>
       )}
       {message.output && (
         <div className="border m-1 rounded">
-          <div className="bg-gray-50/50 pl-1">output</div>
-          <div className="pl-1">{message.output}</div>
+          <div className="bg-gray-50/50 pl-1 my-2 text-blue-600">output</div>
+          <div className="pl-4">{message.output}</div>
         </div>
       )}
     </div>

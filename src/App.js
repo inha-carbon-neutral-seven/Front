@@ -30,7 +30,10 @@ function App() {
         </div>
 
         <div className="fixed-left h-full">
-          <RightSidebar page={showComponent} setSidebarWidth={setSidebarWidth} />
+          <RightSidebar
+            page={showComponent}
+            setSidebarWidth={setSidebarWidth}
+          />
         </div>
       </div>
     </div>

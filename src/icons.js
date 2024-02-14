@@ -18,11 +18,11 @@ import {
   faQuestion,
   faListCheck,
   faBinoculars,
+  faCode,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faPaperPlane, faBell } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPython } from "@fortawesome/free-brands-svg-icons";
 
 export function Expandicon() {
   return <FontAwesomeIcon icon={faExpand} size="2xs" />;
@@ -68,7 +68,14 @@ export function Checkicon() {
 }
 
 export function Bellicon() {
-  return <FontAwesomeIcon icon={faBell} size="lg" style={{ color: "#ffffff" }} shake />;
+  return (
+    <FontAwesomeIcon
+      icon={faBell}
+      size="lg"
+      style={{ color: "#ffffff" }}
+      shake
+    />
+  );
 }
 
 export function Spinnericon() {
@@ -114,7 +121,14 @@ export function CaretDown({ width }) {
     }
   }, [width]);
 
-  return <FontAwesomeIcon icon={faCaretDown} size="2x" rotation={rotation} style={{ transition: "transform 0.5s" }} />;
+  return (
+    <FontAwesomeIcon
+      icon={faCaretDown}
+      size="2x"
+      rotation={rotation}
+      style={{ transition: "transform 0.5s" }}
+    />
+  );
 }
 export function Question() {
   return <FontAwesomeIcon icon={faQuestion} size="2x" />;
@@ -128,6 +142,6 @@ export function BinocularIcon() {
   return <FontAwesomeIcon icon={faBinoculars} size="xl" />;
 }
 
-export function PythonIcon() {
-  return <FontAwesomeIcon icon={faPython} size="xl" />;
+export function CodeIcon() {
+  return <FontAwesomeIcon icon={faCode} size="1x" />;
 }
