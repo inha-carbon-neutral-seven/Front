@@ -5,13 +5,13 @@ function MessageSource({ message }) {
       {message.input && (
         <div className="border m-1 rounded">
           <div className="bg-gray-50/50 pl-1 my-2 text-green-600">input</div>
-          <div className="pl-4">{message.input}</div>
+          <pre className="pl-4">{message.input}</pre>
         </div>
       )}
       {message.output && (
         <div className="border m-1 rounded">
           <div className="bg-gray-50/50 pl-1 my-2 text-blue-600">output</div>
-          <div className="pl-4">{message.output}</div>
+          <pre className="pl-4">{message.output}</pre>
         </div>
       )}
     </div>
