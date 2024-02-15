@@ -43,7 +43,7 @@ function UserInput({ submitButtonRef }) {
       dispatch(setSentMessage(message));
 
       try {
-        const response = await fetch("http://165.246.75.159:10100/generate", {
+        await fetch("http://165.246.75.159:10100/generate", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -63,6 +63,15 @@ function UserInput({ submitButtonRef }) {
             //   const output = source.output;
             //   console.log(input, output);
             // }
+
+            if (res.type === "chart") {
+              const chart = res.chart;
+
+              console.log(chart);
+              // TODO 1: 대시보드에 차트 아이콘이 반짝여야 함
+              // TODO 2: const chart로 페이징과 함께 "새 차트"를 확인할 수 있어야 함
+              // TODO 3: 대시보드 차트 아이콘을 클릭하면 가장 최신 차트가 먼저 보여야 함
+            }
 
             dispatch(setAIAnswer(res.message, res.sources));
             dispatch(updateAppState("response_received"));
