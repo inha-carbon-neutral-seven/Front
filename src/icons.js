@@ -134,7 +134,7 @@ export function CodeIcon() {
   return <FontAwesomeIcon icon={faCode} size="1x" />;
 }
 
-export function DarckModeIcon({ darkMode, setDarkMode }) {
+export function DarkModeIcon({ darkMode, setDarkMode }) {
   const [icon, setIcon] = useState(faMoon);
 
   const handleMouseEnter = () => {

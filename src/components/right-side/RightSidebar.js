@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import DashSidebar from "../Data/DashSidebar";
 import DOCViewer from "../Data/DOCViewer";
 import RecapViewer from "../Data/RecapViewer";
-import { ChartAnalysis, CaretDown, BinocularIcon, Question, RecapIcon, DarckModeIcon } from "../../icons";
+import { ChartAnalysis, CaretDown, BinocularIcon, Question, RecapIcon, DarkModeIcon } from "../../icons";
 import { useSelector } from "react-redux";
 
 function RightSidebar({ page, setSidebarWidth }) {
@@ -136,11 +136,11 @@ function RightSidebar({ page, setSidebarWidth }) {
         {width > 0 && <div className=" px-1 w-full h-full overflow-auto">{renderContent()}</div>}
       </aside>
 
-      <aside className="max-h-[90vh] backdrop-blur-xl bg-white/80 flex-shrink-0 drop-shadow-lg rounded-[12px] overflow-hidden  w-12">
+      <aside className="max-h-[90vh] backdrop-blur-xl dark:bg-[rgb(70,90,109)] flex-shrink-0 drop-shadow-lg rounded-[12px] overflow-hidden  w-12">
         <div className="flex flex-col items-center absolute top-0">
           <button
             onClick={() => toggleSidebar(0)}
-            className="toggle-sidebar-btn h-12 w-12 hover:bg-blue-500 hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200"
+            className="toggle-sidebar-btn h-12 w-12 hover:dark:bg-[rgb(106,141,173)] hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200"
             title="Collapse/Expand"
           >
             <CaretDown width={width} />
@@ -151,7 +151,9 @@ function RightSidebar({ page, setSidebarWidth }) {
             className={`${
               showFileBtn
                 ? `toggle-sidebar-btn h-12 w-12 ${
-                    activeButton === "fileIcon" ? "bg-blue-500 text-white shadow-lg scale-110" : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
+                    activeButton === "fileIcon"
+                      ? "dark:bg-[rgb(106,141,173)] text-white shadow-lg scale-110"
+                      : "hover:dark:bg-[rgb(106,141,173)] hover:text-white hover:shadow-lg"
                   } ${newBtn === "file" ? "blink" : ""}`
                 : "scale-0 opacity-0"
             } transform transition duration-200`}
@@ -165,7 +167,9 @@ function RightSidebar({ page, setSidebarWidth }) {
             className={`${
               showRecapBtn
                 ? `toggle-sidebar-btn h-12 w-12 ${
-                    activeButton === "recap" ? "bg-blue-500 text-white shadow-lg scale-110" : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
+                    activeButton === "recap"
+                      ? "dark:bg-[rgb(106,141,173)] text-white shadow-lg scale-110"
+                      : "hover:dark:bg-[rgb(106,141,173)] hover:text-white hover:shadow-lg"
                   } ${newBtn === "recap" ? "blink" : ""}`
                 : "scale-0 opacity-0"
             } transform transition duration-200`}
@@ -179,7 +183,9 @@ function RightSidebar({ page, setSidebarWidth }) {
             className={`${
               showChartBtn
                 ? `toggle-sidebar-btn h-12 w-12 ${
-                    activeButton === "chartAnalysis" ? "bg-blue-500 text-white shadow-lg scale-110" : "hover:bg-blue-500 hover:text-white hover:shadow-lg"
+                    activeButton === "chartAnalysis"
+                      ? "dark:bg-[rgb(106,141,173)] text-white shadow-lg scale-110"
+                      : "hover:dark:bg-[rgb(106,141,173)] hover:text-white hover:shadow-lg"
                   } ${newBtn === "chart" ? "blink" : ""}`
                 : "scale-0 opacity-0"
             } transform transition duration-200`}
@@ -189,13 +195,13 @@ function RightSidebar({ page, setSidebarWidth }) {
           </button>
         </div>
         <div className="flex flex-col items-center absolute bottom-0">
-          <button className="toggle-sidebar-btn h-12 w-12 hover:bg-blue-500 hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200 ">
-            <DarckModeIcon darkMode={darkMode} setDarkMode={setDarkMode} />
+          <button className="toggle-sidebar-btn h-12 w-12 hover:dark:bg-[rgb(106,141,173)] hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200 ">
+            <DarkModeIcon darkMode={darkMode} setDarkMode={setDarkMode} />
           </button>
 
           <button
             onClick={() => toggleButton("question")}
-            className="toggle-sidebar-btn h-12 w-12 hover:bg-blue-500 hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200"
+            className="toggle-sidebar-btn h-12 w-12 hover:dark:bg-[rgb(106,141,173)] hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200"
             title="Help/Info"
           >
             <Question />
