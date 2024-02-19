@@ -44,7 +44,7 @@ function UserInput({ submitButtonRef }) {
       dispatch(setSentMessage(message));
 
       try {
-        await fetch("http://165.246.75.159:10100/generate", {
+        await fetch("http://165.246.75.159:10100/debug/generate", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

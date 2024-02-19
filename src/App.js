@@ -10,8 +10,8 @@ function App() {
   const [sidebarWidth, setSidebarWidth] = useState(300);
 
   return (
-    <div className="w-full h-screen bg-gradient-to-br from-beaver-3 to-beaver-lightbrown flex flex-col overflow-y-auto">
-      <Header />
+    <div className="w-full h-screen bg-gradient-to-br from-[rgb(247,247,247)] to-[rgb(230,230,230)] dark:from-[rgb(60,63,68)] dark:to-[rgb(45,47,51)] flex flex-col overflow-y-auto">
+      <Header param={handlePage} />
 
       <div className="flex flex-grow mt-20 mb-2 py-1 w-4/5 place-self-center overflow-y-auto">
         <div className="flex-grow" style={{ maxWidth: "100%" }}>

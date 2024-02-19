@@ -19,9 +19,11 @@ import {
   faListCheck,
   faBinoculars,
   faCode,
+  faCircleHalfStroke,
+  faMoon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { faPaperPlane, faBell } from "@fortawesome/free-regular-svg-icons";
+import { faPaperPlane, faBell, faSun } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export function Expandicon() {
@@ -68,14 +70,7 @@ export function Checkicon() {
 }
 
 export function Bellicon() {
-  return (
-    <FontAwesomeIcon
-      icon={faBell}
-      size="lg"
-      style={{ color: "#ffffff" }}
-      shake
-    />
-  );
+  return <FontAwesomeIcon icon={faBell} size="lg" style={{ color: "#ffffff" }} shake />;
 }
 
 export function Spinnericon() {
@@ -121,14 +116,7 @@ export function CaretDown({ width }) {
     }
   }, [width]);
 
-  return (
-    <FontAwesomeIcon
-      icon={faCaretDown}
-      size="2x"
-      rotation={rotation}
-      style={{ transition: "transform 0.5s" }}
-    />
-  );
+  return <FontAwesomeIcon icon={faCaretDown} size="2x" rotation={rotation} style={{ transition: "transform 0.5s" }} />;
 }
 export function Question() {
   return <FontAwesomeIcon icon={faQuestion} size="2x" />;
@@ -144,4 +132,24 @@ export function BinocularIcon() {
 
 export function CodeIcon() {
   return <FontAwesomeIcon icon={faCode} size="1x" />;
+}
+
+export function DarkModeIcon({ darkMode, setDarkMode }) {
+  const [icon, setIcon] = useState(faMoon);
+
+  const handleMouseEnter = () => {
+    setIcon(faCircleHalfStroke);
+  };
+
+  const handleMouseLeave = () => {
+    setIcon(darkMode ? faMoon : faSun);
+  };
+
+  const handleClick = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    setIcon(newDarkMode ? faMoon : faSun);
+  };
+
+  return <FontAwesomeIcon icon={icon} size="2x" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick} />;
 }
