@@ -4,7 +4,12 @@ import { Sendicon, Loadicon } from "../../../icons";
 import { useDispatch, useSelector } from "react-redux";
 import FileInput from "./FileInputButton";
 import { updateAppState } from "../../../reducers/appStateReducer";
-import { setAIAnswer, setLoading, setMessage, setSentMessage } from "../../../reducers/chatReducers";
+import {
+  setAIAnswer,
+  setLoading,
+  setMessage,
+  setSentMessage,
+} from "../../../reducers/chatReducers";
 import { setChartdata } from "../../../reducers/dataReducers";
 
 // 사용자 메시지 input 컴포넌트
@@ -52,14 +57,6 @@ function UserInput({ submitButtonRef }) {
           .then((res) => {
             console.log(res);
 
-            // const sources = res.sources;
-
-            // for (const source of sources) {
-            //   const input = source.input;
-            //   const output = source.output;
-            //   console.log(input, output);
-            // }
-
             if (res.type === "chart") {
               const chart = res.chart;
               if (chart.type && chart.title && chart.labels && chart.series) {
@@ -90,20 +87,29 @@ function UserInput({ submitButtonRef }) {
     <div className="bg-white border-t border-gray-200 py-2 w-full absolute bottom-0 left-0">
       <div className="flex items-center space-x-2 px-4">
         <FileInput />
-        <form className="flex flex-grow" onSubmit={messageHandler} disabled={loading}>
+        <form
+          className="flex flex-grow"
+          onSubmit={messageHandler}
+          disabled={loading}
+        >
           <input
             className="flex-grow rounded-lg w-full px-3 py-2 border border-gray-300"
             placeholder="Type your message"
             type="text"
             value={message}
-            disabled={!isConnected || ["response_waiting", "analyzing"].includes(currentState)}
+            disabled={
+              !isConnected ||
+              ["response_waiting", "analyzing"].includes(currentState)
+            }
             onChange={(e) => dispatch(setMessage(e.target.value))}
           />
           <Button
             ref={submitButtonRef}
             type="submit"
             variant="outline"
-            className={`ml-2 ${isButtonActive ? "active-button-class" : "disabled-button-class"}`}
+            className={`ml-2 ${
+              isButtonActive ? "active-button-class" : "disabled-button-class"
+            }`}
             disabled={!isButtonActive || loading}
           >
             {loading ? <Loadicon /> : <Sendicon />}

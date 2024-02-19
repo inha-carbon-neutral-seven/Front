@@ -30,10 +30,13 @@ function ChatLogs() {
             {message.user === "ai" && (
               <img src={beaver} className="h-12 rounded-full my-5 ml-5" />
             )}
-            {/* {console.log(message)}
-            {console.log(message.message)} */}
+            {/* message.message
+              1. user의 경우 : string
+              2. ai의 경우 : [string, [source]]. 
+              2-1. source : { input: string, output: string }. message.message[1][0] 으로 접근 가능
+            */}
             <li
-              key={message.message[0] + index}
+              key={index + message.message[0]}
               className={`relative p-3 m-5 rounded-md max-w-2/3 h-auto overflow-hidden ${
                 message.user === "user"
                   ? "bg-blue-200 ml-auto mr-1"
@@ -48,18 +51,25 @@ function ChatLogs() {
                   isNew={message.isNew}
                 />
               )}
+              {/* ai message인 경우에만, source 보기 기능을 지원한다 */}
               {message.user === "ai" && (
                 <div className="flex justify-center items-center">
                   {showSourceList[index] && (
                     <MessageSource message={message.message[1][0]} />
                   )}
-                  <button
-                    className="border absolute right-1 bottom-1"
-                    onClick={() => handleBtnClick(index)}
-                    title="Show Code"
-                  >
-                    <CodeIcon />
-                  </button>
+
+                  {/* source a.k.a. message.message[1] 가 빈 list 이면, source보기 버튼을 표시하지 않는다. */}
+                  {/* source의 output이 빈 문자열이여도, source보기 버튼을 표시하지 않는다. */}
+                  {message.message[1].length !== 0 &&
+                    message.message[1][0].output !== "" && (
+                      <button
+                        className="border absolute right-1 bottom-1"
+                        onClick={() => handleBtnClick(index)}
+                        title="Show Code"
+                      >
+                        <CodeIcon />
+                      </button>
+                    )}
                 </div>
               )}
             </li>
