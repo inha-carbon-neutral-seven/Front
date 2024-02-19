@@ -136,11 +136,11 @@ function RightSidebar({ page, setSidebarWidth }) {
         {width > 0 && <div className=" px-1 w-full h-full overflow-auto">{renderContent()}</div>}
       </aside>
 
-      <aside className="max-h-[90vh] backdrop-blur-xl dark:bg-[rgb(70,90,109)] flex-shrink-0 drop-shadow-lg rounded-[12px] overflow-hidden  w-12">
+      <aside className="max-h-[90vh] backdrop-blur-xl dark:bg-[rgb(253,228,234)] flex-shrink-0 drop-shadow-lg rounded-[12px] overflow-hidden  w-12">
         <div className="flex flex-col items-center absolute top-0">
           <button
             onClick={() => toggleSidebar(0)}
-            className="toggle-sidebar-btn h-12 w-12 hover:dark:bg-[rgb(106,141,173)] hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200"
+            className="toggle-sidebar-btn h-12 w-12 hover:dark:bg-beaver-2 hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200"
             title="Collapse/Expand"
           >
             <CaretDown width={width} />
@@ -153,7 +153,7 @@ function RightSidebar({ page, setSidebarWidth }) {
                 ? `toggle-sidebar-btn h-12 w-12 ${
                     activeButton === "fileIcon"
                       ? "dark:bg-[rgb(106,141,173)] text-white shadow-lg scale-110"
-                      : "hover:dark:bg-[rgb(106,141,173)] hover:text-white hover:shadow-lg"
+                      : "hover:dark:bg-beaver-2 hover:text-white hover:shadow-lg"
                   } ${newBtn === "file" ? "blink" : ""}`
                 : "scale-0 opacity-0"
             } transform transition duration-200`}
@@ -169,7 +169,7 @@ function RightSidebar({ page, setSidebarWidth }) {
                 ? `toggle-sidebar-btn h-12 w-12 ${
                     activeButton === "recap"
                       ? "dark:bg-[rgb(106,141,173)] text-white shadow-lg scale-110"
-                      : "hover:dark:bg-[rgb(106,141,173)] hover:text-white hover:shadow-lg"
+                      : "hover:dark:bg-beaver-2 hover:text-white hover:shadow-lg"
                   } ${newBtn === "recap" ? "blink" : ""}`
                 : "scale-0 opacity-0"
             } transform transition duration-200`}
@@ -195,13 +195,13 @@ function RightSidebar({ page, setSidebarWidth }) {
           </button>
         </div>
         <div className="flex flex-col items-center absolute bottom-0">
-          <button className="toggle-sidebar-btn h-12 w-12 hover:dark:bg-[rgb(106,141,173)] hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200 ">
+          <button className="toggle-sidebar-btn h-12 w-12 hover:dark:bg-beaver-2 hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200 ">
             <DarkModeIcon darkMode={darkMode} setDarkMode={setDarkMode} />
           </button>
 
           <button
             onClick={() => toggleButton("question")}
-            className="toggle-sidebar-btn h-12 w-12 hover:dark:bg-[rgb(106,141,173)] hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200"
+            className="toggle-sidebar-btn h-12 w-12 hover:dark:bg-beaver-2 hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200"
             title="Help/Info"
           >
             <Question />
