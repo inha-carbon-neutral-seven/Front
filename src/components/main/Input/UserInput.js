@@ -4,12 +4,8 @@ import { Sendicon, Loadicon } from "../../../icons";
 import { useDispatch, useSelector } from "react-redux";
 import FileInput from "./FileInputButton";
 import { updateAppState } from "../../../reducers/appStateReducer";
-import {
-  setAIAnswer,
-  setLoading,
-  setMessage,
-  setSentMessage,
-} from "../../../reducers/chatReducers";
+import { setAIAnswer, setLoading, setMessage, setSentMessage } from "../../../reducers/chatReducers";
+import { setChartdata } from "../../../reducers/dataReducers";
 
 // 사용자 메시지 input 컴포넌트
 // 파일 input(FileInputButton.js), 메시지 input, 전송 버튼을 포함한다.
@@ -66,11 +62,15 @@ function UserInput({ submitButtonRef }) {
 
             if (res.type === "chart") {
               const chart = res.chart;
+              if (chart.type && chart.title && chart.labels && chart.series) {
+                dispatch(setChartdata(chart));
+              } else {
+                console.log("Invalid chart data");
 
-              console.log(chart);
-              // TODO 1: 대시보드에 차트 아이콘이 반짝여야 함
-              // TODO 2: const chart로 페이징과 함께 "새 차트"를 확인할 수 있어야 함
-              // TODO 3: 대시보드 차트 아이콘을 클릭하면 가장 최신 차트가 먼저 보여야 함
+                // TODO 1: 대시보드에 차트 아이콘이 반짝여야 함
+                // TODO 2: const chart로 페이징과 함께 "새 차트"를 확인할 수 있어야 함
+                // TODO 3: 대시보드 차트 아이콘을 클릭하면 가장 최신 차트가 먼저 보여야 함
+              }
             }
 
             dispatch(setAIAnswer(res.message, res.sources));
@@ -90,29 +90,20 @@ function UserInput({ submitButtonRef }) {
     <div className="bg-white border-t border-gray-200 py-2 w-full absolute bottom-0 left-0">
       <div className="flex items-center space-x-2 px-4">
         <FileInput />
-        <form
-          className="flex flex-grow"
-          onSubmit={messageHandler}
-          disabled={loading}
-        >
+        <form className="flex flex-grow" onSubmit={messageHandler} disabled={loading}>
           <input
             className="flex-grow rounded-lg w-full px-3 py-2 border border-gray-300"
             placeholder="Type your message"
             type="text"
             value={message}
-            disabled={
-              !isConnected ||
-              ["response_waiting", "analyzing"].includes(currentState)
-            }
+            disabled={!isConnected || ["response_waiting", "analyzing"].includes(currentState)}
             onChange={(e) => dispatch(setMessage(e.target.value))}
           />
           <Button
             ref={submitButtonRef}
             type="submit"
             variant="outline"
-            className={`ml-2 ${
-              isButtonActive ? "active-button-class" : "disabled-button-class"
-            }`}
+            className={`ml-2 ${isButtonActive ? "active-button-class" : "disabled-button-class"}`}
             disabled={!isButtonActive || loading}
           >
             {loading ? <Loadicon /> : <Sendicon />}

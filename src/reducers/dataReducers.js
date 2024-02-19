@@ -124,7 +124,7 @@ function dataReducer(state = initialState, action) {
     case SET_CHART_DATA:
       return {
         ...state,
-        charts: action.payload,
+        charts: [...state.charts, action.payload],
       };
     case SET_RECAP:
       return {
