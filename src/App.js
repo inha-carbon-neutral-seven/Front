@@ -1,25 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ChatScreen from "./components/main/Chat/ChatScreen";
 import Header from "./components/top-side/Header";
 import DashBoard from "./components/Data/DashBoard";
-import { useDispatch, useSelector } from "react-redux";
 import RightSidebar from "./components/right-side/RightSidebar";
 
 function App() {
-  const dispatch = useDispatch();
-
   const [showComponent, setShowComponent] = useState(0);
   const [error, setError] = useState("");
   const [sidebarWidth, setSidebarWidth] = useState(300);
 
-  // 페이지 이동 함수
-  const handlePage = (p) => {
-    setShowComponent(p);
-  };
-
   return (
     <div className="w-full h-screen bg-gradient-to-br from-beaver-3 to-beaver-lightbrown flex flex-col overflow-y-auto">
-      <Header param={handlePage} />
+      <Header />
 
       <div className="flex flex-grow mt-20 mb-2 py-1 w-4/5 place-self-center overflow-y-auto">
         <div className="flex-grow" style={{ maxWidth: "100%" }}>
