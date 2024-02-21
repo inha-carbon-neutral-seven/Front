@@ -75,7 +75,7 @@ function FileInput() {
 
       <input type="file" onChange={handleFileChange} ref={fileInput} style={{ display: "none" }} accept=".csv, .pdf, .docx, .doc, .txt" />
       <button
-        className="bg-transparent text-black/80 font-semibold hover:text-black/80 hover:bg-[#F6A683] py-2 px-4 border border-black/80 hover:border-transparent rounded-lg"
+        className="bg-transparent text-black/80 font-semibold hover:text-black/80 hover:bg-beaver-2 hover:text-white py-2 px-4 border border-black/80 hover:border-transparent rounded-lg"
         onClick={openFileInput}
       >
         Upload

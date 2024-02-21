@@ -19,9 +19,11 @@ import {
   faListCheck,
   faBinoculars,
   faCode,
+  faCircleHalfStroke,
+  faMoon,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { faPaperPlane, faBell } from "@fortawesome/free-regular-svg-icons";
+import { faPaperPlane, faBell, faSun } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export function Expandicon() {
@@ -68,14 +70,7 @@ export function Checkicon() {
 }
 
 export function Bellicon() {
-  return (
-    <FontAwesomeIcon
-      icon={faBell}
-      size="lg"
-      style={{ color: "#ffffff" }}
-      shake
-    />
-  );
+  return <FontAwesomeIcon icon={faBell} size="lg" style={{ color: "#ffffff" }} shake />;
 }
 
 export function Spinnericon() {
@@ -109,26 +104,19 @@ export function ChartAnalysis() {
   return <FontAwesomeIcon icon={faChartLine} size="xl" />;
 }
 export function CaretDown({ width }) {
-  const [rotation, setRotation] = useState(90);
+  const [rotation, setRotation] = useState(270);
   const vwToPx = (vw) => {
     return (parseFloat(vw) * window.innerWidth) / 100;
   };
   useEffect(() => {
     if (width < vwToPx(30)) {
-      setRotation(90);
-    } else if (width > vwToPx(30)) {
       setRotation(270);
+    } else if (width == vwToPx(30)) {
+      setRotation(90);
     }
   }, [width]);
 
-  return (
-    <FontAwesomeIcon
-      icon={faCaretDown}
-      size="2x"
-      rotation={rotation}
-      style={{ transition: "transform 0.5s" }}
-    />
-  );
+  return <FontAwesomeIcon icon={faCaretDown} size="2x" rotation={rotation} style={{ transition: "transform 0.5s" }} />;
 }
 export function Question() {
   return <FontAwesomeIcon icon={faQuestion} size="2x" />;
@@ -144,4 +132,24 @@ export function BinocularIcon() {
 
 export function CodeIcon() {
   return <FontAwesomeIcon icon={faCode} size="1x" />;
+}
+
+export function DarkModeIcon({ darkMode, setDarkMode }) {
+  const [icon, setIcon] = useState(faMoon);
+
+  const handleMouseEnter = () => {
+    setIcon(faCircleHalfStroke);
+  };
+
+  const handleMouseLeave = () => {
+    setIcon(darkMode ? faMoon : faSun);
+  };
+
+  const handleClick = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    setIcon(newDarkMode ? faMoon : faSun);
+  };
+
+  return <FontAwesomeIcon icon={icon} size="2x" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick} />;
 }
