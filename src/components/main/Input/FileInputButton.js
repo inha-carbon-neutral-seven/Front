@@ -77,7 +77,11 @@ function FileInput() {
       {showAlert && <Alert />}
 
       <input type="file" onChange={handleFileChange} ref={fileInput} style={{ display: "none" }} accept=".csv, .pdf, .docx, .doc, .txt" />
-      <div className="dark:hover:text-[rgb(242,242,242)] hover:bg-[rgb(191,115,115)] text-[rgb(232,240,240)] dark:hover:text-[rgb(217,148,132)] bg-[rgb(217,148,132)] dark:bg-[rgb(45,47,51)]  rounded-lg transition-colors ">
+      <div
+        className={`dark:hover:text-[rgb(242,242,242)] hover:bg-[rgb(191,115,115)] 
+      text-[rgb(232,240,240)] dark:hover:text-[rgb(217,148,132)] bg-[rgb(217,148,132)]
+      dark:bg-[rgb(45,47,51)]  rounded-lg transition-colors `}
+      >
         <button className="font-semibold py-2 px-4 hover:border-transparent duration-150 ease-in-out" onClick={openFileInput}>
           Upload
         </button>

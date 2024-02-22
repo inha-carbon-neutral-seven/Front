@@ -38,7 +38,7 @@ function DashSidebar() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center w-full h-full">
+    <div className="flex flex-col justify-center items-center w-full h-full ">
       {currentChart ? (
         <div className="w-full">
           <div className="button-container flex justify-center mb-4">
@@ -49,16 +49,14 @@ function DashSidebar() {
               오른쪽 →
             </button>
           </div>
-          <div className="chart-container p-10 w-full">
+          <div className="chart-container p-10 w-full dark:bg-[rgb(232,240,240)]">
             <ChartComponent chartData={currentChart} />
           </div>
         </div>
       ) : (
-        <div className=" dark:bg-gray-800">
-          <div className=" text-center">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">분석할 파일이 존재하지 않습니다 :(</h1>
-            <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">분석할 파일을 업로드해주세요.</p>
-          </div>
+        <div className=" text-center">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">분석할 파일이 존재하지 않습니다 :(</h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">분석할 파일을 업로드해주세요.</p>
         </div>
       )}
     </div>

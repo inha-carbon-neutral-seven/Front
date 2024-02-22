@@ -61,7 +61,7 @@ function InitialGuide() {
           <img src={beaver} className="h-20 w-20 rounded-full mr-4" />
           비버.ai 사용법
         </p>
-        <span className=""></span>
+        <div className="h-[30px]"></div>
         <p className="text-lg font-bold text-center text-[rgb(66,66,66)] dark:text-[rgb(230,230,230)]">
           비버는 일반적인 챗봇🤖 기능을 제공하며, 파일을 첨부하면 파일 종류에 따라 질문응답이 가능합니다.
         </p>

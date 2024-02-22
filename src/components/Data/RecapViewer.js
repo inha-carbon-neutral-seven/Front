@@ -20,9 +20,9 @@ function RecapViewer() {
     }
   }, [recap]);
   return (
-    <div className="p-4">
+    <div className="p-4 h-full flex-row text-[rgb()] dark:text-[rgb(232,240,240)]">
       <h1 className="text-2xl font-bold text-center text-gray-900 mb-2">{title}</h1>
-      <h3 className="text-xl font-semibold text-center text-gray-700 mb-4">{subtitle}</h3>
+      <h3 className="text-xl font-semibold text-center">{subtitle}</h3>
       <div className="text-gray-600 mb-4">
         {summary.split("\n").map((line, index) => (
           <p key={index}>{line}</p>

@@ -33,22 +33,22 @@ const commonOptions = {
   // },
 };
 
-// const lineChartOptions = {
-//   ...commonOptions,
-//   // Add or override options specific to line charts
-//   chart: {
-//     ...commonOptions.chart,
-//     type: "line",
-//   },
-//   stroke: {
-//     curve: "smooth",
-//     width: 2,
-//   },
-//   markers: {
-//     size: 4,
-//   },
-//   plotOptions: generateplotOptions("line"),
-// };
+const lineChartOptions = {
+  ...commonOptions,
+  // Add or override options specific to line charts
+  chart: {
+    ...commonOptions.chart,
+    type: "line",
+  },
+  stroke: {
+    curve: "smooth",
+    width: 2,
+  },
+  markers: {
+    size: 4,
+  },
+  plotOptions: generateplotOptions("line"),
+};
 
 // const areaChartOptions = {
 //   ...commonOptions,
@@ -211,18 +211,18 @@ const commonOptions = {
 //   },
 // };
 
-// const barChartOptions = {
-//   ...commonOptions,
-//   chart: {
-//     ...commonOptions.chart,
-//     type: "bar",
-//   },
-//   plotOptions: {
-//     bar: {
-//       horizontal: false,
-//     },
-//   },
-// };
+const barChartOptions = {
+  ...commonOptions,
+  chart: {
+    ...commonOptions.chart,
+    type: "bar",
+  },
+  plotOptions: {
+    bar: {
+      horizontal: false,
+    },
+  },
+};
 
 const pieChartOptions = {
   ...commonOptions,
@@ -259,7 +259,6 @@ const pieChartOptions = {
 // };
 
 export const generateOptions = (type, title, seriesConfig, xaxisConfig) => {
-  console.log("generateOptions", type, title, seriesConfig);
   let options = {
     series: seriesConfig,
     chart: {
@@ -288,44 +287,45 @@ export const generateOptions = (type, title, seriesConfig, xaxisConfig) => {
 
     xaxis: xaxisConfig,
   };
-  // switch (type) {
-  //   case "line":
-  //     options = { ...options, ...lineChartOptions };
-  //     break;
-  //   case "area":
-  //     options = { ...options, ...areaChartOptions };
-  //     break;
-  //   case "bar":
-  //     options = { ...options, ...barChartOptions };
-  //     break;
-  //   case "column":
-  //     options = { ...options, ...columnChartOptions };
-  //     break;
-  //   case "boxPlot":
-  //     options = { ...options, ...boxPlotChartOptions };
-  //     break;
-  //   case "rangeBar":
-  //     options = { ...options, ...rangeBarChartOptions };
-  //     break;
-  //   case "rangeArea":
-  //     options = { ...options, ...rangeAreaChartOptions };
-  //     break;
-  //   case "heatmap":
-  //     options = { ...options, ...heatmapChartOptions };
-  //     break;
-  //   case "treemap":
-  //     options = { ...options, ...treemapChartOptions };
-  //     break;
-  //   case "radar":
-  //     options = { ...options, ...radarChartOptions };
-  //     break;
-  //   case "radialBar":
-  //     options = { ...options, ...radialBarChartOptions };
-  //     break;
+  switch (type) {
+    case "line":
+      options = { ...options, ...lineChartOptions };
+      break;
+    case "bar":
+      options = { ...options, ...barChartOptions };
+      break;
+    //   case "area":
+    //     options = { ...options, ...areaChartOptions };
+    //     break;
 
-  //   default:
-  //     break;
-  // }
+    //   case "column":
+    //     options = { ...options, ...columnChartOptions };
+    //     break;
+    //   case "boxPlot":
+    //     options = { ...options, ...boxPlotChartOptions };
+    //     break;
+    //   case "rangeBar":
+    //     options = { ...options, ...rangeBarChartOptions };
+    //     break;
+    //   case "rangeArea":
+    //     options = { ...options, ...rangeAreaChartOptions };
+    //     break;
+    //   case "heatmap":
+    //     options = { ...options, ...heatmapChartOptions };
+    //     break;
+    //   case "treemap":
+    //     options = { ...options, ...treemapChartOptions };
+    //     break;
+    //   case "radar":
+    //     options = { ...options, ...radarChartOptions };
+    //     break;
+    //   case "radialBar":
+    //     options = { ...options, ...radialBarChartOptions };
+    //     break;
+
+    //   default:
+    //     break;
+  }
   return options;
 };
 export const generatePieOptions = (type, title, seriesConfig, labelsConfig) => {

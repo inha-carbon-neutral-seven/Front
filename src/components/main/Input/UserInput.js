@@ -10,7 +10,7 @@ import { setChartdata } from "../../../reducers/dataReducers";
 // 사용자 메시지 input 컴포넌트
 // 파일 input(FileInputButton.js), 메시지 input, 전송 버튼을 포함한다.
 // 전송 버튼은 메시지 input만 전송한다.
-function UserInput({ submitButtonRef }) {
+function UserInput({ submitButtonRef, setisChatlog }) {
   // App의 상태변수
   const currentState = useSelector((state) => state.appState.currentState);
   const isConnected = useSelector((state) => state.connected.isConnected);
@@ -37,6 +37,7 @@ function UserInput({ submitButtonRef }) {
       dispatch(setLoading(true));
       dispatch(setMessage(""));
       dispatch(setSentMessage(message));
+      setisChatlog(true);
 
       try {
         await fetch("http://165.246.75.159:10100/generate", {
@@ -87,12 +88,12 @@ function UserInput({ submitButtonRef }) {
   };
 
   return (
-    <div className="shadow-xl bg-[rgb(217,148,132)] dark:bg-[rgb(45,47,51)] border-gray-200 py-2 w-full absolute bottom-0 rounded-[12px]">
-      <div className="flex items-center space-x-2 px-4">
+    <div className="h-[50px] shadow-xl bg-[rgb(217,148,132)] dark:bg-[rgb(45,47,51)] border-gray-200 rounded-[12px]">
+      <div className="flex flex-row items-center h-full space-x-2 px-4">
         <FileInput />
         <form className="flex flex-grow" onSubmit={messageHandler} disabled={loading}>
           <input
-            className="flex-grow rounded-lg w-full px-3 dark:bg-[rgb(232,240,240)] py-2 border border-gray-300"
+            className="flex-grow rounded-lg w-full px-3 bg-white dark:bg-[rgb(232,240,240)] py-2 my-auto border border-gray-300"
             placeholder="Type your message"
             type="text"
             value={message}
