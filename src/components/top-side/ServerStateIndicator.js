@@ -44,7 +44,7 @@ const ServerStatusIndicator = () => {
   }, []);
 
   return (
-    <div className="flex ml-auto items-center space-x-4 drop-shadow-lg">
+    <div className="flex mx-3 items-center space-x-4 drop-shadow-lg">
       <div className="inline bg-white rounded-lg p-2">
         {isConnected === "full-connected" && (
           <>

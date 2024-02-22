@@ -5,7 +5,7 @@ import RecapViewer from "../Data/RecapViewer";
 import { ChartAnalysis, CaretDown, BinocularIcon, Question, RecapIcon, DarkModeIcon } from "../../icons";
 import { useSelector } from "react-redux";
 
-function RightSidebar({ page, setSidebarWidth }) {
+function RightSidebar() {
   // 이 컴포넌트에서 사용할 상태변수들.
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [width, setWidth] = useState(0); // RightSidebar width
@@ -123,21 +123,30 @@ function RightSidebar({ page, setSidebarWidth }) {
   }, [darkMode]);
 
   return (
-    <div className="flex h-full ">
-      <div className="w-1"></div>
+    <div className="flex flex-row max-w-[40vw] h-[100vh] justify-between">
       <aside
-        className="max-w-64 max-h-[90vh] mr-1 backdrop-blur-xl space-y-2 flex-shrink-0 drop-shadow-lg rounded-[12px] rounded-tl-[12px] overflow-hidden transform transition-all duration-100 ease-in-out flex flex-col justify-center items-center bg-white shadow-md rounded-lg"
+        className={`max-w-64 h-[100vh] backdrop-blur-xl space-y-2 
+        flex-shrink-0 drop-shadow-lg overflow-hidden
+         transform transition-all duration-100 ease-in-out 
+         flex flex-col justify-center items-center dark:bg-[rgb(30,30,35)]
+          bg-[rgb(204,153,146)] shadow-md rounded-l-lg`}
         style={{ width: width, transition: "width 500ms ease-in-out" }}
       >
         {width > 0 && <div className=" px-1 w-full h-full overflow-auto">{renderContent()}</div>}
       </aside>
 
-      <aside className="max-h-[90vh] backdrop-blur-xl bg-[rgb(242,231,220)] dark:bg-[rgb(253,228,234)] drop-shadow-lg rounded-[12px] overflow-hidden w-12">
-        <div className="flex flex-col items-center absolute top-0">
+      <aside
+        className={`flex-initial h-full w-[45px] backdrop-blur-xl 
+      bg-[rgb(191,115,115)] dark:bg-[rgb(20,20,20)] drop-shadow-lg 
+      overflow-hidden flex flex-col justify-between`}
+      >
+        <div className="flex flex-col items-center text-[rgb(232,240,240)] dark:text-[rgb(115,114,111)]">
           <button
             onClick={() => toggleSidebar(0)}
-            className="toggle-sidebar-btn h-12 w-12 hover:dark:bg-beaver-2 hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200"
-            title="Collapse/Expand"
+            className={`toggle-sidebar-btn h-12 w-12 hover:dark:text-beaver-2
+            dark:hover:text-[rgb(191,115,115)] hover:shadow-lg 
+            transform hover:scale-110 transition duration-200`}
+            title="확장/축소"
           >
             <CaretDown width={width} />
           </button>
@@ -148,12 +157,12 @@ function RightSidebar({ page, setSidebarWidth }) {
               showFileBtn
                 ? `toggle-sidebar-btn h-12 w-12 ${
                     activeButton === "fileIcon"
-                      ? "dark:bg-[rgb(106,141,173)] text-white shadow-lg scale-110"
-                      : "hover:dark:bg-beaver-2 hover:text-white hover:shadow-lg"
+                      ? "dark:bg-[rgb(106,141,173)]   shadow-lg scale-110"
+                      : "hover:dark:text-beaver-2 dark:hover:text-[rgb(191,115,115)] hover:shadow-lg"
                   } ${newBtn === "file" ? "blink" : ""}`
                 : "scale-0 opacity-0"
             } transform transition duration-200`}
-            title="File"
+            title="파일 보기"
           >
             <BinocularIcon />
           </button>
@@ -164,12 +173,12 @@ function RightSidebar({ page, setSidebarWidth }) {
               showRecapBtn
                 ? `toggle-sidebar-btn h-12 w-12 ${
                     activeButton === "recap"
-                      ? "dark:bg-[rgb(106,141,173)] text-white shadow-lg scale-110"
-                      : "hover:dark:bg-beaver-2 hover:text-white hover:shadow-lg"
+                      ? "dark:bg-[rgb(106,141,173)]   shadow-lg scale-110"
+                      : "hover:dark:text-beaver-2 dark:hover:text-[rgb(191,115,115)] hover:shadow-lg"
                   } ${newBtn === "recap" ? "blink" : ""}`
                 : "scale-0 opacity-0"
             } transform transition duration-200`}
-            title="Recap"
+            title="요약"
           >
             <RecapIcon />
           </button>
@@ -180,8 +189,8 @@ function RightSidebar({ page, setSidebarWidth }) {
               showChartBtn
                 ? `toggle-sidebar-btn h-12 w-12 ${
                     activeButton === "chartAnalysis"
-                      ? "dark:bg-[rgb(106,141,173)] text-white shadow-lg scale-110"
-                      : "hover:dark:bg-[rgb(106,141,173)] hover:text-white hover:shadow-lg"
+                      ? "dark:bg-[rgb(106,141,173)]   shadow-lg scale-110"
+                      : "hover:dark:text-[rgb(106,141,173)] dark:hover:text-[rgb(191,115,115)] hover:shadow-lg"
                   } ${newBtn === "chart" ? "blink" : ""}`
                 : "scale-0 opacity-0"
             } transform transition duration-200`}
@@ -190,14 +199,14 @@ function RightSidebar({ page, setSidebarWidth }) {
             <ChartAnalysis />
           </button>
         </div>
-        <div className="flex flex-col items-center absolute bottom-0">
-          <button className="toggle-sidebar-btn h-12 w-12 hover:dark:bg-beaver-2 hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200 ">
+        <div className="flex flex-col items-center text-[rgb(232,240,240)] dark:text-[rgb(115,114,111)]">
+          <button className="toggle-sidebar-btn h-12 w-12 hover:dark:text-beaver-2 dark:hover:text-[rgb(191,115,115)] hover:shadow-lg transform hover:scale-110 transition duration-200 ">
             <DarkModeIcon darkMode={darkMode} setDarkMode={setDarkMode} />
           </button>
 
           <button
             onClick={() => toggleButton("question")}
-            className="toggle-sidebar-btn h-12 w-12 hover:dark:bg-beaver-2 hover:text-white hover:shadow-lg transform hover:scale-110 transition duration-200"
+            className="toggle-sidebar-btn h-12 w-12 hover:dark:text-beaver-2 dark:hover:text-[rgb(191,115,115)] hover:shadow-lg transform hover:scale-110 transition duration-200"
             title="Help/Info"
           >
             <Question />

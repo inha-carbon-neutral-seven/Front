@@ -60,20 +60,22 @@ function ChatScreen() {
   };
 
   return (
-    <div className="flex-grow flex flex-col w-full h-full drop-shadow-lg max-h-[90vh] rounded-[12px] overflow-hidden">
-      {currentState === "init" && (
-        <div className="flex justify-center">
-          <InitialGuide />
-        </div>
-      )}
-      {currentState === "show_recommendations" && (
-        <div className="flex justify-center items-center h-full">
-          <Recommendations onRecommendationClick={handleRecommendationClick} />
-        </div>
-      )}
-      <div className="overflow-y-auto mb-14">{<ChatLogs /> /*채팅 메시지 출력*/}</div>
+    <div className="flex items-center flex-col w-full drop-shadow-lg h-[90vh] rounded-[12px]">
+      <div className="overflow-auto h-[90%] w-full">
+        {currentState === "init" && (
+          <div className="flex justify-center">
+            <InitialGuide />
+          </div>
+        )}
+        {currentState === "show_recommendations" && (
+          <div className="flex justify-center items-center h-full">
+            <Recommendations onRecommendationClick={handleRecommendationClick} />
+          </div>
+        )}
+        <div className="overflow-y-auto mb-14">{<ChatLogs /> /*채팅 메시지 출력*/}</div>
+        <UserInput submitButtonRef={submitButtonRef} />
+      </div>
       {/* 사용자 메시지 input */}
-      <UserInput submitButtonRef={submitButtonRef} />
     </div>
   );
 }

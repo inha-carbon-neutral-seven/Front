@@ -21,7 +21,12 @@ function Recommendations({ onRecommendationClick }) {
             {recommendations.map((recommendation, index) => (
               <li
                 key={index}
-                className="w-[40%] h-auto rounded-[15px] border-[3px] border-[#D1D4DA] break-words hover:border-gray-500 ml-[70px] mb-2 p-3 cursor-pointer"
+                className={`w-[40%] h-auto rounded-[15px] shadow-md
+                bg-[rgb(255,255,255)] dark:bg-[rgb(45,47,51)]
+                text-[rgb(66,66,66)] dark:text-[rgb(196,196,196)]
+                dark:hover:bg-[rgb(60,63,68)] hover:bg-[rgb(242,242,242)] hover:shadow-lg
+                break-word
+                ml-[70px] mb-2 p-3 cursor-pointer`}
                 onClick={() => onRecommendationClick(recommendation)}
               >
                 {recommendation}

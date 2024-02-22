@@ -21,11 +21,19 @@ const DOCViewer = () => {
   if (!fileURL) return null;
 
   if (fileType === "text/csv") {
-    return <CSVViewer />;
+    return (
+      <div className="bg-[rgb(232,240,240)]">
+        <CSVViewer />
+      </div>
+    );
   }
   const documentConfig = { uri: fileURL, fileType: fileType };
 
-  return <DocViewer pluginRenderers={DocViewerRenderers} documents={[documentConfig]} />;
+  return (
+    <div className="bg-[rgb(232,240,240)]">
+      <DocViewer pluginRenderers={DocViewerRenderers} documents={[documentConfig]} />;
+    </div>
+  );
 };
 
 export default DOCViewer;

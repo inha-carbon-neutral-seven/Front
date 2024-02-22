@@ -39,7 +39,7 @@ function UserInput({ submitButtonRef }) {
       dispatch(setSentMessage(message));
 
       try {
-        await fetch("http://165.246.75.159:10100/debug/generate", {
+        await fetch("http://165.246.75.159:10100/generate", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -87,27 +87,33 @@ function UserInput({ submitButtonRef }) {
   };
 
   return (
-    <div className="bg-white border-t border-gray-200 py-2 w-full absolute bottom-0 left-0">
+    <div className="shadow-xl bg-[rgb(217,148,132)] dark:bg-[rgb(45,47,51)] border-gray-200 py-2 w-full absolute bottom-0 rounded-[12px]">
       <div className="flex items-center space-x-2 px-4">
         <FileInput />
         <form className="flex flex-grow" onSubmit={messageHandler} disabled={loading}>
           <input
-            className="flex-grow rounded-lg w-full px-3 py-2 border border-gray-300"
+            className="flex-grow rounded-lg w-full px-3 dark:bg-[rgb(232,240,240)] py-2 border border-gray-300"
             placeholder="Type your message"
             type="text"
             value={message}
             disabled={!isConnected || ["response_waiting", "analyzing"].includes(currentState)}
             onChange={(e) => dispatch(setMessage(e.target.value))}
           />
-          <Button
-            ref={submitButtonRef}
-            type="submit"
-            variant="outline"
-            className={`ml-2 ${isButtonActive ? "active-button-class" : "disabled-button-class"}`}
-            disabled={!isButtonActive || loading}
+          <div
+            className={`bg-[rgb(217,148,132)] dark:bg-transparent dark:text-[rgb(232,240,240)] text-[rgb(242,242,242)] font-semibold ${
+              isButtonActive ? "hover:dark:text-[rgb(217,148,132)]" : ""
+            } hover:text-white hover:border-transparent mx-2 rounded-lg flex justify-center transition-colors duration-150 ease-in-out`}
           >
-            {loading ? <Loadicon /> : <Sendicon />}
-          </Button>
+            <Button
+              ref={submitButtonRef}
+              type="submit"
+              variant="outline"
+              className={`ml-2 text-[rgb(191,115,115)] ${isButtonActive ? "active-button-class" : "disabled-button-class"}`}
+              disabled={!isButtonActive || loading}
+            >
+              {loading ? <Loadicon /> : <Sendicon />}
+            </Button>
+          </div>
         </form>
       </div>
     </div>

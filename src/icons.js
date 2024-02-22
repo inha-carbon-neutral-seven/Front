@@ -21,6 +21,8 @@ import {
   faCode,
   faCircleHalfStroke,
   faMoon,
+  faMagnifyingGlass,
+  faChartPie,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faPaperPlane, faBell, faSun } from "@fortawesome/free-regular-svg-icons";
@@ -94,7 +96,7 @@ export function Fileicon() {
 }
 
 export function DownArrowicon() {
-  return <FontAwesomeIcon icon={faArrowDownLong} size="xl" beat />;
+  return <FontAwesomeIcon icon={faArrowDownLong} size="xl" beatFade />;
 }
 
 export function Minimizeicon() {
@@ -110,9 +112,9 @@ export function CaretDown({ width }) {
   };
   useEffect(() => {
     if (width < vwToPx(30)) {
-      setRotation(270);
-    } else if (width == vwToPx(30)) {
       setRotation(90);
+    } else if (width == vwToPx(30)) {
+      setRotation(270);
     }
   }, [width]);
 
@@ -152,4 +154,10 @@ export function DarkModeIcon({ darkMode, setDarkMode }) {
   };
 
   return <FontAwesomeIcon icon={icon} size="2x" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick} />;
+}
+export function MagnifyingGlass() {
+  return <FontAwesomeIcon icon={faMagnifyingGlass} size="2x" />;
+}
+export function ChartPie() {
+  return <FontAwesomeIcon icon={faChartPie} size="2x" />;
 }

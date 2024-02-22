@@ -216,10 +216,11 @@ function FileUploadToServer() {
     return `${bytes.toFixed(1)}${["B", "KB", "MB", "GB"][i]}`;
   };
 
+  const [isActive, setIsActive] = useState(false);
   /* 파일 업로드 후(아직 서버로 전송은 안한 상황), 사용자지정 이름 input 입력받기*/
   /* 이후에 파일과 사용자 지정 이름을 같이 서버로 보낸다 */
   return currentState === "file_uploading" ? (
-    <div className="max-w-sm p-6 border border-gray-200 rounded-lg shadow ">
+    <div className="bg-white max-w-sm p-6 dark:text-[rgb(232,240,240)] rounded-lg shadow dark:bg-[rgb(45,47,51)]">
       <p className="text-center">{formatBytes(selectedFile.size)}</p>
       {loadImageToExt(selectedFile.type)}
       <p className="text-center mb-4 font-bold">{selectedFile.name}</p>
@@ -231,13 +232,28 @@ function FileUploadToServer() {
           handleFileUpload();
         }}
       >
-        <input className="border border-gray-300 rounded" type="text" onChange={(e) => setDataInfo(e.target.value)} placeholder={selectedFile.name}></input>
+        <input
+          className={`dark:bg-[rgb(232,240,240)] dark:text-black border rounded ${isActive ? "border-blue-500" : "border-rgb(115,114,111)"}`} // 조건부 클래스 적용
+          type="text"
+          onChange={(e) => setDataInfo(e.target.value)}
+          onFocus={() => setIsActive(true)}
+          onBlur={() => setIsActive(false)}
+          placeholder={selectedFile.name}
+        ></input>
 
         <button
-          className="bg-transparent hover:bg-[#F6A683] text-black/80 font-semibold hover:text-white py-0.5 px-0.5 border border-black/80 hover:border-transparent ml-1 rounded"
+          className={`px-0.5 ml-1 font-semibold 
+          border border-[rgb(115,114,111)] rounded
+          hover:bg-[rgb(217,148,132)] dark:hover:bg-[rgb(232,240,240)]
+          hover:text-[rgb(232,240,240)] dark:hover:text-[rgb(217,148,132)]
+          transition-colors duration-300 ease-in-out
+          hover:border-transparent
+          `}
           type="submit"
         >
-          <Checkicon />
+          <div>
+            <Checkicon />
+          </div>
         </button>
       </form>
     </div>

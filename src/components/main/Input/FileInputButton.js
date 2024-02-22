@@ -61,7 +61,10 @@ function FileInput() {
 
   // 알림창 컴포넌트
   const Alert = () => (
-    <div className={`absolute bottom-14 text-white bg-[#F6A683] shadow-xl p-4 rounded-lg z-50 w-52 ${showAlert ? "opacity-100" : "opacity-0 hidden"}`}>
+    <div
+      className={`absolute bottom-14 text-white bg-[#F6A683]
+     shadow-xl p-4 rounded-lg z-50 w-52 ${showAlert ? "opacity-100" : "opacity-0 hidden"}`}
+    >
       <div className="right-0">
         {currentState === "analyzed error" ? <Exclamicon /> : <Bellicon />}
         <Loader />
@@ -74,17 +77,16 @@ function FileInput() {
       {showAlert && <Alert />}
 
       <input type="file" onChange={handleFileChange} ref={fileInput} style={{ display: "none" }} accept=".csv, .pdf, .docx, .doc, .txt" />
-      <button
-        className="bg-transparent text-black/80 font-semibold hover:text-black/80 hover:bg-beaver-2 hover:text-white py-2 px-4 border border-black/80 hover:border-transparent rounded-lg"
-        onClick={openFileInput}
-      >
-        Upload
-      </button>
+      <div className="dark:hover:text-[rgb(242,242,242)] hover:bg-[rgb(191,115,115)] text-[rgb(232,240,240)] dark:hover:text-[rgb(217,148,132)] bg-[rgb(217,148,132)] dark:bg-[rgb(45,47,51)]  rounded-lg transition-colors ">
+        <button className="font-semibold py-2 px-4 hover:border-transparent duration-150 ease-in-out" onClick={openFileInput}>
+          Upload
+        </button>
+      </div>
 
       {/* 파일 업로드 안내 문구 */}
       {currentState === "init" && (
-        <div className="flex flex-col justify-center items-center absolute bottom-14 right-[-16px] select-none">
-          <div className="w-[105px] text-black/80">파일 업로드하기</div>
+        <div className="flex flex-col justify-center items-center absolute bottom-14 right-[-16px] select-none dark:text-[rgb(230,230,230)] text-[rgb(115,114,111)] ">
+          <div className="w-[105px]">파일 업로드하기</div>
           <DownArrowicon />
         </div>
       )}
@@ -93,9 +95,9 @@ function FileInput() {
       <button
         className={
           showFileCards
-            ? `absolute bottom-14 right-5 w-10 h-10 shadow-md bg-[#F6A683] hover:bg-[#F38453] text-white hover:text-gray-200 rounded-full transform transition-transform ease-in-out duration-300 ${
-                isPrintFileCards ? "scale-0 opacity-0" : "scale-100"
-              }`
+            ? `absolute bottom-14 right-5 w-10 h-10 shadow-md bg-[#F6A683]
+             hover:bg-[#F38453] text-white hover:text-gray-200
+              rounded-full transform transition-transform ease-in-out duration-300 ${isPrintFileCards ? "scale-0 opacity-0" : "scale-100"}`
             : "hidden"
         }
         onClick={() => setIsPrintFileCards(true)}
@@ -105,18 +107,22 @@ function FileInput() {
 
       {/* 업로드한 파일들 보여주는 컴포넌트 */}
       <div
-        className={`absolute bottom-14 bg-[#F9C8B3] p-2 border rounded shadow w-[300px] transition-transform transform ease-in-out duration-300 opacity-100 origin-[15%_90%] ${
-          isPrintFileCards ? "scale-100" : "scale-0 opacity-0"
-        }`}
+        className={`absolute bottom-14 bg-[#F9C8B3]
+         dark:bg-[rgb(232,240,240)] p-2 border rounded 
+         shadow w-[300px] transition-transform transform ease-in-out duration-300 
+         opacity-100 origin-[15%_90%] ${isPrintFileCards ? "scale-100" : "scale-0 opacity-0"}`}
       >
-        <span onClick={() => setIsPrintFileCards(false)} className="cursor-pointer text-gray-500 hover:text-gray-700">
+        <span
+          onClick={() => setIsPrintFileCards(false)}
+          className="cursor-pointer text-gray-500 hover:text-gray-700 dark:hover:text-[rgb(217,148,132)] dark:text-[rgb(45,47,51)]"
+        >
           <Minimizeicon />
         </span>
         <PrintFileCards />
       </div>
 
       {/* 파일 업로드 버튼 클릭 시, 파일 업로드 컴포넌트 */}
-      <div className="absolute bottom-14 bg-white rounded w-[300px]">{isConnected && <FileUploadToServer />}</div>
+      <div className="absolute bottom-14 w-[300px]">{isConnected && <FileUploadToServer />}</div>
     </div>
   );
 }
