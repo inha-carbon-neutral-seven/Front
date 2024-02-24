@@ -40,29 +40,32 @@ function DashSidebar() {
   return (
     <div className="flex flex-col justify-center items-center w-full h-full ">
       {currentChart ? (
-        <div className="w-full">
-          <div className="button-container flex justify-center mb-4 font-bold text-3xl">
-            <button onClick={prevChart} className="mx-2">
-              ← |
+        <div className="w-full rounded-md bg-white">
+          <div className="pt-5 button-container flex justify-center mb-4 font-bold text-2xl">
+            <button onClick={prevChart} className="mx-2 text-xs">
+              ◄
             </button>
             <div className="mx-2">
-              {selectedChartIndex + 1 + " / " + ChartsfromStore.length}
+              {`${1 + selectedChartIndex} of ${ChartsfromStore.length} `}
             </div>
-            <button onClick={nextChart} className="mx-2">
-              | →
+            <button onClick={nextChart} className="mx-2 text-xs">
+              ►
             </button>
           </div>
-          <div className="chart-container p-10 w-full dark:bg-[rgb(232,240,240)]">
+          <div className="chart-container p-2 w-full dark:bg-[rgb(232,240,240)]">
             <ChartComponent chartData={currentChart} />
           </div>
         </div>
       ) : (
         <div className=" text-center">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-            분석할 파일이 존재하지 않습니다 :(
+            비버 대시보드
           </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400">
+            파일을 먼저 업로드해주세요.
+          </p>
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
-            분석할 파일을 업로드해주세요.
+            유용한 정보를 제공해드려요 !
           </p>
         </div>
       )}

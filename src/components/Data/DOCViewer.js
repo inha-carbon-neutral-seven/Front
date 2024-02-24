@@ -27,11 +27,19 @@ const DOCViewer = () => {
       </div>
     );
   }
-  const documentConfig = { uri: fileURL, fileType: fileType };
+
+  const documentConfig = {
+    uri: fileURL,
+    fileName: `${file.name.slice(0, Math.min(file.name.length, 50))} ...`,
+    fileType: fileType,
+  };
 
   return (
-    <div className="bg-[rgb(232,240,240)]">
-      <DocViewer pluginRenderers={DocViewerRenderers} documents={[documentConfig]} />;
+    <div className="bg-white rounded-md p-2">
+      <DocViewer
+        pluginRenderers={DocViewerRenderers}
+        documents={[documentConfig]}
+      />
     </div>
   );
 };

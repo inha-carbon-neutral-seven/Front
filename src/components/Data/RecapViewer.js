@@ -20,20 +20,27 @@ function RecapViewer() {
     }
   }, [recap]);
   return (
-    <div className="p-4 h-full flex-row text-[rgb()] dark:text-[rgb(232,240,240)]">
-      <h1 className="text-2xl font-bold text-center text-gray-900 mb-2">{title}</h1>
-      <h3 className="text-xl font-semibold text-center">{subtitle}</h3>
-      <div className="text-gray-600 mb-4">
-        {summary.split("\n").map((line, index) => (
-          <p key={index}>{line}</p>
-        ))}
-      </div>{" "}
-      <div>
-        {keywords.map((keyword, index) => (
-          <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-            {keyword}
-          </span>
-        ))}
+    <div className="p-4 h-full flex-row text-[rgb()] dark:text-[rgb(232,240,240)] horizon">
+      <div className="bg-white rounded-md p-3">
+        <h1 className="text-2xl font-bold text-center text-gray-900 mb-2">
+          {title}
+        </h1>
+        <h3 className="text-xl font-semibold text-center">{subtitle}</h3>
+        <div className="text-gray-600 mb-4">
+          {summary.split("\n").map((line, index) => (
+            <p key={index}>{line}</p>
+          ))}
+        </div>{" "}
+        <div>
+          {keywords.map((keyword, index) => (
+            <span
+              key={index}
+              className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+            >
+              {keyword}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );

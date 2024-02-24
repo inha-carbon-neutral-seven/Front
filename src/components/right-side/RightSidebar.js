@@ -128,8 +128,7 @@ function RightSidebar() {
         className={`max-w-64 h-[100vh] backdrop-blur-xl space-y-2 
         flex-shrink-0 drop-shadow-lg overflow-hidden
          transform transition-all duration-100 ease-in-out 
-         flex flex-col justify-center items-center dark:bg-[rgb(30,30,35)]
-          bg-[rgb(204,153,146)] shadow-md rounded-l-lg`}
+         flex flex-col justify-center items-center bg-[rgba(217,148,132,0.3)] dark:bg-[rgba(45,47,51,0.3)] shadow-md rounded-l-lg`}
         style={{ width: width, transition: "width 500ms ease-in-out" }}
       >
         {width > 0 && <div className=" px-1 w-full h-full overflow-auto">{renderContent()}</div>}
@@ -137,7 +136,7 @@ function RightSidebar() {
 
       <aside
         className={`flex-initial h-full w-[45px] backdrop-blur-xl 
-      bg-[rgb(191,115,115)] dark:bg-[rgb(20,20,20)] drop-shadow-lg 
+        bg-[rgb(217,148,132)] dark:bg-[rgb(45,47,51)] drop-shadow-lg 
       overflow-hidden flex flex-col justify-between`}
       >
         <div className="flex flex-col items-center text-[rgb(232,240,240)] dark:text-[rgb(115,114,111)]">

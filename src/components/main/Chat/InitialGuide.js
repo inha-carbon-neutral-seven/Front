@@ -63,10 +63,10 @@ function InitialGuide() {
         </p>
         <div className="h-[30px]"></div>
         <p className="text-lg font-bold text-center text-[rgb(66,66,66)] dark:text-[rgb(230,230,230)]">
-          비버는 일반적인 챗봇🤖 기능을 제공하며, 파일을 첨부하면 파일 종류에 따라 질문응답이 가능합니다.
+          비버.ai는 소매업 파일을 첨부하면 맞춤형 정보를 제공해드려요.
         </p>
         <p className="text-lg font-bold text-center text-[rgb(66,66,66)] dark:text-[rgb(230,230,230)]">
-          비버를 통해 문서 파일에 대한 질문응답과 데이터 시각화, 분석을 통한 풍부한 정보를 얻어보세요!
+          쉽고 간단하게 데이터를 분석하면서 유용한 통찰을 얻어보세요.
         </p>
       </div>
 
