@@ -34,18 +34,19 @@ export const ChartComponent = ({ chartData, width }) => {
     case "radar":
       series = chartData.series;
       labels = chartData.labels;
-      options = generateOptions(chartData.type, chartData.title, series, labels);
+      options = generateOptions(chartData.type, series, labels);
       break;
     case "pie":
     case "donut":
       series = chartData.series[0].data;
       labels = chartData.labels;
-      options = generatePieOptions(chartData.type, chartData.title, series, labels);
+      options = generatePieOptions(chartData.type, series, labels);
       break;
   }
 
   return (
     <div ref={chartRef} className="w-full h-full max-w-[100%]">
+      <h1 className="text-center font-suit mb-5">{chartData.title}</h1>
       <ReactApexChart key={resizeKey} options={options} type={chartData.type} series={series} width={width} height={chartSize.height} />
     </div>
   );

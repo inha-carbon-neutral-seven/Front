@@ -78,13 +78,13 @@ function CSVViewer() {
           apiRef={apiRef}
           rows={rows}
           columns={columns}
-          components={{
-            Toolbar: () => <CustomToolbar onExport={handleExportState} onRestore={handleRestoreState} />,
-          }}
           initialState={{
             pagination: {
-              paginationModel: { pageSize: 20, page: 0 },
+              paginationModel: { pageSize: 15, page: 0 },
             },
+          }}
+          slots={{
+            toolbar: CustomToolbar,
           }}
         />
       </div>

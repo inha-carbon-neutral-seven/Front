@@ -96,8 +96,7 @@ function RightSidebar() {
         return <RecapViewer />;
       case "chartAnalysis":
         return <DashSidebar width={width} />;
-      case "question":
-        return <a href="https://github.com/inha-carbon-neutral-seven" target="_blank" rel="noopener noreferrer"></a>;
+
       default:
     }
   };
@@ -206,14 +205,13 @@ function RightSidebar() {
             <ChartAnalysis />
           </button>
         </div>
-        <div className="flex flex-col items-center text-[rgb(232,240,240)] dark:text-[rgb(115,114,111)]">
+        <div className="flex flex-col items-center text-[rgb(232,240,240)] dark:text-[rgb(115,114,111)] text-[16px]">
           <button className="toggle-sidebar-btn h-12 w-12 hover:dark:text-beaver-2 dark:hover:text-[rgb(191,115,115)] hover:shadow-lg transform hover:scale-110 transition duration-200 ">
             <DarkModeIcon darkMode={darkMode} setDarkMode={setDarkMode} />
           </button>
-
           <button
-            onClick={() => toggleButton("question")}
-            className="toggle-sidebar-btn h-12 w-12 hover:dark:text-beaver-2 dark:hover:text-[rgb(191,115,115)] hover:shadow-lg transform hover:scale-110 transition duration-200"
+            className="toggle-sidebar-btn h-12 w-12 hover:dark:text-beaver-2 dark:hover:text-[rgb(191,115,115)] hover:shadow-lg transform hover:scale-110 transition duration-200 "
+            onClick={() => window.open("https://github.com/inha-carbon-neutral-seven", "_blank")}
             title="Help/Info"
           >
             <Question />
