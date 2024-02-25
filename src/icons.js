@@ -35,6 +35,9 @@ export function Expandicon() {
 export function Nexticon() {
   return <FontAwesomeIcon icon={faChevronRight} size="2xs" />;
 }
+export function Previcon() {
+  return <FontAwesomeIcon icon={faChevronRight} size="2xs" rotation={180} />;
+}
 
 export function Sendicon() {
   return <FontAwesomeIcon icon={faPaperPlane} size="lg" />;

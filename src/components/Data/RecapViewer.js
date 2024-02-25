@@ -12,7 +12,6 @@ function RecapViewer() {
     if (recap.title && recap.subtitle && recap.summary && recap.keywords) {
       setTitle(recap.title);
       setSubtitle(recap.subtitle);
-      console.log(recap.summary);
       const formattedSummary = recap.summary.replace(/\. /g, ".\n");
       setSummary(formattedSummary);
       const modifiedKeywords = recap.keywords.map((keyword) => `#${keyword}`);
@@ -20,20 +19,30 @@ function RecapViewer() {
     }
   }, [recap]);
   return (
-    <div className="p-4 h-full flex-row text-[rgb()] dark:text-[rgb(232,240,240)]">
-      <h1 className="text-2xl font-bold text-center text-gray-900 mb-2">{title}</h1>
-      <h3 className="text-xl font-semibold text-center">{subtitle}</h3>
-      <div className="text-gray-600 mb-4">
-        {summary.split("\n").map((line, index) => (
-          <p key={index}>{line}</p>
-        ))}
-      </div>{" "}
+    <div className="font-suit p-4 h-full flex-row text-[rgb()] dark:text-[rgb(232,240,240)]">
       <div>
-        {keywords.map((keyword, index) => (
-          <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-            {keyword}
-          </span>
-        ))}
+        <h1 className="text-[30px] font-bold text-center mb-2">{title}</h1>
+        <h3 className="text-xl font-semibold text-center">{subtitle}</h3>
+        <div className="h-[40px]"></div>
+        <div className="mb-4 w-[85%] mx-auto text-[20px]">
+          {summary.split("\n").map((line, index, array) => (
+            <React.Fragment key={index}>
+              <p>{line}</p>
+              {(index === 0 || index === array.length - 2) && <br />}
+            </React.Fragment>
+          ))}
+        </div>{" "}
+        <div className="h-[40px]"></div>
+        <div className="w-[85%] mx-auto">
+          {keywords.map((keyword, index) => (
+            <span
+              key={index}
+              className="inline-block bg-[rgb(204,153,146)] dark:bg-[rgb(30,30,35)] text-[rgb(232,240,240)] rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2"
+            >
+              {keyword}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );

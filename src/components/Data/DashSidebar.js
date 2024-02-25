@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { ChartComponent } from "./Chart/ChartComponent";
-import ChartExample from "../../sampledata/Examplechart.json";
 
 import { useSelector } from "react-redux";
+import { Nexticon, Previcon } from "../../icons";
 
-function DashSidebar() {
+function DashSidebar({ width }) {
   const ChartsfromStore = useSelector((state) => state.dataVar.charts);
   const [currentChart, setCurrentChart] = useState();
   const [selectedChartIndex, setSelectedChartIndex] = useState(0);
@@ -38,32 +38,32 @@ function DashSidebar() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center w-full h-full ">
+    <div className="flex flex-col justify-center items-center w-full h-full font-suit">
       {currentChart ? (
-        <div className="w-full">
-          <div className="button-container flex justify-center mb-4 font-bold text-3xl">
-            <button onClick={prevChart} className="mx-2">
-              ← |
-            </button>
-            <div className="mx-2">
-              {selectedChartIndex + 1 + " / " + ChartsfromStore.length}
+        <div className="w-full flex justify-between items-center px-2 h-[70%] flex-col">
+          <div className="flex flex-row justify-center w-full h-full font-bold">
+            <div className="flex grow">
+              <div className="flex flex-col chart-container dark:bg-[rgb(232,240,240)] flex-grow">
+                <ChartComponent chartData={currentChart} width={width} />
+              </div>
             </div>
-            <button onClick={nextChart} className="mx-2">
-              | →
-            </button>
           </div>
-          <div className="chart-container p-10 w-full dark:bg-[rgb(232,240,240)]">
-            <ChartComponent chartData={currentChart} />
+
+          <div className="w-full flex flex-row justify-end px-5">
+            <button onClick={prevChart} className="text-[30px]">
+              <Previcon />
+            </button>
+
+            <div className="mx-2 my-2 dark:text-[rgb(232,240,240)]">{selectedChartIndex + 1 + " / " + ChartsfromStore.length}</div>
+            <button onClick={nextChart} className="text-[30px]">
+              <Nexticon />
+            </button>
           </div>
         </div>
       ) : (
-        <div className=" text-center">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-            분석할 파일이 존재하지 않습니다 :(
-          </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
-            분석할 파일을 업로드해주세요.
-          </p>
+        <div className=" text-center w-full">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">분석할 파일이 존재하지 않습니다 :(</h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">분석할 파일을 업로드해주세요.</p>
         </div>
       )}
     </div>

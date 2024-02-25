@@ -38,10 +38,14 @@ const PDFViewer = () => {
     setPageNumber(itemPageNumber);
   }
   function loading() {
-    return <p>페이지를 로딩 중입니다. 잠시만 기다려 주세요.</p>;
+    return (
+      <div className="h-full">
+        <p className="font-suit">페이지를 로딩 중입니다. 잠시만 기다려 주세요.</p>
+      </div>
+    );
   }
   return (
-    <>
+    <div className="h-full">
       <button type="button" disabled={pageNumber <= 1} onClick={previousPage}>
         Previous
       </button>
@@ -65,7 +69,7 @@ const PDFViewer = () => {
           Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}
         </p>
       </div>
-    </>
+    </div>
   );
 };
 

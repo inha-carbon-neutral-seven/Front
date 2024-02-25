@@ -95,7 +95,7 @@ function RightSidebar() {
       case "recap":
         return <RecapViewer />;
       case "chartAnalysis":
-        return <DashSidebar />;
+        return <DashSidebar width={width} />;
       case "question":
         return;
       default:
@@ -128,16 +128,23 @@ function RightSidebar() {
         className={`max-w-64 h-[100vh] backdrop-blur-xl space-y-2 
         flex-shrink-0 drop-shadow-lg overflow-hidden
          transform transition-all duration-100 ease-in-out 
-         flex flex-col justify-center items-center dark:bg-[rgb(30,30,35)]
-          bg-[rgb(204,153,146)] shadow-md rounded-l-lg`}
+         flex flex-col justify-center items-center 
+          shadow-md rounded-l-lg`}
         style={{ width: width, transition: "width 500ms ease-in-out" }}
       >
-        {width > 0 && <div className=" px-1 w-full h-full overflow-auto">{renderContent()}</div>}
+        {width > 0 && (
+          <div className="w-full h-full overflow-auto ">
+            <div className="h-full flex flex-col">
+              <div className="h-[50px] bg-[rgb(204,153,146)] dark:bg-[rgb(30,30,35)]"></div>
+              <div className="px-1 flex-grow bg-[rgb(240,232,232)] dark:bg-[rgb(80,80,80)]">{renderContent()}</div>
+            </div>
+          </div>
+        )}
       </aside>
 
       <aside
         className={`flex-initial h-full w-[45px] backdrop-blur-xl 
-      bg-[rgb(191,115,115)] dark:bg-[rgb(20,20,20)] drop-shadow-lg 
+      bg-[rgb(191,115,115)] dark:bg-[rgb(20,20,20)]
       overflow-hidden flex flex-col justify-between`}
       >
         <div className="flex flex-col items-center text-[rgb(232,240,240)] dark:text-[rgb(115,114,111)]">
@@ -157,7 +164,7 @@ function RightSidebar() {
               showFileBtn
                 ? `toggle-sidebar-btn h-12 w-12 ${
                     activeButton === "fileIcon"
-                      ? "dark:bg-[rgb(106,141,173)]   shadow-lg scale-110"
+                      ? "dark:bg-[rgb(191,115,115)]   shadow-lg scale-110"
                       : "hover:dark:text-beaver-2 dark:hover:text-[rgb(191,115,115)] hover:shadow-lg"
                   } ${newBtn === "file" ? "blink" : ""}`
                 : "scale-0 opacity-0"
@@ -173,7 +180,7 @@ function RightSidebar() {
               showRecapBtn
                 ? `toggle-sidebar-btn h-12 w-12 ${
                     activeButton === "recap"
-                      ? "dark:bg-[rgb(106,141,173)]   shadow-lg scale-110"
+                      ? "dark:bg-[rgb(191,115,115)]   shadow-lg scale-110"
                       : "hover:dark:text-beaver-2 dark:hover:text-[rgb(191,115,115)] hover:shadow-lg"
                   } ${newBtn === "recap" ? "blink" : ""}`
                 : "scale-0 opacity-0"
@@ -189,8 +196,8 @@ function RightSidebar() {
               showChartBtn
                 ? `toggle-sidebar-btn h-12 w-12 ${
                     activeButton === "chartAnalysis"
-                      ? "dark:bg-[rgb(106,141,173)]   shadow-lg scale-110"
-                      : "hover:dark:text-[rgb(106,141,173)] dark:hover:text-[rgb(191,115,115)] hover:shadow-lg"
+                      ? "dark:bg-[rgb(191,115,115)]   shadow-lg scale-110"
+                      : "hover:dark:text-[rgb(191,115,115)] dark:hover:text-[rgb(191,115,115)] hover:shadow-lg"
                   } ${newBtn === "chart" ? "blink" : ""}`
                 : "scale-0 opacity-0"
             } transform transition duration-200`}

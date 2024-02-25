@@ -43,9 +43,7 @@ function CSVViewer() {
   }, [fileData]);
 
   if (isLoading) {
-    return (
-      <div className="flex flex-col justify-center items-center h-full text-3xl font-bold text-gray-900 dark:text-gray-100">페이지를 로딩 중입니다...</div>
-    );
+    return <div className="flex flex-col justify-center items-center h-full text-3xl font-bold text-gray-900 font-suit">페이지를 로딩 중입니다...</div>;
   }
 
   if (!jsonData || jsonData.length === 0) {
@@ -74,8 +72,8 @@ function CSVViewer() {
   };
 
   return (
-    <div className="overflow-y-auto h-full">
-      <div className="top-0 p-4 transform" style={{ height: "100%" }}>
+    <div className=" overflow-y-auto h-full">
+      <div className="top-0 p-4 transform h-full">
         <DataGrid
           apiRef={apiRef}
           rows={rows}
@@ -85,7 +83,7 @@ function CSVViewer() {
           }}
           initialState={{
             pagination: {
-              paginationModel: { pageSize: 25, page: 0 },
+              paginationModel: { pageSize: 20, page: 0 },
             },
           }}
         />
