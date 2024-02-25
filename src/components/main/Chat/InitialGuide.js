@@ -55,7 +55,7 @@ function ExpandableDiv({ icon, title, additionalItems }) {
 
 function InitialGuide() {
   return (
-    <div className="w-full h-full mx-10 my-4 px-10 py-4 text-[rgb(66,66,66)] dark:text-[rgb(196,196,196)] overflow-auto">
+    <div className="w-full h-full mx-auto my-4 px-10 py-4 text-[rgb(66,66,66)] dark:text-[rgb(196,196,196)] overflow-auto">
       <div className="font-suit">
         <p className="font-bold font-suit flex justify-center items-center text-[45px]">
           <img src={beaver} className="h-20 w-20 rounded-full mr-4" />
