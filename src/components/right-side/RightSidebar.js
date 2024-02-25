@@ -91,13 +91,13 @@ function RightSidebar() {
   const renderContent = () => {
     switch (activeButton) {
       case "fileIcon":
-        return <DOCViewer />;
+        return <DOCViewer width={width} />;
       case "recap":
         return <RecapViewer />;
       case "chartAnalysis":
         return <DashSidebar width={width} />;
       case "question":
-        return;
+        return <a href="https://github.com/inha-carbon-neutral-seven" target="_blank" rel="noopener noreferrer"></a>;
       default:
     }
   };

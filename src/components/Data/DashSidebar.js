@@ -50,20 +50,21 @@ function DashSidebar({ width }) {
           </div>
 
           <div className="w-full flex flex-row justify-end px-5">
-            <button onClick={prevChart} className="text-[30px]">
+            <button onClick={prevChart} className="text-[25px]">
               <Previcon />
             </button>
 
-            <div className="mx-2 my-2 dark:text-[rgb(232,240,240)]">{selectedChartIndex + 1 + " / " + ChartsfromStore.length}</div>
-            <button onClick={nextChart} className="text-[30px]">
+            <div className="mx-2 my-2 dark:text-[rgb(232,240,240)]">{`${1 + selectedChartIndex} of ${ChartsfromStore.length} `}</div>
+            <button onClick={nextChart} className="text-[25px]">
               <Nexticon />
             </button>
           </div>
         </div>
       ) : (
         <div className=" text-center w-full">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">분석할 파일이 존재하지 않습니다 :(</h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">분석할 파일을 업로드해주세요.</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">비버 대시보드</h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400">파일을 먼저 업로드해주세요.</p>
+          <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">유용한 정보를 제공해드려요 !</p>
         </div>
       )}
     </div>
