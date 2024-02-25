@@ -242,7 +242,7 @@ const donutChartOptions = {
   ],
 };
 
-export const generateOptions = (type, title, seriesConfig, xaxisConfig) => {
+export const generateOptions = (type, seriesConfig, xaxisConfig) => {
   let options = {
     series: seriesConfig,
     chart: {
@@ -257,14 +257,6 @@ export const generateOptions = (type, title, seriesConfig, xaxisConfig) => {
     },
     stroke: {
       curve: "straight",
-    },
-    title: {
-      text: title,
-      align: "center",
-      style: {
-        fontWeight: "bold",
-        fontSize: "30px",
-      },
     },
     grid: {
       row: {
@@ -316,7 +308,7 @@ export const generateOptions = (type, title, seriesConfig, xaxisConfig) => {
   }
   return options;
 };
-export const generatePieOptions = (type, title, seriesConfig, labelsConfig) => {
+export const generatePieOptions = (type, seriesConfig, labelsConfig) => {
   let options = {
     series: seriesConfig,
     chart: {
@@ -327,14 +319,6 @@ export const generatePieOptions = (type, title, seriesConfig, labelsConfig) => {
       enabled: false,
     },
 
-    title: {
-      text: title,
-      align: "center",
-      style: {
-        fontWeight: "bold",
-        fontSize: "30px",
-      },
-    },
     labels: labelsConfig,
   };
   switch (type) {

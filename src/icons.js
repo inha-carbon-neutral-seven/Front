@@ -124,7 +124,7 @@ export function CaretDown({ width }) {
   return <FontAwesomeIcon icon={faCaretDown} size="2x" rotation={rotation} style={{ transition: "transform 0.5s" }} />;
 }
 export function Question() {
-  return <FontAwesomeIcon icon={faQuestion} size="2x" />;
+  return <FontAwesomeIcon icon={faQuestion} size="xl" />;
 }
 
 export function RecapIcon() {
@@ -156,7 +156,7 @@ export function DarkModeIcon({ darkMode, setDarkMode }) {
     setIcon(newDarkMode ? faMoon : faSun);
   };
 
-  return <FontAwesomeIcon icon={icon} size="2x" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick} />;
+  return <FontAwesomeIcon icon={icon} size="xl" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={handleClick} />;
 }
 export function MagnifyingGlass() {
   return <FontAwesomeIcon icon={faMagnifyingGlass} size="2x" />;
