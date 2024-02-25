@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import csvtojson from "csvtojson";
 
 import { DataGrid, useGridApiRef, GridToolbarFilterButton, GridToolbarContainer } from "@mui/x-data-grid";
 
-function CustomToolbar({ onExport, onRestore }) {
+function CustomToolbar() {
   return (
     <GridToolbarContainer>
       <GridToolbarFilterButton />
@@ -78,11 +78,15 @@ function CSVViewer() {
           apiRef={apiRef}
           rows={rows}
           columns={columns}
+          components={{
+            Toolbar: () => <CustomToolbar />,
+          }}
           initialState={{
             pagination: {
               paginationModel: { pageSize: 15, page: 0 },
             },
           }}
+          pageSizeOptions={[15, 25, 50, 100]}
           slots={{
             toolbar: CustomToolbar,
           }}

@@ -26,7 +26,6 @@ export const ChartComponent = ({ chartData, width }) => {
   let options;
   let labels;
   let series;
-  console.log(chartData);
   switch (chartData.type) {
     case "bar":
     case "line":

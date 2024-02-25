@@ -81,7 +81,7 @@ function ChatScreen() {
               ) : (
                 <div className="h-full w-full">
                   <div className="overflow-y-auto pb-14">
-                    <ChatLogs /> {/*채팅 메시지 출력*/}
+                    <ChatLogs />
                   </div>
                 </div>
               )}

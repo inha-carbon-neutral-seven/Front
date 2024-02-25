@@ -1,7 +1,3 @@
-// 저장할 변수가 필요해서 만듬
-// 주로 chatscreen.js에서 사용됨
-// 다른데서 사용할수도 있고
-
 // actionType 정의
 const SET_LOADING = "SET_LOADING";
 const SET_MESSAGE = "SET_MESSAGE";

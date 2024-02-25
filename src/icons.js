@@ -21,6 +21,7 @@ import {
   faCode,
   faCircleHalfStroke,
   faMoon,
+  faCircle,
   faMagnifyingGlass,
   faChartPie,
 } from "@fortawesome/free-solid-svg-icons";
@@ -138,7 +139,9 @@ export function BinocularIcon() {
 export function CodeIcon() {
   return <FontAwesomeIcon icon={faCode} size="1x" />;
 }
-
+export function CircleIcon() {
+  return <FontAwesomeIcon icon={faCircle} size="1x" className="px-1" />;
+}
 export function DarkModeIcon({ darkMode, setDarkMode }) {
   const [icon, setIcon] = useState(faMoon);
 

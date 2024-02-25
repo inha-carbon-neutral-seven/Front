@@ -34,7 +34,6 @@ function FileInput() {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      console.log("File selected:", file); // Log the selected file
       dispatch(setFileData(file));
       dispatch(setFileType(file.type));
       dispatch(updateAppState("file_uploading"));

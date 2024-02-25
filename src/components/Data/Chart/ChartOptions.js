@@ -2,18 +2,29 @@ import { generateplotOptions } from "./plotOptions";
 const commonOptions = {
   chart: {},
   dataLabels: {
-    enabled: false,
+    enabled: true,
   },
   stroke: {
     curve: "smooth",
   },
-  zoom: {
-    enabled: false,
+  toolbar: {
+    show: true,
   },
-
   tooltip: {
     enabled: true,
+    tools: {
+      download: true,
+      selection: true,
+      zoom: true,
+      zoomin: true,
+      zoomout: true,
+      pan: true,
+      reset: true,
+    },
+    autoSelected: "zoom",
   },
+  colors: ["#F44F5E", "#E55A89", "#D863B1", "#CA6CD8", "#B57BED", "#8D95EB", "#62ACEA", "#4BC3E6"],
+  background: "rgb(232,240,240)",
 };
 
 const areaChartOptions = {
@@ -25,14 +36,6 @@ const areaChartOptions = {
   },
   stroke: {
     curve: "smooth",
-  },
-  fill: {
-    type: "gradient",
-    gradient: {
-      shadeIntensity: 1,
-      opacityFrom: 0.3,
-      opacityTo: 0.7,
-    },
   },
   plotOptions: generateplotOptions("area"),
 };
@@ -93,15 +96,7 @@ const rangeAreaChartOptions = {
   stroke: {
     curve: "smooth",
   },
-  fill: {
-    type: "gradient",
-    gradient: {
-      shadeIntensity: 1,
-      opacityFrom: 0.7,
-      opacityTo: 0.9,
-      stops: [0, 100],
-    },
-  },
+
   plotOptions: generateplotOptions("area"),
 };
 
@@ -190,6 +185,7 @@ const lineChartOptions = {
   markers: {
     size: 4,
   },
+  colors: ["#000000"],
 };
 
 const barChartOptions = {
@@ -197,14 +193,6 @@ const barChartOptions = {
   chart: {
     ...commonOptions.chart,
     type: "bar",
-  },
-  theme: {
-    monochrome: {
-      enabled: true,
-      color: "#255aee",
-      shadeTo: "light",
-      shadeIntensity: 0.65,
-    },
   },
 };
 
@@ -248,9 +236,6 @@ export const generateOptions = (type, seriesConfig, xaxisConfig) => {
     chart: {
       width: "100%",
       type: type,
-      zoom: {
-        enabled: false,
-      },
     },
     dataLabels: {
       enabled: false,

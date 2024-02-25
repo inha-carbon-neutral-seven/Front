@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import DashSidebar from "../Data/DashSidebar";
 import DOCViewer from "../Data/DOCViewer";
 import RecapViewer from "../Data/RecapViewer";
@@ -21,9 +21,12 @@ function RightSidebar() {
   const [showFileBtn, setShowFileBtn] = useState(false);
   const [showRecapBtn, setShowRecapBtn] = useState(false);
   const [showChartBtn, setShowChartBtn] = useState(false);
-
+  const file = useSelector((state) => state.dataVar.fileData);
+  const fileType = useSelector((state) => state.dataVar.fileType);
   // 방금 만들어진 새로운 btn을 감지하기 위한 state
   const [newBtn, setNewBtn] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
+  const [documentConfig, setDocumentConfig] = useState([]);
 
   // appState에 따라 버튼을 하나씩 활성화
   useEffect(() => {
@@ -82,6 +85,26 @@ function RightSidebar() {
     }
   };
 
+  useEffect(() => {
+    if (file && fileType) {
+      const blob = new Blob([file], { type: fileType });
+      const url = URL.createObjectURL(blob);
+
+      setDocumentConfig([
+        {
+          uri: url,
+          fileName: `${file.name.slice(0, Math.min(file.name.length, 50))} ...`,
+          fileType: fileType,
+        },
+      ]);
+
+      return () => {
+        URL.revokeObjectURL(url);
+        setDocumentConfig([]);
+      };
+    }
+  }, [file, fileType]);
+
   const toggleButton = (buttonId) => {
     setActiveButton(activeButton === buttonId ? null : buttonId);
     adjustWidthForStage(activeButton === buttonId ? 0 : 2);
@@ -91,7 +114,7 @@ function RightSidebar() {
   const renderContent = () => {
     switch (activeButton) {
       case "fileIcon":
-        return <DOCViewer width={width} />;
+        return <DOCViewer document={documentConfig} fileType={fileType} />;
       case "recap":
         return <RecapViewer />;
       case "chartAnalysis":
@@ -100,7 +123,6 @@ function RightSidebar() {
       default:
     }
   };
-  const [darkMode, setDarkMode] = useState(false);
 
   // 다크 모드 상태가 변경될 때마다 로컬 스토리지에 상태 저장
   useEffect(() => {
@@ -135,7 +157,7 @@ function RightSidebar() {
           <div className="w-full h-full overflow-auto ">
             <div className="h-full flex flex-col">
               <div className="h-[50px] bg-[rgb(204,153,146)] dark:bg-[rgb(30,30,35)]"></div>
-              <div className="px-1 flex-grow bg-[rgb(240,232,232)] dark:bg-[rgb(80,80,80)]">{renderContent()}</div>
+              <div className="px-1 flex-grow bg-[rgb(240,232,232)] dark:bg-[rgb(80,80,80)] overflow-auto">{renderContent()}</div>
             </div>
           </div>
         )}

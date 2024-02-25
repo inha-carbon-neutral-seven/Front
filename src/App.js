@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ChatScreen from "./components/main/Chat/ChatScreen";
 import Header from "./components/top-side/Header";
-import { useDispatch, useSelector } from "react-redux";
 import RightSidebar from "./components/right-side/RightSidebar";
 
 function App() {
@@ -23,4 +22,3 @@ function App() {
 }
 
 export default App;
-// overflow-hidden

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { updateServerState } from "../../reducers/serverConnectReducer";
+import { CircleIcon } from "../../icons";
 
 const ServerStatusIndicator = () => {
   const isConnected = useSelector((state) => state.connected.isConnected);
@@ -11,14 +12,12 @@ const ServerStatusIndicator = () => {
   useEffect(() => {
     const checkServerConnection = async () => {
       try {
-        // console.log("서버 상태 확인 시도");
         // 서버에 핑 보내기
         const response = await fetch("http://165.246.75.159:10100/ping");
-
+        // console.log("현재 상태", response.status);
         // response.status === true : 웹, 모델 살아있음
         // response.status === false : 웹은 살고, 모델 죽음
         // 에러 404 : 웹 서버도 죽음.
-        console.log("현재 상태", response.status);
 
         if (response.status) {
           // 서버로부터 응답이 오면 server state를 full-connected로 변경
@@ -48,9 +47,9 @@ const ServerStatusIndicator = () => {
       <div className="inline bg-white rounded-lg p-2">
         {isConnected === "full-connected" && (
           <>
-            <div className="group relative inline-flex items-center overflow-hidden">
-              <FontAwesomeIcon icon={faCircle} className="text-green-600 ml-1" />
-              <span className="transition-all duration-500 group-hover:max-w-xs max-w-0 overflow-hidden whitespace-nowrap ml-1 text-green-600 font-bold">
+            <div className="group relative inline-flex items-center overflow-hidden text-[rgb(22,163,74)]">
+              <CircleIcon />
+              <span className="transition-all duration-500 group-hover:max-w-xs max-w-0 overflow-hidden whitespace-nowrap font-bold ">
                 Beaver is Connected :)
               </span>
             </div>
@@ -59,9 +58,9 @@ const ServerStatusIndicator = () => {
 
         {isConnected === "half-connected" && (
           <>
-            <div className="group relative inline-flex items-center overflow-hidden">
-              <FontAwesomeIcon icon={faCircle} className="text-orange-600 ml-1" />
-              <span className="transition-all duration-500 group-hover:max-w-xs max-w-0 overflow-hidden whitespace-nowrap ml-1 text-orange-600 font-bold">
+            <div className="group relative inline-flex items-center overflow-hidden text-[rgb(251,140,0)]">
+              <CircleIcon />
+              <span className="transition-all duration-500 group-hover:max-w-xs max-w-0 overflow-hidden whitespace-nowrap font-bold">
                 Beaver is not Connected :(
               </span>
             </div>
@@ -70,11 +69,9 @@ const ServerStatusIndicator = () => {
 
         {isConnected === "disconnected" && (
           <>
-            <div className="group relative inline-flex items-center overflow-hidden">
-              <FontAwesomeIcon icon={faCircle} className="text-red-600 ml-1" />{" "}
-              <span className="transition-all duration-500 group-hover:max-w-xs max-w-0 overflow-hidden whitespace-nowrap ml-1 text-red-600 font-bold">
-                SERVER DEAD
-              </span>
+            <div className="group relative inline-flex items-center overflow-hidden text-[rgb(229,57,53)]">
+              <CircleIcon />
+              <span className="transition-all duration-500 group-hover:max-w-xs max-w-0 overflow-hidden whitespace-nowrap font-bold">SERVER DEAD</span>
             </div>
           </>
         )}
