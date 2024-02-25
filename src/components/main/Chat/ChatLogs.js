@@ -32,8 +32,6 @@ function ChatLogs() {
   useEffect(() => {
     if (isAtBottom && containerRef.current) {
       const isAtBottom = containerRef.current.scrollHeight - containerRef.current.scrollTop === containerRef.current.clientHeight;
-      console.log("scrollHeight", containerRef.current.scrollHeight);
-      console.log("scrollTop", containerRef.current.scrollTop);
 
       setIsAtBottom(isAtBottom);
     }

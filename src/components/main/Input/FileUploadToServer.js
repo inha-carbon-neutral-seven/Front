@@ -76,7 +76,6 @@ function FileUploadToServer() {
           const status = mydata.status; // (사용 안 해도 됨, 서버 내부 작업이 성공했는지 여부)
           const recap = mydata.output;
           if (recap) {
-            console.log(recap);
             dispatch(setRecap(recap));
           }
 
@@ -112,7 +111,6 @@ function FileUploadToServer() {
           if (chart && chart.length > 0) {
             // appState 업데이트
             dispatch(updateAppState("chart_finish"));
-            console.log(typeof chart);
             chart.forEach((chart) => {
               if (chart.type && chart.title && chart.labels && chart.series) {
                 // 차트 데이터 저장
@@ -149,9 +147,6 @@ function FileUploadToServer() {
           const mydata = res;
           const status = mydata.status; // (사용 안 해도 됨, 서버 내부 작업이 성공했는지 여부)
           const recommendations = mydata.output;
-
-          // recommendations을 이용한 질문 추천
-          console.log(recommendations);
 
           // 추천 문구 clear
           dispatch(clearRecommendations());

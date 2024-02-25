@@ -19,7 +19,7 @@ function RecapViewer() {
     }
   }, [recap]);
   return (
-    <div className="font-suit p-4 h-full flex-row text-[rgb(20,20,20)] horizon">
+    <div className="font-suit p-4 flex-row text-[rgb(20,20,20)]">
       <div className="bg-[rgb(240,232,232)] rounded-md p-3">
         <h1 className="text-[30px] font-bold text-center mb-2">{title}</h1>
         <h3 className="text-xl font-semibold text-center">{subtitle}</h3>

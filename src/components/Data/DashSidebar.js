@@ -11,7 +11,6 @@ function DashSidebar({ width }) {
 
   useEffect(() => {
     if (ChartsfromStore && ChartsfromStore.length > 0) {
-      console.log(ChartsfromStore);
       let index = Math.max(ChartsfromStore.length - 1, 0);
       setCurrentChart(ChartsfromStore[index]);
       setSelectedChartIndex(index);
@@ -49,7 +48,7 @@ function DashSidebar({ width }) {
             </div>
           </div>
 
-          <div className="w-full flex flex-row justify-end px-5">
+          <div className="fixed bottom-0 left-0 right-0 px-5 flex justify-end items-center">
             <button onClick={prevChart} className="text-[25px]">
               <Previcon />
             </button>
