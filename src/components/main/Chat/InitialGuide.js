@@ -37,7 +37,7 @@ function ExpandableDiv({ icon, title, additionalItems }) {
           <div className={`font-bold flex items-center ${isHovered ? "flex-col" : "flex-row"}`}>
             <div className="p-2 text-[15px] mx-auto">{icon === 0 ? <MagnifyingGlass /> : <ChartPie />}</div>
 
-            <div className="px-2 text-[25px] whitespace-normal text-center">{title}</div>
+            <div className="px-2 min-w-[100px] text-[25px] whitespace-normal text-center">{title}</div>
           </div>
         </div>
 

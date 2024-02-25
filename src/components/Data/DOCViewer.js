@@ -21,11 +21,7 @@ const DOCViewer = () => {
   if (!fileURL) return null;
 
   if (fileType === "text/csv") {
-    return (
-      <div className="bg-[rgb(232,240,240)]">
-        <CSVViewer />
-      </div>
-    );
+    return <div className="bg-[rgb(232,240,240)] h-full overflow-x-auto">{<CSVViewer />}</div>;
   }
   const documentConfig = { uri: fileURL, fileType: fileType };
 
