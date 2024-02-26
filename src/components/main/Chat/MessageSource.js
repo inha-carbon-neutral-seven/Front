@@ -13,7 +13,7 @@ function MessageSource({ message }) {
     }
   }, [message]);
   return (
-    <div className="bg-white/70 text-black/80 rounded w-11/12 mt-3 overflow-x-scroll">
+    <div className="bg-white/70 text-black/80 rounded w-11/12 mt-3 overflow-x-auto">
       {message.input && (
         <div className="border pb-6 rounded overflow-auto" ref={inputRef}>
           <div className="bg-gray-50/50 pl-1 my-2 text-green-600">Input</div>
